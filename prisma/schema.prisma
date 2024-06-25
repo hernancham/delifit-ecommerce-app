@@ -1,0 +1,231 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  USER  @map("User")
+  MOD   @map("Mod")
+  ADMIN @map("Admin")
+}
+
+enum TipoDocumento {
+  DNI                @map("DNI")
+  PASAPORTE          @map("Pasaporte")
+  CARNET_EXTRANJERIA @map("Carnet de Extranjería")
+  OTRO               @map("Otro")
+}
+
+model Usuario {
+  id_usuario String        @id @default(cuid())
+  image      String?
+  email      String        @unique
+  name       String?
+  nombre     String
+  apellido   String
+  password   String
+  telefono   String        @unique
+  documento  String        @unique
+  tipo_doc   TipoDocumento
+
+  puntos     Int      @default(0)
+  rol        UserRole @default(USER)
+  validacion Boolean  @default(false)
+  activo     Boolean  @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  pedido    Pedido[]
+}
+
+enum TipoMedida {
+  Paquete @map("Paquete")
+  Botella @map("Botella")
+  Caja    @map("Caja")
+  Unidad  @map("Unidad")
+
+  Kilogramo @map("Kilogramo")
+  Gramo     @map("Gramo")
+
+  Litro     @map("Litro")
+  Mililitro @map("Mililitro")
+
+  Metro      @map("Metro")
+  Centimetro @map("Centimetro")
+  Milimetro  @map("Milimetro")
+}
+
+model CategoriaInsumo {
+  id_cat_insumo String  @id @default(cuid())
+  nombre        String
+  activo        Boolean @default(true)
+
+  insumo Insumo[]
+}
+
+model Insumo {
+  id_insumo String     @id @default(cuid())
+  img_url   String
+  nombre    String
+  cantidad  Decimal
+  medida    TipoMedida
+  activo    Boolean    @default(true)
+
+  id_cat_insumo String
+  cat_insumo    CategoriaInsumo @relation(fields: [id_cat_insumo], references: [id_cat_insumo])
+
+  producto InsumoOnProducto[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model InsumoOnProducto {
+  id_insumo   String
+  insumo      Insumo   @relation(fields: [id_insumo], references: [id_insumo])
+  id_producto String
+  producto    Producto @relation(fields: [id_producto], references: [id_producto])
+
+  cantidad Decimal
+
+  @@id([id_insumo, id_producto])
+}
+
+model CategoriaProducto {
+  id_cat_producto String  @id @default(cuid())
+  nombre          String
+  activo          Boolean @default(true)
+
+  producto Producto[]
+}
+
+model Producto {
+  id_producto String  @id @default(cuid())
+  img_url     String
+  nombre      String
+  descripcion String
+  precio_base Decimal
+  activo      Boolean @default(true)
+
+  id_cat_producto String
+  cat_producto    CategoriaProducto @relation(fields: [id_cat_producto], references: [id_cat_producto])
+
+  insumo InsumoOnProducto[]
+
+  promocion ProductoOnPromocion[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  lista_producto ListaProducto[]
+}
+
+model ProductoOnPromocion {
+  id_producto  String
+  producto     Producto  @relation(fields: [id_producto], references: [id_producto])
+  id_promocion String
+  promocion    Promocion @relation(fields: [id_promocion], references: [id_promocion])
+
+  cantidad Decimal
+
+  @@id([id_producto, id_promocion])
+}
+
+model CategoriaPromocion {
+  id_cat_promocion String  @id @default(cuid())
+  nombre           String
+  activo           Boolean @default(true)
+
+  promocion Promocion[]
+}
+
+model Promocion {
+  id_promocion     String   @id @default(cuid())
+  img_url          String
+  nombre           String
+  descripcion      String
+  precio_base      Decimal
+  precio_oferta    Decimal  @default(0)
+  estado_promocion Boolean  @default(false)
+  dia_promocion    String[]
+  fecha_inicio     DateTime
+  fecha_fin        DateTime
+  activo           Boolean  @default(true)
+
+  id_cat_promocion String
+  cat_promocion    CategoriaPromocion @relation(fields: [id_cat_promocion], references: [id_cat_promocion])
+
+  producto ProductoOnPromocion[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  lista_promocion ListaPromocion[]
+}
+
+model ListaProducto {
+  cantidad        Int
+  precio_cantidad Decimal
+
+  id_producto String
+  producto    Producto @relation(fields: [id_producto], references: [id_producto])
+  id_pedido   String
+  Pedido      Pedido   @relation(fields: [id_pedido], references: [id_pedido])
+
+  @@id([id_producto, id_pedido])
+}
+
+model ListaPromocion {
+  cantidad        Int
+  precio_cantidad Decimal
+
+  id_promocion String
+  promocion    Promocion @relation(fields: [id_promocion], references: [id_promocion])
+  id_pedido    String
+  Pedido       Pedido    @relation(fields: [id_pedido], references: [id_pedido])
+
+  @@id([id_promocion, id_pedido])
+}
+
+model Pedido {
+  id_pedido   String  @id @default(cuid())
+  id_personal String?
+  id_usuario  String
+  usuario     Usuario @relation(fields: [id_usuario], references: [id_usuario])
+
+  subtotal       Decimal? @default(0)
+  desc_promocion Decimal? @default(0)
+  desc_puntos    Decimal? @default(0)
+  impuesto       Decimal? @default(0)
+  total          Decimal  @default(0)
+
+  estado_pedido EstadoPedido @default(PROCESANDO)
+
+  lista_producto  ListaProducto[]
+  lista_promocion ListaPromocion[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// 7 estados del estado del pedido
+enum EstadoPedido {
+  PROCESANDO @map("Procesando")
+
+  PENDIENTE @map("Pendiente")
+
+  ACEPTADO  @map("Aceptado")
+  RECHAZADO @map("Rechazado")
+
+  ENVIADO @map("Enviado")
+}
