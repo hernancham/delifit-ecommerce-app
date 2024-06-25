@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { useMutation } from "@tanstack/react-query";
-import { createUsuario } from "@/data/usuario/create-usuario";
+import { createUsuario } from "@/actions/usuario/create-usuario";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";

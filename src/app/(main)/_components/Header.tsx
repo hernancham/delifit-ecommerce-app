@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { getSession } from "@/lib/getSession";
+import { getSession } from "@/lib/auth";
 import { signOut } from "@/auth";
 
 export const Header = async () => {
