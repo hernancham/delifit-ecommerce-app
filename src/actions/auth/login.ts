@@ -2,7 +2,10 @@
 
 import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
-import { DEFAULT_LOGIN_REDIRECT } from "@/auth/auth.routes";
+import { revalidatePath } from "next/cache";
+
+// config routes
+import { defaultRoute } from "@/config/authRoutes";
 
 interface loginType {
   telefono: string;
@@ -15,9 +18,8 @@ export const login = async (values: loginType) => {
     await signIn("credentials", {
       telefono: values.telefono,
       password: values.password,
-      redirectTo: values.callbackUrl || DEFAULT_LOGIN_REDIRECT,
+      redirectTo: values.callbackUrl || defaultRoute,
     });
-    return "Todo salio bien";
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
@@ -29,4 +31,10 @@ export const login = async (values: loginType) => {
     }
     throw error;
   }
+  revalidatePath(values.callbackUrl || defaultRoute);
+};
+
+export const loginProvider = async (provider: string) => {
+  await signIn(provider, { redirectTo: "/" });
+  revalidatePath("/");
 };

@@ -1,6 +1,14 @@
-import { Icons } from "@/components/context/Icons";
+import { Icons } from "./navLinksIcons";
+import { ElementType } from "react";
 
-export const navLinks = [
+interface NavLink {
+  name: string;
+  href: string;
+  icon: ElementType<any, keyof JSX.IntrinsicElements>;
+  position: "top" | "bottom";
+}
+
+export const navLinks: NavLink[] = [
   {
     name: "Dashboard",
     href: "/dashboard",

@@ -1,17 +1,17 @@
 import type { NextAuthConfig } from "next-auth";
 
-import { prisma } from "@/lib/prisma";
-
 import { getUsuarioPorTelefono } from "@/actions/auth/get-user";
-
+// type
 import { UserRole } from "@prisma/client";
+// config routes
+import { apiAuthRoute, registerRoute, loginRoute } from "@/config/authRoutes";
 
 export const authConfig = {
+  secret: process.env.AUTH_SECRET,
+  basePath: apiAuthRoute,
   pages: {
-    signIn: "/auth/login",
-    signOut: "/auth/logout",
-    error: "/auth/error",
-    newUser: "/auth/register",
+    newUser: registerRoute,
+    signIn: loginRoute,
   },
   session: {
     strategy: "jwt",
@@ -24,7 +24,11 @@ export const authConfig = {
         const userExists = await getUsuarioPorTelefono(user?.userPhone);
         /* if (userExists && userExists.validacion === false)
           throw Error("Usuario no ha sido Validado"); */
-        if (userExists && userExists.activo === false) return false;
+        if (!userExists) {
+          return false;
+        } else if (userExists.activo === false) {
+          return false;
+        }
       }
       /* if (account?.provider === "google" || account?.provider === "github") {
         const userExists = await getUserByEmail(profile?.email as string);
@@ -60,8 +64,6 @@ export const authConfig = {
             token.userId = userExists.id_usuario;
             token.userRole = userExists.rol as UserRole;
             token.userPhone = userExists.telefono;
-            /* token.userName = userExists.nombre;
-            token.userLastName = userExists.apellido; */
           }
         }
       }

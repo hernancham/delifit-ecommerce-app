@@ -1,3 +1,7 @@
 export default function Loading() {
-  return <div>Loading...</div>;
+  return (
+    <section className='flex flex-col items-center justify-center h-screen'>
+      <div>Loading...</div>;
+    </section>
+  );
 }

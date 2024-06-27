@@ -9,11 +9,9 @@ import { createUsuario } from "@/actions/usuario/create-usuario";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  registerSchema,
-  registerType,
-  TIPOS_DOCUMENTO,
-} from "./registerSchema";
+import { registerSchema, registerType } from "./registerSchema";
+
+import { TIPOS_DOCUMENTO } from "@/constants/prisma";
 
 import {
   Card,
@@ -42,6 +40,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
+// config routes
+import { loginRoute } from "@/config/authRoutes";
+
 export const RegisterForm = () => {
   const router = useRouter();
 
@@ -56,8 +57,7 @@ export const RegisterForm = () => {
       tipo_doc: "DNI",
       password: "",
       confirmPassword: "",
-      image_file: null,
-      image_url: null,
+      image: "",
     },
   });
 
@@ -69,12 +69,12 @@ export const RegisterForm = () => {
   } = useMutation({
     mutationFn: createUsuario,
     onSuccess: () => {
-      router.push("/login");
+      router.push(loginRoute);
     },
   });
 
-  const onSubmit = async (values: registerType) => {
-    await registrarUsuario({
+  const onSubmit = (values: registerType) => {
+    registrarUsuario({
       nombre: values.nombre,
       apellido: values.apellido,
       email: values.email,
@@ -82,8 +82,7 @@ export const RegisterForm = () => {
       documento: values.documento,
       tipo_doc: values.tipo_doc,
       password: values.password,
-      image_file: values.image_file,
-      image_url: values.image_url,
+      image: values.image ?? "/default/ejemplo-usuario.png",
     });
   };
 
@@ -261,27 +260,6 @@ export const RegisterForm = () => {
                 </FormItem>
               )}
             />
-            {/* <FormField
-              control={form.control}
-              name='image_file'
-              render={({ field: { value, onChange, ...fieldProps } }) => (
-                <FormItem>
-                  <FormLabel>Imagen</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...fieldProps}
-                      placeholder='Picture'
-                      type='file'
-                      accept='image/*'
-                      onChange={(event) =>
-                        onChange(event.target.files && event.target.files[0])
-                      }
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            /> */}
             <Button
               disabled={isPending}
               type='submit'
@@ -294,7 +272,7 @@ export const RegisterForm = () => {
         </Form>
       </CardContent>
       <CardFooter>
-        ¿Ya tienes una cuenta? <Link href='/login'>Iniciar sesión</Link>
+        ¿Ya tienes una cuenta? <Link href={loginRoute}>Iniciar sesión</Link>
       </CardFooter>
     </Card>
   );

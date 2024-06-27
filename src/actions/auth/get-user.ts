@@ -9,7 +9,8 @@ export const getUsuarioPorTelefono = async (telefono: string) => {
     });
 
     return user;
-  } catch {
+  } catch (error) {
+    console.log(error);
     return null;
   }
 };
@@ -21,7 +22,8 @@ export const getUsuarioPorEmail = async (email: string) => {
     });
 
     return user;
-  } catch {
+  } catch (error) {
+    console.log(error);
     return null;
   }
 };
