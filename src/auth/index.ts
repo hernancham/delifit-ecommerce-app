@@ -7,7 +7,7 @@ import Credentials from "next-auth/providers/credentials";
 // import GitHub from "next-auth/providers/github"
 // import Google from "next-auth/providers/google"
 
-import { CredentialsSchema } from "@/schemas/auth";
+import { CredentialsSchema } from "./SchemaAuth";
 import { getUsuarioPorTelefono } from "@/actions/auth/get-user";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({

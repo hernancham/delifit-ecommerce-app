@@ -1,7 +1,6 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { uploadImage } from "@/actions/image/upload-image";
 
 interface InsumoOnProductoType {
   id_insumo: string;
@@ -13,23 +12,12 @@ interface createProductoType {
   descripcion: string;
   precio_base: number;
   id_cat_prodcuto: string;
-  image_file?: File | null;
-  image_url?: string | null;
+  img_url: string;
   insumos: InsumoOnProductoType[];
 }
 
 export const createProducto = async (values: createProductoType) => {
-  let imageUrl = values.image_url;
-
   try {
-    // Manejo de la imagen
-    if (values.image_file) {
-      imageUrl = await uploadImage({ image_file: values.image_file });
-      if (!imageUrl) {
-        throw new Error("Error al subir la imagen.");
-      }
-    }
-
     // Crear el insumo en la base de datos
     const data = await prisma.producto.create({
       data: {
@@ -37,7 +25,7 @@ export const createProducto = async (values: createProductoType) => {
         descripcion: values.descripcion,
         precio_base: values.precio_base,
         id_cat_producto: values.id_cat_prodcuto,
-        img_url: imageUrl || "",
+        img_url: values.img_url,
       },
     });
 

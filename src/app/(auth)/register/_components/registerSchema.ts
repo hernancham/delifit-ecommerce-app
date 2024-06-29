@@ -1,11 +1,6 @@
 import { z } from "zod";
 
-import { TipoDocumento } from "@prisma/client";
-
-export const TIPOS_DOCUMENTO = Object.values(TipoDocumento) as [
-  string,
-  ...string[]
-];
+import { TIPOS_DOCUMENTO } from "@/constants/prisma";
 
 const MAX_FILE_SIZE = 5000000;
 const ACCEPTED_IMAGE_TYPES = [
@@ -47,19 +42,7 @@ export const registerSchema = z
       .string()
       .min(8, "Debe tener al menos 8 caracteres")
       .max(40, "Debe tener menos de 40 caracteres"),
-    image_file: z
-      .instanceof(File)
-      .nullable()
-      .optional()
-      .refine(
-        (file) => !file || file?.size < MAX_FILE_SIZE,
-        "La imagen debe pesar menos de 5MB."
-      )
-      .refine(
-        (file) => !file || ACCEPTED_IMAGE_TYPES.includes(file?.type),
-        "Solo se permiten formatos .jpg, .jpeg, .png y .webp."
-      ),
-    image_url: z.string().nullable().optional(),
+    image: z.string().optional(),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Las contraseñas no coinciden",

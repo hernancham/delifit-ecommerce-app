@@ -46,7 +46,7 @@ CREATE TABLE "Insumo" (
     "id_insumo" TEXT NOT NULL,
     "img_url" TEXT NOT NULL,
     "nombre" TEXT NOT NULL,
-    "cantidad" DECIMAL(65,30) NOT NULL,
+    "cantidad" DOUBLE PRECISION NOT NULL,
     "medida" "TipoMedida" NOT NULL,
     "activo" BOOLEAN NOT NULL DEFAULT true,
     "id_cat_insumo" TEXT NOT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE "Insumo" (
 CREATE TABLE "InsumoOnProducto" (
     "id_insumo" TEXT NOT NULL,
     "id_producto" TEXT NOT NULL,
-    "cantidad" DECIMAL(65,30) NOT NULL,
+    "cantidad" DOUBLE PRECISION NOT NULL,
 
     CONSTRAINT "InsumoOnProducto_pkey" PRIMARY KEY ("id_insumo","id_producto")
 );
@@ -80,7 +80,7 @@ CREATE TABLE "Producto" (
     "img_url" TEXT NOT NULL,
     "nombre" TEXT NOT NULL,
     "descripcion" TEXT NOT NULL,
-    "precio_base" DECIMAL(65,30) NOT NULL,
+    "precio_base" DOUBLE PRECISION NOT NULL,
     "activo" BOOLEAN NOT NULL DEFAULT true,
     "id_cat_producto" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -93,7 +93,7 @@ CREATE TABLE "Producto" (
 CREATE TABLE "ProductoOnPromocion" (
     "id_producto" TEXT NOT NULL,
     "id_promocion" TEXT NOT NULL,
-    "cantidad" DECIMAL(65,30) NOT NULL,
+    "cantidad" DOUBLE PRECISION NOT NULL,
 
     CONSTRAINT "ProductoOnPromocion_pkey" PRIMARY KEY ("id_producto","id_promocion")
 );
@@ -113,8 +113,8 @@ CREATE TABLE "Promocion" (
     "img_url" TEXT NOT NULL,
     "nombre" TEXT NOT NULL,
     "descripcion" TEXT NOT NULL,
-    "precio_base" DECIMAL(65,30) NOT NULL,
-    "precio_oferta" DECIMAL(65,30) NOT NULL DEFAULT 0,
+    "precio_base" DOUBLE PRECISION NOT NULL,
+    "precio_oferta" DOUBLE PRECISION NOT NULL DEFAULT 0,
     "estado_promocion" BOOLEAN NOT NULL DEFAULT false,
     "dia_promocion" TEXT[],
     "fecha_inicio" TIMESTAMP(3) NOT NULL,
@@ -130,7 +130,7 @@ CREATE TABLE "Promocion" (
 -- CreateTable
 CREATE TABLE "ListaProducto" (
     "cantidad" INTEGER NOT NULL,
-    "precio_cantidad" DECIMAL(65,30) NOT NULL,
+    "precio_cantidad" DOUBLE PRECISION NOT NULL,
     "id_producto" TEXT NOT NULL,
     "id_pedido" TEXT NOT NULL,
 
@@ -140,7 +140,7 @@ CREATE TABLE "ListaProducto" (
 -- CreateTable
 CREATE TABLE "ListaPromocion" (
     "cantidad" INTEGER NOT NULL,
-    "precio_cantidad" DECIMAL(65,30) NOT NULL,
+    "precio_cantidad" DOUBLE PRECISION NOT NULL,
     "id_promocion" TEXT NOT NULL,
     "id_pedido" TEXT NOT NULL,
 
@@ -152,11 +152,11 @@ CREATE TABLE "Pedido" (
     "id_pedido" TEXT NOT NULL,
     "id_personal" TEXT,
     "id_usuario" TEXT NOT NULL,
-    "subtotal" DECIMAL(65,30) DEFAULT 0,
-    "desc_promocion" DECIMAL(65,30) DEFAULT 0,
-    "desc_puntos" DECIMAL(65,30) DEFAULT 0,
-    "impuesto" DECIMAL(65,30) DEFAULT 0,
-    "total" DECIMAL(65,30) NOT NULL DEFAULT 0,
+    "subtotal" DOUBLE PRECISION DEFAULT 0,
+    "desc_promocion" DOUBLE PRECISION DEFAULT 0,
+    "desc_puntos" DOUBLE PRECISION DEFAULT 0,
+    "impuesto" DOUBLE PRECISION DEFAULT 0,
+    "total" DOUBLE PRECISION NOT NULL DEFAULT 0,
     "estado_pedido" "EstadoPedido" NOT NULL DEFAULT 'Procesando',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
