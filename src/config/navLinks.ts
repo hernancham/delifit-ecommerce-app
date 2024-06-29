@@ -22,15 +22,15 @@ export const navLinks: NavLink[] = [
     position: "top",
   },
   {
-    name: "Productos",
-    href: "/dashboard/productos",
-    icon: Icons.productos,
-    position: "top",
-  },
-  {
     name: "Insumos",
     href: "/dashboard/insumos",
     icon: Icons.insumos,
+    position: "top",
+  },
+  {
+    name: "Productos",
+    href: "/dashboard/productos",
+    icon: Icons.productos,
     position: "top",
   },
   {

@@ -172,7 +172,6 @@ export const FormUpdate = ({ setIsOpen, cardId }: FormUpdateProps) => {
                     {...field}
                     disabled={isLoading}
                     type='number'
-                    min='0'
                     placeholder='0'
                   />
                 </FormControl>

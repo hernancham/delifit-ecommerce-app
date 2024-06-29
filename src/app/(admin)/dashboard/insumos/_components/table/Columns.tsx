@@ -54,7 +54,6 @@ export const ColInsumos: ColumnDef<Insumo>[] = [
       const { cat_insumo } = row.original;
       return <span>{cat_insumo.nombre}</span>;
     },
-    //sortingFn: sortCatFn,
   },
   {
     accessorKey: "cantidad",
@@ -75,12 +74,36 @@ export const ColInsumos: ColumnDef<Insumo>[] = [
     ),
   },
   {
+    id: "Visibilidad",
     accessorKey: "activo",
-    header: "Visibilidad",
+    header: ({ column }) => (
+      <HeaderOptions
+        column={column}
+        title='Visibilidad'
+      />
+    ),
+    cell: ({ row }) => {
+      const { activo } = row.original;
+      return activo ? (
+        <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800'>
+          Activo
+        </span>
+      ) : (
+        <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800'>
+          Inactivo
+        </span>
+      );
+    },
   },
   {
+    id: "Fecha Creación",
     accessorKey: "createdAt",
-    header: "Fecha Creación",
+    header: ({ column }) => (
+      <HeaderOptions
+        column={column}
+        title='Fecha Creación'
+      />
+    ),
     cell: ({ row }) => {
       const { createdAt } = row.original;
       const date = new Date(createdAt);
@@ -88,8 +111,14 @@ export const ColInsumos: ColumnDef<Insumo>[] = [
     },
   },
   {
+    id: "Fecha Actualización",
     accessorKey: "updatedAt",
-    header: "Fecha Actualización",
+    header: ({ column }) => (
+      <HeaderOptions
+        column={column}
+        title='Fecha Actualización'
+      />
+    ),
     cell: ({ row }) => {
       const { updatedAt } = row.original;
       const date = new Date(updatedAt);
@@ -100,8 +129,13 @@ export const ColInsumos: ColumnDef<Insumo>[] = [
     id: "Acciones",
     header: "Acciones",
     cell: ({ row }) => {
-      const { id_insumo } = row.original;
-      return <RowActions id_row={id_insumo} />;
+      const { id_insumo, activo } = row.original;
+      return (
+        <RowActions
+          id_row={id_insumo}
+          activo={activo}
+        />
+      );
     },
   },
 ];

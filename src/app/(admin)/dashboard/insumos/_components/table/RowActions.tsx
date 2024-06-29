@@ -12,19 +12,21 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 
-import { MoreHorizontal, Edit, Copy, Archive } from "lucide-react";
+import { MoreHorizontal, Edit, Eye, EyeOff } from "lucide-react";
 
 import { ResponsiveDialog } from "@/components/custom/ResposiveDialog";
 import { FormUpdate } from "../form/FormUpdate";
-/* import { FormDelete } from "../form/FormDelete"; */
+import { FormEnable, FormDisable } from "../form/FormActivation";
 
 interface RowActionsProps {
   id_row: string;
+  activo: boolean;
 }
 
-export const RowActions = ({ id_row }: RowActionsProps) => {
+export const RowActions = ({ id_row, activo }: RowActionsProps) => {
   const [isEditOpen, setIsEditOpen] = useState(false);
-  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [isEnableOpen, setIsEnableOpen] = useState(false);
+  const [isDisableOpen, setIsDisableOpen] = useState(false);
 
   return (
     <>
@@ -40,17 +42,28 @@ export const RowActions = ({ id_row }: RowActionsProps) => {
         />
       </ResponsiveDialog>
       <ResponsiveDialog
-        isOpen={isDeleteOpen}
-        setIsOpen={setIsDeleteOpen}
-        title='Eliminar Insumo'
-        description='¿Estás seguro de que deseas eliminar este insumo?'
+        isOpen={isEnableOpen}
+        setIsOpen={setIsEnableOpen}
+        title='Activar Insumo'
+        description='Complete el formulario para activar el insumo'
       >
-        <span>Eliminar</span>
-        {/* <FormDelete
+        <FormEnable
           cardId={id_row}
-          setIsOpen={setIsDeleteOpen}
-        /> */}
+          setIsOpen={setIsEnableOpen}
+        />
       </ResponsiveDialog>
+      <ResponsiveDialog
+        isOpen={isDisableOpen}
+        setIsOpen={setIsDisableOpen}
+        title='Desactivar Insumo'
+        description='Complete el formulario para desactivar el insumo'
+      >
+        <FormDisable
+          cardId={id_row}
+          setIsOpen={setIsDisableOpen}
+        />
+      </ResponsiveDialog>
+
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
@@ -71,13 +84,23 @@ export const RowActions = ({ id_row }: RowActionsProps) => {
             <Edit className='mr-2 h-4 w-4' />
             Actualizar
           </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => setIsDeleteOpen(true)}
-            className='cursor-pointer'
-          >
-            <Archive className='mr-2 h-4 w-4' />
-            Eliminar
-          </DropdownMenuItem>
+          {activo ? (
+            <DropdownMenuItem
+              onClick={() => setIsDisableOpen(true)}
+              className='cursor-pointer'
+            >
+              <EyeOff className='mr-2 h-4 w-4' />
+              Desactivar
+            </DropdownMenuItem>
+          ) : (
+            <DropdownMenuItem
+              onClick={() => setIsEnableOpen(true)}
+              className='cursor-pointer'
+            >
+              <Eye className='mr-2 h-4 w-4' />
+              Activar
+            </DropdownMenuItem>
+          )}
         </DropdownMenuContent>
       </DropdownMenu>
     </>

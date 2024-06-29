@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { TipoMedida } from "@prisma/client";
+import { Prisma, TipoMedida } from "@prisma/client";
 
 interface createInsumoType {
   nombre: string;

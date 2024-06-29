@@ -156,7 +156,6 @@ export const FormCreate = ({ setIsOpen }: FormCreateProps) => {
                     {...field}
                     disabled={isLoading}
                     type='number'
-                    min='0'
                     placeholder='0'
                   />
                 </FormControl>

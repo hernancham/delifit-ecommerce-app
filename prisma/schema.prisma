@@ -77,7 +77,7 @@ model Insumo {
   id_insumo String     @id @default(cuid())
   img_url   String
   nombre    String
-  cantidad  Decimal
+  cantidad  Float
   medida    TipoMedida
   activo    Boolean    @default(true)
 
@@ -96,7 +96,7 @@ model InsumoOnProducto {
   id_producto String
   producto    Producto @relation(fields: [id_producto], references: [id_producto])
 
-  cantidad Decimal
+  cantidad Float
 
   @@id([id_insumo, id_producto])
 }
@@ -114,7 +114,7 @@ model Producto {
   img_url     String
   nombre      String
   descripcion String
-  precio_base Decimal
+  precio_base Float
   activo      Boolean @default(true)
 
   id_cat_producto String
@@ -136,7 +136,7 @@ model ProductoOnPromocion {
   id_promocion String
   promocion    Promocion @relation(fields: [id_promocion], references: [id_promocion])
 
-  cantidad Decimal
+  cantidad Float
 
   @@id([id_producto, id_promocion])
 }
@@ -154,8 +154,8 @@ model Promocion {
   img_url          String
   nombre           String
   descripcion      String
-  precio_base      Decimal
-  precio_oferta    Decimal  @default(0)
+  precio_base      Float
+  precio_oferta    Float    @default(0)
   estado_promocion Boolean  @default(false)
   dia_promocion    String[]
   fecha_inicio     DateTime
@@ -175,7 +175,7 @@ model Promocion {
 
 model ListaProducto {
   cantidad        Int
-  precio_cantidad Decimal
+  precio_cantidad Float
 
   id_producto String
   producto    Producto @relation(fields: [id_producto], references: [id_producto])
@@ -187,7 +187,7 @@ model ListaProducto {
 
 model ListaPromocion {
   cantidad        Int
-  precio_cantidad Decimal
+  precio_cantidad Float
 
   id_promocion String
   promocion    Promocion @relation(fields: [id_promocion], references: [id_promocion])
@@ -203,11 +203,11 @@ model Pedido {
   id_usuario  String
   usuario     Usuario @relation(fields: [id_usuario], references: [id_usuario])
 
-  subtotal       Decimal? @default(0)
-  desc_promocion Decimal? @default(0)
-  desc_puntos    Decimal? @default(0)
-  impuesto       Decimal? @default(0)
-  total          Decimal  @default(0)
+  subtotal       Float? @default(0)
+  desc_promocion Float? @default(0)
+  desc_puntos    Float? @default(0)
+  impuesto       Float? @default(0)
+  total          Float  @default(0)
 
   estado_pedido EstadoPedido @default(PROCESANDO)
 
