@@ -10,7 +10,26 @@ import { Decimal } from "@prisma/client/runtime/library";
 
 import { Usuario } from "@/types/db";
 
-export const columns: ColumnDef<Usuario>[] = [
+export const ColUsuarios: ColumnDef<Usuario>[] = [
+  {
+    id: "Imagen",
+    accessorKey: "image",
+    header: "Imagen",
+    cell: ({ row }) => {
+      const { image, nombre } = row.original;
+      return (
+        <div className='flex items-center justify-center h-10 w-10'>
+          <img
+            src={typeof image === "string" ? image : "/images/company-icon.png"}
+            alt={nombre}
+            width={40}
+            height={40}
+            className='rounded-full'
+          />
+        </div>
+      );
+    },
+  },
   {
     accessorKey: "nombre",
     header: ({ column }) => (
@@ -21,11 +40,48 @@ export const columns: ColumnDef<Usuario>[] = [
     ),
   },
   {
+    accessorKey: "apellido",
+    header: ({ column }) => (
+      <HeaderOptions
+        column={column}
+        title='Apellido'
+      />
+    ),
+  },
+  {
+    accessorKey: "telefono",
+    header: ({ column }) => (
+      <HeaderOptions
+        column={column}
+        title='Teléfono'
+      />
+    ),
+  },
+  {
     accessorKey: "email",
     header: ({ column }) => (
       <HeaderOptions
         column={column}
         title='Email'
+      />
+    ),
+  },
+  {
+    accessorKey: "documento",
+    header: ({ column }) => (
+      <HeaderOptions
+        column={column}
+        title='Documento'
+      />
+    ),
+  },
+  {
+    id: "Tipo Documento",
+    accessorKey: "tipo_doc",
+    header: ({ column }) => (
+      <HeaderOptions
+        column={column}
+        title='Documento'
       />
     ),
   },

@@ -29,14 +29,12 @@ export interface Usuario {
   nombre: string;
   apellido: string;
   email: string;
-  password: string;
   activo: boolean;
   documento: string;
   telefono: string;
-  tipo_documento: TipoDocumento;
+  tipo_doc: TipoDocumento;
   rol: UserRole;
   puntos: number;
-  validacion: Boolean;
   createdAt: Date;
   updatedAt: Date;
 }

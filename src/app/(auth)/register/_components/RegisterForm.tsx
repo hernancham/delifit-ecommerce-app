@@ -42,6 +42,8 @@ import { Input } from "@/components/ui/input";
 
 // config routes
 import { loginRoute } from "@/config/authRoutes";
+// constants
+import { usuarioDefault } from "@/config/imageDefault";
 
 export const RegisterForm = () => {
   const router = useRouter();
@@ -57,7 +59,7 @@ export const RegisterForm = () => {
       tipo_doc: "DNI",
       password: "",
       confirmPassword: "",
-      image: "",
+      image: usuarioDefault,
     },
   });
 
@@ -82,7 +84,7 @@ export const RegisterForm = () => {
       documento: values.documento,
       tipo_doc: values.tipo_doc,
       password: values.password,
-      image: values.image ?? "/default/ejemplo-usuario.png",
+      image: values.image,
     });
   };
 

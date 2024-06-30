@@ -42,7 +42,7 @@ export const registerSchema = z
       .string()
       .min(8, "Debe tener al menos 8 caracteres")
       .max(40, "Debe tener menos de 40 caracteres"),
-    image: z.string().optional(),
+    image: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Las contraseñas no coinciden",
