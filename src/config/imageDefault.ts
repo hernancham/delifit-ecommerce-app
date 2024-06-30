@@ -5,3 +5,7 @@ export const insumoDefault = "/default/ejemplo-insumo.png";
 export const productoDefault = "/default/ejemplo-producto.png";
 
 export const promocionDefault = "/default/ejemplo-promocion.png";
+
+export const usuarioDefault = "/default/ejemplo-usuario.png";
+
+export const personalDefault = "/default/ejemplo-personal.png";
