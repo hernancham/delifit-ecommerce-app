@@ -18,8 +18,8 @@ const envVars = z.object({
   CLOUDINARY_API_KEY: z.string(),
   CLOUDINARY_API_SECRET: z.string(),
   // Public URLs for the App and API
-  NEXT_PUBLIC_APP_URL: z.string(),
-  NEXT_PUBLIC_API_URL: z.string(),
+  NEXT_PUBLIC_APP_URL: z.string().optional(),
+  NEXT_PUBLIC_API_URL: z.string().optional(),
 });
 
 envVars.parse(process.env);

@@ -34,7 +34,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           if (parsedCredentials.success) {
             const { telefono, password } = parsedCredentials.data;
             const user = await getUsuarioPorTelefono(telefono);
-            if (!user || !user?.password) return null;
+            if (!user || !user.password) return null;
             const passwordsMatch = await bcrypt.compare(
               password,
               user.password

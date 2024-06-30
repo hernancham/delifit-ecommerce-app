@@ -18,7 +18,7 @@ export const login = async (values: loginType) => {
     await signIn("credentials", {
       telefono: values.telefono,
       password: values.password,
-      redirectTo: values.callbackUrl || defaultRoute,
+      redirectTo: values.callbackUrl ?? defaultRoute,
     });
   } catch (error) {
     if (error instanceof AuthError) {
@@ -31,7 +31,7 @@ export const login = async (values: loginType) => {
     }
     throw error;
   }
-  revalidatePath(values.callbackUrl || defaultRoute);
+  revalidatePath(values.callbackUrl ?? defaultRoute);
 };
 
 export const loginProvider = async (provider: string) => {
