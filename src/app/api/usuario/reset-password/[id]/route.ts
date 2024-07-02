@@ -44,7 +44,7 @@ export async function PUT(
         error.message
       );
     }
-    return new NextResponse("Error al resetear la contraseña el usuario", {
+    return new NextResponse("Error al resetear la contraseña del usuario", {
       status: 500,
     });
   }

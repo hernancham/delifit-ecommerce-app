@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { TipoDocumento } from "@prisma/client";
-import { TIPOS_DOCUMENTO } from "@/constants/prisma";
+import { TipoDocumento, UserRole } from "@prisma/client";
+import { ROLES, TIPOS_DOCUMENTO } from "@/constants/prisma";
 
 const regexNumeroPeru = /^(9\d{8})$/;
 
@@ -102,3 +102,11 @@ export const resetPasswordSchema = z
   });
 
 export type resetPasswordType = z.infer<typeof resetPasswordSchema>;
+
+export const updateRolUsuarioSchema = z.object({
+  rol: z.custom<UserRole>((value) => {
+    return ROLES.includes(value);
+  }),
+});
+
+export type updateRolUsuarioType = z.infer<typeof updateRolUsuarioSchema>;
