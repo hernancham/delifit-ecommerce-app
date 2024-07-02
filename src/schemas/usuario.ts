@@ -116,3 +116,9 @@ export const updateEstadoUsuarioSchema = z.object({
 });
 
 export type updateEstadoUsuarioType = z.infer<typeof updateEstadoUsuarioSchema>;
+
+export const updatePuntosUsuarioSchema = z.object({
+  puntos: z.number().int().positive(),
+});
+
+export type updatePuntosUsuarioType = z.infer<typeof updatePuntosUsuarioSchema>;
