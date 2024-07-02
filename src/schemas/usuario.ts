@@ -104,7 +104,7 @@ export const resetPasswordSchema = z
 export type resetPasswordType = z.infer<typeof resetPasswordSchema>;
 
 export const updateRolUsuarioSchema = z.object({
-  rol: z.custom<UserRole>((value) => {
+  rol: z.custom<UserRole>((value: string) => {
     return ROLES.includes(value);
   }),
 });
