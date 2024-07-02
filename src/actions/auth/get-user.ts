@@ -27,3 +27,16 @@ export const getUsuarioPorEmail = async (email: string) => {
     return null;
   }
 };
+
+export const getUsuarioByDocumento = async (documento: string) => {
+  try {
+    const user = await prisma.usuario.findUnique({
+      where: { documento: documento },
+    });
+
+    return user;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};

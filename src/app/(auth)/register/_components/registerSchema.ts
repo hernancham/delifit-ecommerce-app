@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { TIPOS_DOCUMENTO } from "@/constants/prisma";
+import { getUsuarioPorEmail } from "@/actions/auth/get-user";
 
 const MAX_FILE_SIZE = 5000000;
 const ACCEPTED_IMAGE_TYPES = [
