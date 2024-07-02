@@ -110,3 +110,9 @@ export const updateRolUsuarioSchema = z.object({
 });
 
 export type updateRolUsuarioType = z.infer<typeof updateRolUsuarioSchema>;
+
+export const updateEstadoUsuarioSchema = z.object({
+  activo: z.boolean(),
+});
+
+export type updateEstadoUsuarioType = z.infer<typeof updateEstadoUsuarioSchema>;
