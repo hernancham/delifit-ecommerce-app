@@ -25,6 +25,25 @@ export async function PUT(
 
     const { data } = isValidateDate;
 
+    const userExists = await prisma.usuario.findUnique({
+      where: {
+        id_usuario: params.id,
+      },
+    });
+
+    if (!userExists)
+      throw new Error("El usuario no existe en la base de datos");
+
+    const nuevosPuntos = data.puntos + userExists.puntos;
+
+    if (nuevosPuntos < 0)
+      throw new Error(
+        "No tienes los puntos suficientes para realizar esta acción"
+      );
+
+    if (nuevosPuntos > 2147483647)
+      throw new Error("Has superado el límite de puntos permitidos");
+
     const updateUser = await prisma.usuario.update({
       where: {
         id_usuario: params.id,

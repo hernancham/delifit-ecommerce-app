@@ -118,7 +118,11 @@ export const updateEstadoUsuarioSchema = z.object({
 export type updateEstadoUsuarioType = z.infer<typeof updateEstadoUsuarioSchema>;
 
 export const updatePuntosUsuarioSchema = z.object({
-  puntos: z.number().int().positive(),
+  puntos: z
+    .number()
+    .int()
+    .min(-2147483648, "Mínimo valor -2147483648")
+    .max(2147483647, "Máximo valor 2147483647"),
 });
 
 export type updatePuntosUsuarioType = z.infer<typeof updatePuntosUsuarioSchema>;
