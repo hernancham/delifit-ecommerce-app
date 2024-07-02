@@ -32,24 +32,37 @@ export async function PUT(
     });
 
     if (!userExists)
-      throw new Error("El usuario no existe en la base de datos");
+      return NextResponse.json(
+        { error: "El usuario no existe en la base de datos" },
+        {
+          status: 404,
+        }
+      );
 
-    const nuevosPuntos = data.puntos + userExists.puntos;
+    const nuevosPuntos = userExists.puntos + data.puntos;
 
     if (nuevosPuntos < 0)
-      throw new Error(
-        "No tienes los puntos suficientes para realizar esta acción"
+      return NextResponse.json(
+        { error: "No tienes suficientes puntos para realizar esta acción" },
+        {
+          status: 400,
+        }
       );
 
     if (nuevosPuntos > 2147483647)
-      throw new Error("Has superado el límite de puntos permitidos");
+      return NextResponse.json(
+        { error: "Has superado el límite de puntos permitidos" },
+        {
+          status: 400,
+        }
+      );
 
     const updateUser = await prisma.usuario.update({
       where: {
         id_usuario: params.id,
       },
       data: {
-        puntos: data.puntos,
+        puntos: nuevosPuntos,
       },
     });
     return NextResponse.json(updateUser, { status: 200 });
