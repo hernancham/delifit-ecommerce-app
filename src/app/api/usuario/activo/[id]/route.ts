@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { updatePuntosUsuarioSchema } from "@/schemas/usuario";
+import { updateEstadoUsuarioSchema } from "@/schemas/usuario";
 
 export async function PUT(
   request: Request,
@@ -12,7 +12,7 @@ export async function PUT(
 
     const body = await request.json();
 
-    const isValidateDate = updatePuntosUsuarioSchema.safeParse(body);
+    const isValidateDate = updateEstadoUsuarioSchema.safeParse(body);
 
     if (!isValidateDate.success)
       return NextResponse.json(
@@ -30,18 +30,18 @@ export async function PUT(
         id_usuario: params.id,
       },
       data: {
-        puntos: data.puntos,
+        activo: data.activo,
       },
     });
     return NextResponse.json(updateUser, { status: 200 });
   } catch (error) {
     if (error instanceof Error) {
       console.error(
-        "Error al actualizar los puntos del usuario:",
+        "Error al actualizar el estado del usuario:",
         error.message
       );
     }
-    return new NextResponse("Error al actualizar los puntos del usuario", {
+    return new NextResponse("Error al actualizar el estado del usuario", {
       status: 500,
     });
   }
