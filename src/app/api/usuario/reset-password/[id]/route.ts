@@ -11,7 +11,9 @@ export async function PUT(
     if (!params.id)
       return new NextResponse("Falta el id del usuario", { status: 400 });
 
-    const isValidateDate = resetPasswordSchema.safeParse(request.body);
+    const body = await request.json();
+
+    const isValidateDate = resetPasswordSchema.safeParse(body);
 
     if (!isValidateDate.success)
       return NextResponse.json(
@@ -23,7 +25,7 @@ export async function PUT(
       );
 
     const { data } = isValidateDate;
-    
+
     const hashedPassword = await bcrypt.hash(data.password, 10);
 
     const updateUser = await prisma.usuario.update({
@@ -37,8 +39,13 @@ export async function PUT(
     return NextResponse.json(updateUser, { status: 200 });
   } catch (error) {
     if (error instanceof Error) {
-      console.error("Error al resetear la contraseña del usuario:", error.message);
+      console.error(
+        "Error al resetear la contraseña del usuario:",
+        error.message
+      );
     }
-    return new NextResponse("Error al resetear la contraseña el usuario", { status: 500 });
+    return new NextResponse("Error al resetear la contraseña el usuario", {
+      status: 500,
+    });
   }
 }
