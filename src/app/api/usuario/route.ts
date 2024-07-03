@@ -1,7 +1,20 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { auth } from "@/auth";
+import { UserRole } from "@prisma/client";
 
-export async function GET(request: Request) {
+export const GET = auth(async function GET(request) {
+  // obtener la session del usuario
+  const session = request.auth;
+
+  if (!session) {
+    return NextResponse.json({ error: "Not Session" }, { status: 401 });
+  }
+
+  if (session.user.userRole !== UserRole.ADMIN) {
+    return NextResponse.json({ error: "No tiene permisos" }, { status: 403 });
+  }
+
   const { searchParams } = new URL(request.url);
   let data;
   try {
@@ -53,4 +66,4 @@ export async function GET(request: Request) {
     }
     return new NextResponse("Error al leer los usuarios", { status: 500 });
   }
-}
+});
