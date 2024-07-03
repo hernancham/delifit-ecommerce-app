@@ -31,7 +31,9 @@ export async function PATCH(
     if (!params.id)
       return new NextResponse("Falta el id del usuario", { status: 400 });
 
-    const isValidateDate = updateUsuarioSchema.safeParse(request.body);
+    const body = await request.json();
+
+    const isValidateDate = updateUsuarioSchema.safeParse(body);
 
     if (!isValidateDate.success)
       return NextResponse.json(
@@ -73,6 +75,10 @@ export async function PATCH(
         }
       }
     }
+
+    console.log("data: ", data);
+    console.log("data.nombre: ", data.nombre);
+    console.log("data.apellido: ", data.apellido);
 
     const updateUser = await prisma.usuario.update({
       where: {
