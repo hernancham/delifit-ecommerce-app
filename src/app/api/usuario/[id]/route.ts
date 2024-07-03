@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { createUsuarioSchema } from "@/schemas/usuario";
+import { updateUsuarioSchema } from "@/schemas/usuario";
 
 export async function GET(
   request: Request,
@@ -23,7 +23,7 @@ export async function GET(
   }
 }
 
-export async function PUT(
+export async function PATCH(
   request: Request,
   { params }: { params: { id: string } }
 ) {
@@ -31,7 +31,7 @@ export async function PUT(
     if (!params.id)
       return new NextResponse("Falta el id del usuario", { status: 400 });
 
-    const isValidateDate = createUsuarioSchema.safeParse(request.body);
+    const isValidateDate = updateUsuarioSchema.safeParse(request.body);
 
     if (!isValidateDate.success)
       return NextResponse.json(
@@ -44,31 +44,33 @@ export async function PUT(
 
     const { data } = isValidateDate;
 
-    const userExists = await prisma.usuario.findFirst({
-      where: {
-        OR: [
-          { email: data.email },
-          { telefono: data.telefono },
-          { documento: data.documento },
-        ],
-      },
-    });
+    if (data.email || data.telefono || data.documento) {
+      const userExists = await prisma.usuario.findFirst({
+        where: {
+          OR: [
+            { email: data.email },
+            { telefono: data.telefono },
+            { documento: data.documento },
+          ],
+        },
+      });
 
-    if (userExists) {
-      let errors = [];
+      if (userExists) {
+        let errors = [];
 
-      if (userExists.email === data.email) errors.push("Email");
-      if (userExists.telefono === data.telefono) errors.push("Teléfono");
-      if (userExists.documento === data.documento) errors.push("Documento");
+        if (userExists.email === data.email) errors.push("Email");
+        if (userExists.telefono === data.telefono) errors.push("Teléfono");
+        if (userExists.documento === data.documento) errors.push("Documento");
 
-      if (errors.length > 0) {
-        return NextResponse.json(
-          {
-            error: "Hay campos que ya están en uso",
-            message: `${errors.join(", ")} ya están en uso`,
-          },
-          { status: 409 }
-        );
+        if (errors.length > 0) {
+          return NextResponse.json(
+            {
+              error: "Hay campos que ya están en uso",
+              message: `${errors.join(", ")} ya están en uso`,
+            },
+            { status: 409 }
+          );
+        }
       }
     }
 
