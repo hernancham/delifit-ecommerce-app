@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 import { MoreHorizontal, Edit, Eye, EyeOff } from "lucide-react";
 
 import { ResponsiveDialog } from "@/components/custom/ResposiveDialog";
-import { FormUpdate } from "../form/FormUpdate";
+// import { FormUpdate } from "../form/FormUpdate";
 import { FormEnable, FormDisable } from "../form/FormActivation";
 
 interface RowActionsProps {
