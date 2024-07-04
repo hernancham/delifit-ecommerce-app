@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
-import { resetPasswordSchema } from "@/schemas/usuario";
+import { resetPasswordSchema } from "@/schemas/auth";
 
 export async function PUT(
   request: Request,
