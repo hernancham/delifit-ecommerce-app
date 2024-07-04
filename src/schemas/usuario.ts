@@ -90,24 +90,6 @@ export const updateUsuarioSchema = z.object({
 
 export type updateUsuarioType = z.infer<typeof updateUsuarioSchema>;
 
-export const resetPasswordSchema = z
-  .object({
-    password: z
-      .string()
-      .min(8, "Debe tener al menos 8 caracteres")
-      .max(40, "Debe tener menos de 40 caracteres"),
-    confirmPassword: z
-      .string()
-      .min(8, "Debe tener al menos 8 caracteres")
-      .max(40, "Debe tener menos de 40 caracteres"),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "Las contraseñas no coinciden",
-    path: ["confirmPassword"],
-  });
-
-export type resetPasswordType = z.infer<typeof resetPasswordSchema>;
-
 export const updateRolUsuarioSchema = z.object({
   rol: z.custom<UserRole>((value: string) => {
     return ROLES.includes(value);

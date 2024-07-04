@@ -1,82 +1,53 @@
 import type { NextAuthConfig } from "next-auth";
+import bcrypt from "bcryptjs";
+// metodos de autenticación
+import Credentials from "next-auth/providers/credentials";
+// import Google from "next-auth/providers/google"
+// import GitHub from "next-auth/providers/github"
 
+// esquema de validación
+import { loginSchema } from "@/schemas/auth";
+// actions
 import { getUsuarioPorTelefono } from "@/actions/auth/get-user";
-// type
-import { UserRole } from "@prisma/client";
-// config routes
-import { apiAuthRoute, registerRoute, loginRoute } from "@/config/authRoutes";
+// errors
+import { LoginAuthError } from "@/auth/error";
 
 export const authConfig = {
-  secret: process.env.AUTH_SECRET,
-  basePath: apiAuthRoute,
-  pages: {
-    newUser: registerRoute,
-    signIn: loginRoute,
-  },
-  session: {
-    strategy: "jwt",
-    maxAge: 30 * 24 * 60 * 60, //30 days
-    updateAge: 24 * 60 * 60, //24 hours
-  },
-  callbacks: {
-    async signIn({ user, account, profile }) {
-      if (account?.type === "credentials") {
-        const userExists = await getUsuarioPorTelefono(user?.userPhone);
-        /* if (userExists && userExists.validacion === false)
-          throw Error("Usuario no ha sido Validado"); */
-        if (!userExists) {
-          return false;
-        } else if (userExists.activo === false) {
-          return false;
+  providers: [
+    /* Google({
+      clientId: env.AUTH_GOOGLE_ID,
+      clientSecret: env.AUTH_GOOGLE_SECRET,
+    }),
+    GitHub({
+      clientId: env.AUTH_GITHUB_ID,
+      clientSecret: env.AUTH_GITHUB_SECRET,
+    }), */
+    Credentials({
+      authorize: async (credentials) => {
+        try {
+          const { success, data } = loginSchema.safeParse(credentials);
+          if (!success) throw new LoginAuthError("Credenciales inválidas");
+
+          const user = await getUsuarioPorTelefono(data.telefono);
+          if (!user) throw new LoginAuthError("Credenciales inválidas");
+
+          const isMatch = await bcrypt.compare(data.password, user.password);
+          if (!isMatch) throw new LoginAuthError("Credenciales inválidas");
+
+          // revisar logicas de validacion
+          if (user.validacion == true)
+            throw new LoginAuthError("El usuario no ha sido validado aun");
+
+          return {
+            userId: user.id_usuario,
+            userRole: user.rol,
+            userPhone: user.telefono,
+          };
+        } catch (error) {
+          if (error instanceof LoginAuthError) throw error;
+          throw new Error("Ocurrió un error al intentar iniciar sesión");
         }
-      }
-      /* if (account?.provider === "google" || account?.provider === "github") {
-        const userExists = await getUserByEmail(profile?.email as string);
-
-        if (userExists && userExists.confirmedEmail === false) {
-          throw Error("ConfirmEmail");
-        }
-
-        if (userExists && userExists.active === false) return false;
-
-        if (!userExists) {
-          let username: string = (profile?.name as string).replace(" ", ".");
-
-
-          await prisma.user.create({
-            data: {
-              username,
-              email: profile?.email as string,
-              active: true,
-              confirmedEmail: true,
-            },
-          });
-        }
-      } */
-      return true;
-    },
-    async jwt({ token, user }) {
-      if (user) {
-        if (user?.userPhone) {
-          const userExists = await getUsuarioPorTelefono(user.userPhone);
-
-          if (userExists) {
-            token.userId = userExists.id_usuario;
-            token.userRole = userExists.rol as UserRole;
-            token.userPhone = userExists.telefono;
-          }
-        }
-      }
-      return token;
-    },
-    async session({ session, token }) {
-      if (token) {
-        session.user.userId = token.userId;
-        session.user.userRole = token.userRole;
-        session.user.userPhone = token.userPhone;
-      }
-      return session;
-    },
-  },
-  providers: [],
+      },
+    }),
+  ],
 } satisfies NextAuthConfig;
