@@ -1,23 +1,14 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-
-import { useMutation } from "@tanstack/react-query";
-import { login } from "@/actions/auth/login";
-
+import { useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema, loginType } from "./loginSchema";
+// actions
+import { login } from "@/actions/auth/login";
+// esquema de validadcion y types
+import { loginSchema, loginType } from "@/schemas/auth";
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardFooter,
-} from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -29,8 +20,13 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { defaultRoute } from "@/config/authRoutes";
 
 export const LoginForm = () => {
+  const [error, setError] = useState<string | null>(null);
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
+
   const form = useForm<loginType>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -39,82 +35,70 @@ export const LoginForm = () => {
     },
   });
 
-  const {
-    data,
-    mutate: loginCredentials,
-    isError,
-    isPending,
-  } = useMutation({
-    mutationFn: login,
-  });
-
   const onSubmit = async (values: loginType) => {
-    await loginCredentials({
-      telefono: values.telefono,
-      password: values.password,
-      callbackUrl: undefined,
+    setError(null);
+    startTransition(async () => {
+      const response = await login({
+        telefono: values.telefono,
+        password: values.password,
+      });
+      if (response.error) setError(response.error);
+      else router.push(defaultRoute);
     });
   };
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Login</CardTitle>
-        <CardDescription>
-          Ingrese su número de teléfono y contraseña para acceder a su cuenta.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
-            <FormField
-              control={form.control}
-              name='telefono'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Teléfono</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      disabled={isPending}
-                      type='text'
-                      placeholder=''
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name='password'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Contraseña</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      disabled={isPending}
-                      type='password'
-                      placeholder=''
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button
-              disabled={isPending}
-              type='submit'
-              variant='default'
-              className='w-full'
-            >
-              Login
-            </Button>
-          </form>
-        </Form>
-      </CardContent>
-      <CardFooter></CardFooter>
-    </Card>
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className='space-y-6'
+      >
+        <FormField
+          control={form.control}
+          name='telefono'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Teléfono</FormLabel>
+              <FormControl>
+                <Input
+                  {...field}
+                  disabled={isPending}
+                  type='text'
+                  placeholder='ingresa tu numero'
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name='password'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Contraseña</FormLabel>
+              <FormControl>
+                <Input
+                  {...field}
+                  disabled={isPending}
+                  type='password'
+                  placeholder='ingresa tu contraseña'
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        {error && <FormMessage>{error}</FormMessage>}
+        <Button
+          disabled={isPending}
+          type='submit'
+          variant='default'
+          className='w-full'
+        >
+          Ingresar
+        </Button>
+      </form>
+    </Form>
   );
 };
