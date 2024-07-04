@@ -7,6 +7,7 @@ export default async function Page() {
       <div className='flex flex-col gap-4'>
         <h1>Home: </h1>
         <pre>{JSON.stringify(session, null, 2)}</pre>
+        <span>Delifit App Test</span>
       </div>
     </div>
   );
