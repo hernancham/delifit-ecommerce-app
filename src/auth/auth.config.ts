@@ -36,12 +36,13 @@ export const authConfig = {
 
           // revisar logicas de validacion
           if (user.validacion == true)
-            throw new LoginAuthError("El usuario no ha sido validado aun");
+            throw new LoginAuthError("El usuario no ha sido validado aún");
 
           return {
             userId: user.id_usuario,
             userRole: user.rol,
             userPhone: user.telefono,
+            userImage: user.image,
           };
         } catch (error) {
           if (error instanceof LoginAuthError) throw error;
