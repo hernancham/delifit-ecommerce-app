@@ -1,47 +1,57 @@
-import Link from "next/link";
+"use client";
 
-import { auth } from "@/auth";
-//import { getSession } from "@/lib/auth";
+import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 
-import { SignUpButton, SignInButton, SignOutButton } from "./AuthButton";
+import { Logo } from "./Logo";
+import { SheetMenu } from "./SheetMenu";
+import { NavMenu } from "./NavMenu";
+import { ThemeToggler } from "./ThemeToggler";
+// import { AuthButtons } from "./AuthButtons";
 
-export const Header = async () => {
-  const session = await auth();
-  const user = session?.user;
+const navbarLinks = [
+  { path: "/menu", label: "Menu" },
+  { path: "/menu/productos", label: "Productos" },
+  { path: "/menu/promociones", label: "Promociones" },
+  { path: "/menu/carrito", label: "Carrito" },
+  { path: "/preguntas-frecuentes", label: "FAQ" },
+];
+
+export const Header = () => {
+  const [sticky, setSticky] = useState(false);
+
+  const handleStickyNavbar = () => {
+    if (window.scrollY >= 5) {
+      setSticky(true);
+    } else {
+      setSticky(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleStickyNavbar);
+  });
 
   return (
-    <nav className='flex justify-around items-center py-4 bg-[#141414] text-white'>
-      <Link
-        href='/'
-        className='text-xl font-bold'
-      >
-        Delifit App
-      </Link>
-
-      <ul className='hidden md:flex space-x-4 list-none'>
-        {!user ? (
-          <>
-            <li>
-              <SignInButton />
-            </li>
-            <li>
-              <SignUpButton />
-            </li>
-          </>
-        ) : (
-          <>
-            <li className='mt-2'>
-              <Link
-                href='/dashboard'
-                className='hover:text-gray-400'
-              >
-                Dashboard
-              </Link>
-            </li>
-            <SignOutButton />
-          </>
-        )}
-      </ul>
-    </nav>
+    <header
+      className={cn(
+        "left-0 top-0 mx-auto flex w-full flex-row items-center bg-lime-500 bg-opacity-10 px-2 sm:px-4 md:px-8 lg:px-16",
+        {
+          "fixed z-50 bg-opacity-5 backdrop-blur-sm": sticky,
+        }
+      )}
+    >
+      <div className='flex w-auto flex-none flex-row items-center justify-start'>
+        <SheetMenu navbarLinks={navbarLinks} />
+        <Logo />
+      </div>
+      <div className='grow'>
+        <NavMenu navbarLinks={navbarLinks} />
+      </div>
+      <div className='flex w-auto flex-none flex-row items-center justify-end'>
+        {/* <Auth Buttons /> */}
+        <ThemeToggler />
+      </div>
+    </header>
   );
 };
