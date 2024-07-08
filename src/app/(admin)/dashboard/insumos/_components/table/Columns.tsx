@@ -129,13 +129,7 @@ export const ColInsumos: ColumnDef<Insumo>[] = [
     id: "Acciones",
     header: "Acciones",
     cell: ({ row }) => {
-      const { id_insumo, activo } = row.original;
-      return (
-        <RowActions
-          id_row={id_insumo}
-          activo={activo}
-        />
-      );
+      return <RowActions row={row.original} />;
     },
   },
 ];

@@ -24,7 +24,6 @@ export const FormEnable = ({
   cardId: string;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const router = useRouter();
   const queryClient = useQueryClient();
 
   const { mutate: eliminarInsumo } = useMutation({
@@ -57,7 +56,6 @@ export const FormEnable = ({
         id_insumo: cardId,
         activo: true,
       });
-      router.refresh();
       setIsOpen(false);
     } catch (error) {
       toast({
@@ -69,8 +67,6 @@ export const FormEnable = ({
   };
 
   const onCancel = () => {
-    // form.reset();
-    router.refresh();
     setIsOpen(false);
   };
 

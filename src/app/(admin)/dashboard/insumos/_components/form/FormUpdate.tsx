@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { type Dispatch, type SetStateAction } from "react";
 
 import { useForm } from "react-hook-form";
@@ -30,64 +29,42 @@ import { toast } from "@/components/ui/use-toast";
 
 import { ImageUpload } from "@/components/custom/ImageUpload";
 
-import axios from "axios";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 // actions
 import { updateInsumoById } from "@/actions/insumo/update-insumo";
 // config and constants
 import { insumoDefault } from "@/config/imageDefault";
 import { TIPOS_MEDIDA } from "@/constants/prisma";
-// Types
-import { CategoriaInsumo, Insumo } from "@/types/db";
 import { TipoMedida } from "@prisma/client";
 
-const getInsumo = async (id: string) => {
-  try {
-    const response = await axios.get<Insumo>(`/api/insumo/${id}`);
-    return response.data;
-  } catch (error) {
-    throw new Error("Error al obtener el insumo");
-  }
-};
-
-const getCategoriasInsumo = async () => {
-  try {
-    const response = await axios.get<CategoriaInsumo[]>(
-      "/api/categoria/insumo",
-      {
-        params: {
-          activo: "true",
-        },
-      }
-    );
-    return response.data;
-  } catch (error) {
-    throw new Error("Error al leer las categorias de insumos");
-  }
-};
+// Types
+import { CategoriaInsumo, Insumo } from "@/types/db";
 
 interface FormUpdateProps {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-  cardId: string;
+  insumo: Insumo;
+  categoria: CategoriaInsumo[];
 }
 
-export const FormUpdate = ({ setIsOpen, cardId }: FormUpdateProps) => {
-  const router = useRouter();
+export const FormUpdate = ({
+  setIsOpen,
+  insumo,
+  categoria,
+}: FormUpdateProps) => {
+  const queryClient = useQueryClient();
 
-  const { data: categoria, isLoading: isCatLoading } = useQuery({
-    queryKey: ["categorias_insumos"],
-    queryFn: getCategoriasInsumo,
-  });
-
-  const { data: insumo } = useQuery({
-    queryKey: ["obtener insumo"],
+  /* const { data: insumo, isLoading: isInsumoLoading } = useQuery({
+    queryKey: ["insumo", cardId],
     queryFn: () => getInsumo(cardId),
-  });
+  }); */
 
   const { mutate: actualizarInsumo } = useMutation({
     mutationFn: updateInsumoById,
     onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["insumos"],
+      });
       toast({
         title: "Insumo Actualizado",
         description: "El insumo ha sido actualizado exitosamente",
@@ -99,11 +76,11 @@ export const FormUpdate = ({ setIsOpen, cardId }: FormUpdateProps) => {
   const form = useForm<formType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      nombre: insumo?.nombre,
-      cantidad: insumo?.cantidad,
-      medida: insumo?.medida,
-      id_cat_insumo: insumo?.id_cat_insumo,
-      img_url: insumo?.img_url,
+      nombre: insumo.nombre,
+      cantidad: insumo.cantidad,
+      medida: insumo.medida,
+      id_cat_insumo: insumo.id_cat_insumo,
+      img_url: insumo.img_url,
     },
   });
 
@@ -117,9 +94,8 @@ export const FormUpdate = ({ setIsOpen, cardId }: FormUpdateProps) => {
         medidad: values.medida as TipoMedida,
         id_cat_insumo: values.id_cat_insumo,
         img_url: values.img_url,
-        id_insumo: cardId,
+        id_insumo: insumo.id_insumo,
       });
-      router.refresh();
       setIsOpen(false);
     } catch (error) {
       toast({
@@ -131,8 +107,6 @@ export const FormUpdate = ({ setIsOpen, cardId }: FormUpdateProps) => {
   };
 
   const onCancel = () => {
-    // form.reset();
-    router.refresh();
     setIsOpen(false);
   };
 
@@ -221,7 +195,7 @@ export const FormUpdate = ({ setIsOpen, cardId }: FormUpdateProps) => {
               <FormItem>
                 <FormLabel>Categoria</FormLabel>
                 <Select
-                  disabled={isLoading || isCatLoading}
+                  disabled={isLoading}
                   onValueChange={field.onChange}
                   value={String(field.value)}
                   defaultValue={String(field.value)}

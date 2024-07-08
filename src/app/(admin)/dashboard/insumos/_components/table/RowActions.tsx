@@ -18,15 +18,25 @@ import { ResponsiveDialog } from "@/components/custom/ResposiveDialog";
 import { FormUpdate } from "../form/FormUpdate";
 import { FormEnable, FormDisable } from "../form/FormActivation";
 
+import { useQuery } from "@tanstack/react-query";
+// Data
+import { getInsumo, getCategoriasInsumo } from "@/data/insumos";
+// Types
+import { Insumo } from "@/types/db";
+
 interface RowActionsProps {
-  id_row: string;
-  activo: boolean;
+  row: Insumo;
 }
 
-export const RowActions = ({ id_row, activo }: RowActionsProps) => {
+export const RowActions = ({ row }: RowActionsProps) => {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isEnableOpen, setIsEnableOpen] = useState(false);
   const [isDisableOpen, setIsDisableOpen] = useState(false);
+
+  const { data: categoria } = useQuery({
+    queryKey: ["categorias_insumos"],
+    queryFn: getCategoriasInsumo,
+  });
 
   return (
     <>
@@ -36,10 +46,13 @@ export const RowActions = ({ id_row, activo }: RowActionsProps) => {
         title='Actualizar Insumo'
         description='Complete el formulario para actualizar un insumo'
       >
-        <FormUpdate
-          cardId={id_row}
-          setIsOpen={setIsEditOpen}
-        />
+        {categoria && (
+          <FormUpdate
+            setIsOpen={setIsEditOpen}
+            insumo={row}
+            categoria={categoria}
+          />
+        )}
       </ResponsiveDialog>
       <ResponsiveDialog
         isOpen={isEnableOpen}
@@ -48,8 +61,8 @@ export const RowActions = ({ id_row, activo }: RowActionsProps) => {
         description='Complete el formulario para activar el insumo'
       >
         <FormEnable
-          cardId={id_row}
           setIsOpen={setIsEnableOpen}
+          cardId={row.id_insumo}
         />
       </ResponsiveDialog>
       <ResponsiveDialog
@@ -59,8 +72,8 @@ export const RowActions = ({ id_row, activo }: RowActionsProps) => {
         description='Complete el formulario para desactivar el insumo'
       >
         <FormDisable
-          cardId={id_row}
           setIsOpen={setIsDisableOpen}
+          cardId={row.id_insumo}
         />
       </ResponsiveDialog>
 
@@ -84,7 +97,7 @@ export const RowActions = ({ id_row, activo }: RowActionsProps) => {
             <Edit className='mr-2 h-4 w-4' />
             Actualizar
           </DropdownMenuItem>
-          {activo ? (
+          {row.activo ? (
             <DropdownMenuItem
               onClick={() => setIsDisableOpen(true)}
               className='cursor-pointer'

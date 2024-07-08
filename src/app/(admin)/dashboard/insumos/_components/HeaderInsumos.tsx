@@ -13,8 +13,7 @@ export const HeaderInsumos = () => {
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [isCreateCatOpen, setIsCreateCatOpen] = useState(false);
   return (
-    <div className='flex items-center justify-between'>
-      <h2 className='text-2xl'>Lista de Insumos</h2>
+    <div className='flex items-center justify-between flex-wrap gap-2'>
       <ResponsiveDialog
         isOpen={isCreateOpen}
         setIsOpen={setIsCreateOpen}
@@ -31,20 +30,21 @@ export const HeaderInsumos = () => {
       >
         <FormCreateCat setIsOpen={setIsCreateCatOpen} />
       </ResponsiveDialog>
+      <h2 className='text-2xl'>Lista de Insumos</h2>
       <div className='flex justify-end gap-4'>
         <Button
           variant='secondary'
           onClick={() => setIsCreateOpen(true)}
         >
           <Plus className='mr-4 w-4 h-4' />
-          <span>Nuevo Insumo</span>
+          <span>Insumo</span>
         </Button>
         <Button
           variant='secondary'
           onClick={() => setIsCreateCatOpen(true)}
         >
           <Plus className='mr-4 w-4 h-4' />
-          <span>Nueva Categoria</span>
+          <span>Categoria</span>
         </Button>
       </div>
     </div>
