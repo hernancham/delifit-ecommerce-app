@@ -1,4 +1,5 @@
 "use client";
+import { useSession } from "next-auth/react";
 
 import {
   DropdownMenu,
@@ -11,7 +12,12 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 
-export function OptionsAuth() {
+import { usuarioDefault } from "@/config/imageDefault";
+import { logout } from "@/actions/auth/logout";
+
+export async function OptionsAuth() {
+  const session = useSession();
+  const userAvatar = session.data?.user.userImage;
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -22,7 +28,7 @@ export function OptionsAuth() {
         >
           <Avatar>
             <AvatarImage
-              src='https://avatars.githubusercontent.com/u/94066746?v=4'
+              src={userAvatar ?? usuarioDefault}
               alt='Avatar'
             />
             <AvatarFallback>CN</AvatarFallback>
@@ -30,12 +36,14 @@ export function OptionsAuth() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end'>
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuLabel>Mi cuenta</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Settings</DropdownMenuItem>
-        <DropdownMenuItem>Support</DropdownMenuItem>
+        <DropdownMenuItem>{typeof userAvatar}</DropdownMenuItem>
+        <DropdownMenuItem>Soporte</DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Logout</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => logout()}>
+          Cerrar Sesión
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

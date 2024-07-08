@@ -11,9 +11,9 @@ export const SignUpButton = () => {
   return (
     <Button
       onClick={() => router.push("/register")}
-      className='hidden rounded-sm bg-lime-500 px-8 py-3 text-base font-medium text-white transition duration-300 hover:bg-opacity-90 sm:block md:px-9 lg:px-6 xl:px-9'
+      className='hidden rounded-sm bg-lime-500 px-8 py-1 text-base font-medium text-white transition duration-300 hover:bg-opacity-90 sm:block md:px-9 lg:px-6 xl:px-9'
     >
-      Register
+      Registrar
     </Button>
   );
 };
@@ -23,7 +23,7 @@ export const SignInButton = () => {
   return (
     <Button
       onClick={() => router.push("/login")}
-      className='text-dark hidden px-7 py-3 text-base font-medium hover:opacity-70 dark:text-white sm:block'
+      className='bg-gray-800 text-white hidden px-7 py-1 text-base font-medium hover:opacity-70 dark:text-white sm:block'
     >
       Login
     </Button>
@@ -31,13 +31,12 @@ export const SignInButton = () => {
 };
 
 export const SignOutButton = () => {
-  const router = useRouter();
   return (
     <Button
       onClick={() => logout()}
-      className='hidden rounded-sm bg-lime-500 px-8 py-3 text-base font-medium text-white transition duration-300 hover:bg-opacity-90 sm:block md:px-9 lg:px-6 xl:px-9'
+      className='hidden rounded-sm bg-lime-500 px-8 py-1 text-base font-medium text-white transition duration-300 hover:bg-opacity-90 sm:block md:px-9 lg:px-6 xl:px-9'
     >
-      Logout
+      Cerrar sesión
     </Button>
   );
 };

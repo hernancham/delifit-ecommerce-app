@@ -27,3 +27,8 @@ export const currentPhone = async () => {
 
   return session?.user?.userPhone;
 };
+export const currentImage = async () => {
+  const session = await auth();
+
+  return session?.user?.userImage;
+};
