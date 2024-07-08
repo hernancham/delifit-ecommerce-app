@@ -83,7 +83,7 @@ export function DataTable<TData, TValue>({
                   return (
                     <TableHead
                       key={header.id}
-                      className=''
+                      className='bg-graphite-dark text-green_p-light dark:bg-green_p-light dark:text-graphite-dark'
                     >
                       {header.isPlaceholder
                         ? null
@@ -103,6 +103,7 @@ export function DataTable<TData, TValue>({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
+                  className='bg-graphite-light dark:bg-graphite-dark'
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
@@ -144,7 +145,7 @@ function SearchInput<TData>({ table, searchKey }: SearchInputType<TData>) {
       onChange={(event) =>
         table.getColumn(searchKey)?.setFilterValue(event.target.value)
       }
-      className='max-w-sm mx-2 hover:border-primary'
+      className='max-w-sm mx-2 hover:border-primary bg-graphite-light text-graphite-dark dark:bg-graphite-dark dark:text-foreground'
     />
   );
 }
