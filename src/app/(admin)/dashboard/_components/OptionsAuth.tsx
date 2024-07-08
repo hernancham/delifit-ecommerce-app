@@ -16,8 +16,8 @@ import { usuarioDefault } from "@/config/imageDefault";
 import { logout } from "@/actions/auth/logout";
 
 export async function OptionsAuth() {
-  const session = useSession();
-  const userAvatar = session.data?.user.userImage;
+  const { data: session } = useSession();
+  const userAvatar = session?.user?.userImage;
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
