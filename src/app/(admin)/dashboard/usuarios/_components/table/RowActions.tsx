@@ -15,15 +15,15 @@ import { Button } from "@/components/ui/button";
 import { MoreHorizontal, Edit, Eye, EyeOff } from "lucide-react";
 
 import { ResponsiveDialog } from "@/components/custom/ResposiveDialog";
-// import { FormUpdate } from "../form/FormUpdate";
+import { FormUpdate } from "../form/FormUpdate";
 import { FormEnable, FormDisable } from "../form/FormActivation";
+import { Usuario } from "@/types/db";
 
 interface RowActionsProps {
-  id_row: string;
-  activo: boolean;
+  row: Usuario;
 }
 
-export const RowActions = ({ id_row, activo }: RowActionsProps) => {
+export const RowActions = ({ row }: RowActionsProps) => {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isEnableOpen, setIsEnableOpen] = useState(false);
   const [isDisableOpen, setIsDisableOpen] = useState(false);
@@ -36,31 +36,30 @@ export const RowActions = ({ id_row, activo }: RowActionsProps) => {
         title='Actualizar Insumo'
         description='Complete el formulario para actualizar un insumo'
       >
-        <span>Working...</span>
-        {/* <FormUpdate
-          cardId={id_row}
+        <FormUpdate
           setIsOpen={setIsEditOpen}
-        /> */}
+          usuario={row}
+        />
       </ResponsiveDialog>
       <ResponsiveDialog
         isOpen={isEnableOpen}
         setIsOpen={setIsEnableOpen}
-        title='Activar Insumo'
+        title='Activar Usuario'
         description='Complete el formulario para activar el insumo'
       >
         <FormEnable
-          cardId={id_row}
+          cardId={row.id_usuario}
           setIsOpen={setIsEnableOpen}
         />
       </ResponsiveDialog>
       <ResponsiveDialog
         isOpen={isDisableOpen}
         setIsOpen={setIsDisableOpen}
-        title='Desactivar Insumo'
+        title='Desactivar Usuario'
         description='Complete el formulario para desactivar el insumo'
       >
         <FormDisable
-          cardId={id_row}
+          cardId={row.id_usuario}
           setIsOpen={setIsDisableOpen}
         />
       </ResponsiveDialog>
@@ -85,7 +84,7 @@ export const RowActions = ({ id_row, activo }: RowActionsProps) => {
             <Edit className='mr-2 h-4 w-4' />
             Actualizar
           </DropdownMenuItem>
-          {activo ? (
+          {row.activo ? (
             <DropdownMenuItem
               onClick={() => setIsDisableOpen(true)}
               className='cursor-pointer'

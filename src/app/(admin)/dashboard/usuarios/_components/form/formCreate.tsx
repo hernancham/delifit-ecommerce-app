@@ -27,9 +27,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
-
-import axios from "axios";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 
 // actions
 import { createUsuario } from "@/actions/usuario/create-usuario";
@@ -118,7 +116,7 @@ export const FormCreate = ({ setIsOpen }: FormCreateProps) => {
                   <Input
                     {...field}
                     disabled={isLoading}
-                    placeholder='Nuevo insumo'
+                    placeholder=''
                     type='text'
                   />
                 </FormControl>
@@ -137,7 +135,7 @@ export const FormCreate = ({ setIsOpen }: FormCreateProps) => {
                     {...field}
                     disabled={isLoading}
                     type='text'
-                    placeholder='Doe'
+                    placeholder=''
                   />
                 </FormControl>
                 <FormMessage />

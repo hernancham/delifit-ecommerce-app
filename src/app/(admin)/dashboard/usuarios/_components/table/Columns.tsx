@@ -155,13 +155,7 @@ export const ColUsuarios: ColumnDef<Usuario>[] = [
     id: "Acciones",
     header: "Acciones",
     cell: ({ row }) => {
-      const { id_usuario, activo } = row.original;
-      return (
-        <RowActions
-          id_row={id_usuario}
-          activo={activo}
-        />
-      );
+      return <RowActions row={row.original} />;
     },
   },
 ];
