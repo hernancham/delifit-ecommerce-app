@@ -7,7 +7,7 @@ export default function Page() {
         <div className='flex max-w-3xl flex-col py-16 md:py-20'>
           {/* Title */}
           <h2 className='mb-10 text-3xl font-bold md:text-5xl'>
-            Terms Of Service
+            POLITICAS DE PRIVACIDAD
           </h2>
           <p className='mb-5 text-sm font-bold sm:text-base'>
             Last updated as of October 17, 2022
@@ -101,7 +101,7 @@ export default function Page() {
               incidental, or consequential damages arising out of the use or
               inability to use the services provided.
               <br />
-              6.2. The client acknowledges that the Company's liability is
+              6.2. The client acknowledges that the Companys liability is
               limited to the amount paid for the services rendered.
             </p>
           </div>
