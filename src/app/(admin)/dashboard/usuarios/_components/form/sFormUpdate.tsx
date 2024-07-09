@@ -100,6 +100,7 @@ export const FormUpdate = ({ setIsOpen, usuario }: FormUpdateProps) => {
   };
 
   const onCancel = () => {
+    // form.reset();
     setIsOpen(false);
   };
 

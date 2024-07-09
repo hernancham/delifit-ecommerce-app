@@ -94,7 +94,6 @@ export const FormCreate = ({ setIsOpen }: FormCreateProps) => {
   };
 
   const onCancel = () => {
-    // form.reset();
     router.refresh();
     setIsOpen(false);
   };
