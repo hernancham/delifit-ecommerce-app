@@ -33,14 +33,14 @@ export const HeaderInsumos = () => {
       <h2 className='text-2xl'>Lista de Insumos</h2>
       <div className='flex justify-end gap-4'>
         <Button
-          variant='secondary'
+          variant='default'
           onClick={() => setIsCreateOpen(true)}
         >
           <Plus className='mr-4 w-4 h-4' />
           <span>Insumo</span>
         </Button>
         <Button
-          variant='secondary'
+          variant='default'
           onClick={() => setIsCreateCatOpen(true)}
         >
           <Plus className='mr-4 w-4 h-4' />

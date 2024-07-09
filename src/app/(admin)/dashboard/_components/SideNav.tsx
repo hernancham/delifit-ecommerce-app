@@ -29,8 +29,8 @@ export function SideNav() {
           "border-r transition-all duration-300 ease-in-out transform hidden sm:flex h-full bg-primary-foreground"
         )}
       >
-        <aside className='flex h-full flex-col w-full break-words px-4   overflow-x-hidden columns-1'>
-          {/* Top */}
+        <aside className='flex h-full flex-col w-full break-words px-4   overflow-x-hidden columns-1 bg-green_p-light dark:bg-graphite-deep'>
+        {/* Top */}
           <div className='mt-4 relative pb-2 '>
             <div className='flex flex-col space-y-1'>
               {navLinks.map((item, idx) => {

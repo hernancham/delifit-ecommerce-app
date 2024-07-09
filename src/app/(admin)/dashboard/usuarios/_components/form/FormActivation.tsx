@@ -62,7 +62,7 @@ export const FormEnable = ({
     } catch (error) {
       toast({
         title: "Error",
-        description: "Ocurrio un error al activar el insumo",
+        description: "Ocurrio un error al activar al usuario",
         variant: "destructive",
       });
     }
@@ -130,7 +130,7 @@ export const FormDisable = ({
       });
       toast({
         title: "Usuario Desactivado",
-        description: "El insumo ha sido desactivado exitosamente",
+        description: "El usuario ha sido desactivado exitosamente",
         variant: "default",
       });
     },
@@ -157,7 +157,7 @@ export const FormDisable = ({
     } catch (error) {
       toast({
         title: "Error",
-        description: "Ocurrio un error al desactivar el insumo",
+        description: "Ocurrio un error al desactivar al usuario",
         variant: "destructive",
       });
     }

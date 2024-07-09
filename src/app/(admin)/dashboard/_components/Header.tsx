@@ -9,7 +9,7 @@ import { OptionsAuth } from "./OptionsAuth";
 
 export function Header() {
   return (
-    <header className='flex items-center h-16 px-4 border-b shrink-0 md:px-6 justify-between'>
+    <header className='flex items-center h-16 px-4 border-b shrink-0 md:px-6 justify-between border-secondary bg-green_p-light dark:bg-graphite-deep'>
       <div className='flex items-center gap-4'>
         <SheetMenu />
         <LogoLink />
