@@ -13,11 +13,45 @@ export async function GET(request: Request) {
           activo: activo === "true",
           id_cat_producto: id_categoria ?? undefined,
         },
+        select: {
+          id_producto: true,
+          img_url: true,
+          nombre: true,
+          descripcion: true,
+          precio_base: true,
+          id_cat_producto: true,
+          activo: true,
+          createdAt: true,
+          updatedAt: true,
+          cat_producto: {
+            select: {
+              nombre: true,
+              id_cat_producto: true,
+            },
+          },
+        },
       });
     } else {
       data = await prisma.producto.findMany({
         where: {
           id_cat_producto: id_categoria ?? undefined,
+        },
+        select: {
+          id_producto: true,
+          img_url: true,
+          nombre: true,
+          descripcion: true,
+          precio_base: true,
+          id_cat_producto: true,
+          activo: true,
+          createdAt: true,
+          updatedAt: true,
+          cat_producto: {
+            select: {
+              nombre: true,
+              id_cat_producto: true,
+            },
+          },
         },
       });
     }

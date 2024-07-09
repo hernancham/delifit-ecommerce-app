@@ -1,10 +1,18 @@
+"use server";
+
+import { auth } from "@/auth";
 import { Footer } from "./_components/Footer";
 import { Header } from "./_components/Header";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default async function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const session = await auth();
   return (
     <section>
-      <Header />
+      <Header session={session} />
       {children}
       <Footer />
     </section>
