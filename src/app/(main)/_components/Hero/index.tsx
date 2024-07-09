@@ -14,10 +14,7 @@ export const Hero = () => {
           <div className='flex flex-col'>
             {" "}
             {/* Hero Title */}{" "}
-            <h1 className='mb-4 text-4xl font-bold md:text-6xl'>
-              {" "}
-              The Website You Want Without The Dev Time.{" "}
-            </h1>
+            <h1 className='mb-4 text-4xl font-bold md:text-6xl'> xd </h1>
             <p className='mb-6 max-w-lg text-sm text-gray-500 sm:text-xl md:mb-10 lg:mb-12'>
               {" "}
               Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
