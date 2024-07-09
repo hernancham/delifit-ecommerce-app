@@ -2,85 +2,34 @@ import { Button } from "@/components/ui/button";
 
 export const Hero = () => {
   return (
-    <header className='bg-lime-50'>
-      {" "}
-      {/* Hero Container */}{" "}
+    <header
+      className='bg-green'
+      style={{
+        backgroundImage:
+          "url(https://scontent.ftcq3-1.fna.fbcdn.net/v/t39.30808-6/310978899_770615947704387_2780528558775776338_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHOqUDlGCWbWEpTEmGkJOLTQJnlcEO8YaFAmeVwQ7xhoZ7m69KJepjYR9xX9Cx3UHpRDpXu8wBQ1TlLb3FV7FLT&_nc_ohc=MmjSlHtYl6gQ7kNvgGYQC2C&_nc_ht=scontent.ftcq3-1.fna&oh=00_AYAILxOD_-Cb8PD1Rauie7Ti4EKKwCUyuHXyc2PBDNpBCw&oe=669235B9)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       <div className='mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20'>
-        {" "}
-        {/* Component */}{" "}
-        <div className='grid items-center justify-items-start gap-8 sm:gap-20 lg:grid-cols-2'>
-          {" "}
-          {/* Hero Content */}{" "}
-          <div className='flex flex-col'>
-            {" "}
-            {/* Hero Title */}{" "}
-            <h1 className='mb-4 text-4xl font-bold md:text-6xl'> xd </h1>
-            <p className='mb-6 max-w-lg text-sm text-gray-500 sm:text-xl md:mb-10 lg:mb-12'>
-              {" "}
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
-              aliquam, purus sit amet luctus venenatis, lectus{" "}
-            </p>{" "}
-            {/* Hero Button */}{" "}
+        <div className='grid items-center justify-items-center gap-8 sm:gap-20 lg:grid-cols-1'>
+          <div className='flex flex-col items-center justify-center text-center'>
+            <h1 className='mb-20 text-6xl font-bold text-white md:text-6xl'>
+              Engríete saludable
+            </h1>
+            <p className='mb-6 max-w-lg text-xl text-white sm:text-2xl md:mb-10 lg:mb-12'>
+              Disfruta la aventura de comer delicioso y saludable
+            </p>
             <a
               href='#'
               className='mb-6 mr-6 w-36 rounded-md bg-black px-6 py-3 text-center font-semibold text-white md:mb-10 lg:mb-12 lg:mr-8'
             >
-              {" "}
-              Get Started{" "}
-            </a>{" "}
-            {/* Hero Comment */}{" "}
+              ¡Quiero pedir!
+            </a>
             <div className='max-w-xs'>
-              <p className='mb-4 text-sm text-gray-500'>
-                {" "}
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
-                aliquam, purus{" "}
-              </p>
-              <div className='flex items-center gap-11 sm:flex-row'>
-                <div className='flex items-center'>
-                  <img
-                    src='https://firebasestorage.googleapis.com/v0/b/flowspark-1f3e0.appspot.com/o/Tailspark%20Images%2FPlaceholder%20Image.svg?alt=media&token=375a1ea3-a8b6-4d63-b975-aac8d0174074'
-                    alt=''
-                    className='mr-2 inline-block rounded-full object-cover h-7 w-7 sm:h-7'
-                  />
-                  <p className='text-sm font-bold'>Aleeyah</p>
-                </div>
-                <div className='flex items-center'>
-                  <p className='mr-2 text-sm font-bold'>5.0</p>
-                  <img
-                    src='https://assets.website-files.com/6357722e2a5f19121d37f84d/6357722e2a5f195bcf37f880_Vector.svg'
-                    alt=''
-                    className='mr-1.5 inline-block w-4'
-                  />
-                  <img
-                    src='https://assets.website-files.com/6357722e2a5f19121d37f84d/6357722e2a5f195bcf37f880_Vector.svg'
-                    alt=''
-                    className='mr-1.5 inline-block w-4'
-                  />
-                  <img
-                    src='https://assets.website-files.com/6357722e2a5f19121d37f84d/6357722e2a5f195bcf37f880_Vector.svg'
-                    alt=''
-                    className='mr-1.5 inline-block w-4'
-                  />
-                  <img
-                    src='https://assets.website-files.com/6357722e2a5f19121d37f84d/6357722e2a5f195bcf37f880_Vector.svg'
-                    alt=''
-                    className='mr-1.5 inline-block w-4'
-                  />
-                  <img
-                    src='https://assets.website-files.com/6357722e2a5f19121d37f84d/6357722e2a5f195bcf37f880_Vector.svg'
-                    alt=''
-                    className='mr-1.5 inline-block w-4'
-                  />
-                </div>
-              </div>
+              <div className='flex items-center justify-center gap-11 sm:flex-row'></div>
             </div>
-          </div>{" "}
-          {/* Hero Image */}
-          <img
-            src='https://firebasestorage.googleapis.com/v0/b/flowspark-1f3e0.appspot.com/o/Tailspark%20Images%2FPlaceholder%20Image.svg?alt=media&token=375a1ea3-a8b6-4d63-b975-aac8d0174074'
-            alt=''
-            className='inline-block h-full w-full max-w-2xl'
-          />
+          </div>
         </div>
       </div>
     </header>

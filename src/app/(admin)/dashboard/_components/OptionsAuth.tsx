@@ -38,7 +38,7 @@ export async function OptionsAuth() {
       <DropdownMenuContent align='end'>
         <DropdownMenuLabel>Mi cuenta</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>{typeof userAvatar}</DropdownMenuItem>
+        <DropdownMenuItem>Configuración</DropdownMenuItem>
         <DropdownMenuItem>Soporte</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={() => logout()}>

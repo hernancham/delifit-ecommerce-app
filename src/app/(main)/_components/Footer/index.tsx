@@ -43,95 +43,16 @@ export const Footer = () => {
 
               <SocialLinks GroupLink={siteConfig.social} />
             </div>
-
-            <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
-              <div>
-                <p className='font-medium text-gray-900 dark:text-white'>
-                  Services
-                </p>
-
-                <ul className='mt-6 space-y-4 text-sm'>
-                  <li>
-                    <a
-                      href='#'
-                      className='text-gray-700 transition hover:opacity-75 dark:text-white'
-                    >
-                      1on1 Coaching
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      href='#'
-                      className='text-gray-700 transition hover:opacity-75 dark:text-white'
-                    >
-                      Company Review
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      href='#'
-                      className='text-gray-700 transition hover:opacity-75 dark:text-white'
-                    >
-                      Accounts Review
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      href='#'
-                      className='text-gray-700 transition hover:opacity-75 dark:text-white'
-                    >
-                      HR Consulting
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      href='#'
-                      className='text-gray-700 transition hover:opacity-75 dark:text-white'
-                    >
-                      SEO Optimisation
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <p className='font-medium text-gray-900 dark:text-white'>
-                  Company
-                </p>
-
-                <ul className='mt-6 space-y-4 text-sm'>
-                  <li>
-                    <a
-                      href='#'
-                      className='text-gray-700 transition hover:opacity-75 dark:text-white'
-                    >
-                      About
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      href='#'
-                      className='text-gray-700 transition hover:opacity-75 dark:text-white'
-                    >
-                      Meet the Team
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      href='#'
-                      className='text-gray-700 transition hover:opacity-75 dark:text-white'
-                    >
-                      Accounts Review
-                    </a>
-                  </li>
-                </ul>
-              </div>
+            <div>
+              <iframe
+                src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3794.2828976403366!2d-70.25250708892564!3d-18.012070081391542!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915acfba7602a723%3A0xafcaeeb2e74d2269!2sDelifit%20Tacna!5e0!3m2!1ses!2spe!4v1720482199609!5m2!1ses!2spe'
+                width={280}
+                height={210}
+                style={{ border: 0 }}
+                allowFullScreen
+                loading='lazy'
+                referrerPolicy='no-referrer-when-downgrade'
+              ></iframe>
             </div>
           </div>
 

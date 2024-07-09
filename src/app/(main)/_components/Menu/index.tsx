@@ -54,12 +54,8 @@ export const Menu = () => {
       <div className='container'>
         <div className='mb-10 space-y-5'>
           <h1 className='text-center text-4xl font-bold aos-init aos-animate'>
-            Our Menu
+            Nuestro menú
           </h1>
-          <div className='text-center sm:max-w-sm mx-auto text-xs opacity-75 aos-init aos-animate'>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium
-            velit hic assumenda totam fuga, praesentium eveniet commodi vero
-          </div>
           <div className='my-6 px-8 md:px-16 lg:px-32'>
             <Carousel
               opts={{

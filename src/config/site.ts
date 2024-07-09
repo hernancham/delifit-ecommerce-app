@@ -56,22 +56,22 @@ export const siteConfig: SiteConfig = {
   social: [
     {
       name: "Facebook",
-      url: "#",
+      url: "https://www.facebook.com/delifit.tacna",
       icon: "/social-icons/icons8-facebook.svg",
     },
     {
       name: "Instagram",
-      url: "#",
+      url: "https://www.instagram.com/delifit.tacna/",
       icon: "/social-icons/icons8-instagram.svg",
     },
     {
       name: "TikTok",
-      url: "#",
+      url: "https://www.tiktok.com/@delifit.tacna18",
       icon: "/social-icons/icons8-tiktok.svg",
     },
     {
       name: "WhatsApp",
-      url: "#",
+      url: "https://wa.me/51917774573",
       icon: "/social-icons/icons8-whatsapp.svg",
     },
   ],

@@ -7,52 +7,35 @@ export const Banner = () => {
         {" "}
         {/* Component */}{" "}
         <div className='grid gap-12 sm:gap-20 lg:grid-cols-2'>
-          {/* Image */}{" "}
-          <div className='min-h-[530px] overflow-hidden rounded-md bg-lime-100'></div>
+          {/* Image */}
+          <div className='min-h-[530px] overflow-hidden rounded-md bg-lime-100'>
+            <img
+              src='https://scontent.ftcq3-1.fna.fbcdn.net/v/t39.30808-6/313126658_788416682590980_2674951599738048754_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEFKa9TXHSl6CPqb2nmu_bGRFoK2kAcJVREWgraQBwlVK5Dr-FgTbbteo8IfbEmlUQT2zI2EArL9wFswAngO1Ac&_nc_ohc=_GjdVINKp5oQ7kNvgHTiO1Z&_nc_ht=scontent.ftcq3-1.fna&oh=00_AYCL6gULAjZ9NcmWIAx8g56zQtx09ti26u8rkvr2hhp3ag&oe=66923DF9'
+              alt='Banner Image'
+              className='object-cover w-full h-full'
+            />
+          </div>
           {/* Content */}{" "}
           <div className='flex flex-col items-start gap-2'>
-            <div className='flex items-center rounded-md bg-gray-300 px-3 py-1'>
-              <div className='mr-1 h-2 w-2 rounded-full bg-black'></div>
-              <p className='text-sm'>Available for work</p>
-            </div>
-            <p className='text-sm text-gray-500 sm:text-xl'>
-              {" "}
-              Developer & UX Specialist{" "}
-            </p>{" "}
             {/* Title */}{" "}
             <h1 className='mb-6 text-4xl font-bold md:text-6xl lg:mb-8'>
               {" "}
-              Jonathan Smith{" "}
+              Delifit{" "}
             </h1>
             <p className='text-sm text-gray-500 sm:text-xl'>
-              {" "}
-              Consectetur adipiscing elit duis tristique sollicitudin nibh.
-              Augue mauris augue neque gravida in fermentum. Sapien pellentesque
-              habitant morbi tristique pellentesque.{" "}
-            </p>{" "}
+              En DELIFIT, por casi cinco años, hemos sido el sabor saludable de
+              Tacna, ofreciendo opciones frescas y nutritivas. Desde desayunos
+              energizantes hasta postres tentadores, cada plato resalta por sus
+              ingredientes naturales y calidad insuperable. Como un referente
+              culinario en la región, nos enorgullece haber nutrido y deleitado
+              a los tacneños y visitantes con nuestra dedicación a la frescura y
+              excelencia culinaria. Celebramos el equilibrio entre el buen comer
+              y la salud, agradeciendo a todos quienes nos han acompañado en
+              este viaje hacia una vida más saludable y deliciosa en Tacna.
+            </p>
             {/* Divider */}{" "}
             <div className='mb-8 mt-8 h-px w-full bg-black'></div>
-            <div className='mb-6 flex flex-col gap-2 text-sm text-gray-500 sm:text-base lg:mb-8'>
-              <p>
-                <strong>2020: </strong>Site of the year in Awwwards.com
-              </p>
-              <p>
-                <strong>2020: </strong>Site of the year in Awwwards.com
-              </p>
-            </div>{" "}
-            {/* Link */}{" "}
-            <a
-              href='#'
-              className='mb-6 flex items-center gap-2.5 text-center text-sm font-bold uppercase md:mb-10 lg:mb-12'
-            >
-              <p>All Achievements</p>
-              <img
-                src='https://assets.website-files.com/6458c625291a94a195e6cf3a/64b1465d46adaf3f26099edf_arrow.svg'
-                alt=''
-                className='inline-block'
-              />
-            </a>{" "}
-            {/* Buttons */}{" "}
+            {/* Link */} {/* Buttons */}{" "}
             <div className='flex flex-col gap-4 font-semibold sm:flex-row'>
               <a
                 href='#'
