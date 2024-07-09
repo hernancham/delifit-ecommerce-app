@@ -1,6 +1,5 @@
 "use server";
 
-import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { TipoDocumento } from "@prisma/client";
 
@@ -12,15 +11,11 @@ interface updateUsuarioByIdType {
   telefono: string;
   documento: string;
   tipo_doc: string;
-  password: string;
   image: string;
 }
 
 export const updateUsuarioById = async (values: updateUsuarioByIdType) => {
   try {
-    // Encriptar la contraseña
-    const hashedPassword = await bcrypt.hash(values.password, 10);
-
     // Actualizar el usuario en la base de datos
     const data = await prisma.usuario.update({
       where: {
@@ -33,7 +28,6 @@ export const updateUsuarioById = async (values: updateUsuarioByIdType) => {
         telefono: values.telefono,
         documento: values.documento,
         tipo_doc: values.tipo_doc as TipoDocumento,
-        password: hashedPassword,
         image: values.image,
       },
     });
