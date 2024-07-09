@@ -3,13 +3,10 @@
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 import { signIn } from "@/auth";
-import { revalidatePath } from "next/cache";
 // types
 import { registerSchema, registerType } from "@/schemas/auth";
 // errors
 import { AuthError } from "next-auth";
-// config routes
-import { defaultRoute } from "@/config/authRoutes";
 
 export const register = async (values: registerType) => {
   try {
@@ -54,7 +51,7 @@ export const register = async (values: registerType) => {
     });
 
     await signIn("credentials", {
-      email: data.email,
+      telefono: data.telefono,
       password: data.password,
       redirect: false,
     });
