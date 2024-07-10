@@ -5,7 +5,9 @@ export default function Page() {
         {/* <!-- Title Container --> */}
         <div className='flex h-auto min-w-[100vw] flex-col items-center justify-end bg-[#f2f2f7] py-6 md:h-64'>
           <div className='flex flex-col items-center gap-y-4 py-5'>
-            <h1 className='text-3xl font-bold md:text-5xl'>TERMS OF SERVICE</h1>
+            <h1 className='text-3xl font-bold md:text-5xl'>
+              TERMINOS Y CONDICIONES
+            </h1>
             <p className='text-sm text-[#808080] sm:text-base'>
               Last Updated as of October 17, 2022
             </p>
@@ -101,8 +103,8 @@ export default function Page() {
                       The Company shall not be liable for any direct, indirect,
                       incidental, or consequential damages arising out of the
                       use or inability to use the services provided. The Client
-                      acknowledges that the Company's liability is limited to
-                      the amount paid for the services rendered.
+                      acknowledges that the Companys liability is limited to the
+                      amount paid for the services rendered.
                     </p>
                   </div>
                   <div className='flex flex-col items-start gap-y-3'>

@@ -69,7 +69,6 @@ export const FormEnable = ({
   };
 
   const onCancel = () => {
-    // form.reset();
     router.refresh();
     setIsOpen(false);
   };

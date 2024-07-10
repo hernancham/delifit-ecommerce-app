@@ -8,11 +8,9 @@ export default function Page() {
         {/* Component */}{" "}
         <div className='mx-auto flex max-w-xl flex-col items-center justify-center px-6 text-center lg:max-w-3xl lg:px-10'>
           <h2 className='mx-auto text-center font-bold text-black text-3xl lg:text-5xl'>
-            {" "}
-            Frequently Asked Questions{" "}
+            Preguntas Frecuentes
           </h2>
           <p className='font-inter mt-4 max-w-xl px-5 text-center text-base font-light text-gray-500 lg:max-w-lg'>
-            {" "}
             Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam,
             purus sit amet luctus venenatis, lectus magna fringilla urna{" "}
           </p>
@@ -270,7 +268,7 @@ export default function Page() {
         </div>
         <p className='font-inter mx-auto mt-12 text-center text-base text-gray-500'>
           {" "}
-          Can’t find the answer you’re looking for? Reach out to our{" "}
+          Cant find the answer youre looking for? Reach out to our{" "}
           <a
             href=''
             className='text-black font-bold'

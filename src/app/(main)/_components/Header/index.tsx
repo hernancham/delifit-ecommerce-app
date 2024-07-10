@@ -25,7 +25,7 @@ export const Header = ({ session }: { session: Session | null }) => {
       className={cn(
         "left-0 top-0 mx-auto flex w-full flex-row items-center bg-lime-500 bg-opacity-10 px-2 sm:px-4 md:px-8 lg:px-16",
         {
-          "fixed z-50 bg-opacity-5 backdrop-blur-sm": true,
+          "fixed z-50 bg-opacity-30 backdrop-blur-sm": true,
         }
       )}
     >
@@ -40,7 +40,9 @@ export const Header = ({ session }: { session: Session | null }) => {
         {/* <Auth Buttons /> */}
         <ThemeToggler />
         {session ? (
-          <OptionsAuth user={session.user} />
+          <div className=' flex gap-2 m-4'>
+            <OptionsAuth user={session.user} />
+          </div>
         ) : (
           <div className=' flex gap-2 m-4'>
             <SignInButton />
