@@ -10,7 +10,7 @@ export default function Page() {
           <h2 className='text-center font-bold text-black text-3xl lg:text-5xl dark:text-gray-50'>
             Preguntas Frecuentes
           </h2>
-          <p className='font-inter mt-4 max-w-xl px-5 text-center text-base font-light text-gray-500 lg:max-w-lg'>
+          <p className='font-inter mt-4 max-w-xl px-5 text-center text-graphite-deep dark:text-graphite-light font-light lg:max-w-lg'>
             Descubre más sobre nuestros productos saludables.{" "}
           </p>
         </div>{" "}
@@ -26,7 +26,7 @@ export default function Page() {
                 {" "}
                 ¿Qué tipo de productos ofrece Delifit Tacna?{" "}
               </h2>
-              <p className='font-inter mt-4 text-base font-light text-gray-500'>
+              <p className='font-inter mt-4 text-graphite-deep dark:text-graphite-light font-light'>
                 {" "}
                 Ofrecemos una variedad de comidas saludables como tortas,
                 queques, pancakes, waffles, parfaits, antojitos, smoothies,
@@ -39,7 +39,7 @@ export default function Page() {
                 {" "}
                 ¿Qué son las &quot;Deli Box&quot;?{" "}
               </h2>
-              <p className='font-inter mt-4 text-base font-light text-gray-500'>
+              <p className='font-inter mt-4 text-graphite-deep dark:text-graphite-light font-light'>
                 {" "}
                 Las &quot;Deli Box&quot;son presentaciones personalizadas
                 diseñadas para satisfacer las necesidades específicas de
@@ -53,7 +53,7 @@ export default function Page() {
                 {" "}
                 ¿Dónde se encuentran ubicados?{" "}
               </h2>
-              <p className='font-inter mt-4 text-base font-light text-gray-500'>
+              <p className='font-inter mt-4 text-graphite-deep dark:text-graphite-light font-light'>
                 {" "}
                 Estamos ubicados en Tacna, Perú. Específicamente en la
                 intersección de calle deustua con Calle Zela - Bulevar Plaza.{" "}
@@ -69,7 +69,7 @@ export default function Page() {
                 {" "}
                 ¿Realizan entregas a domicilio?{" "}
               </h2>
-              <p className='font-inter mt-4 text-base font-light text-gray-500'>
+              <p className='font-inter mt-4 text-graphite-deep dark:text-graphite-light font-light'>
                 {" "}
                 Sí, contamos con zonas de reparto específicas. Consulta nuestra
                 sección de &quot;Zonas de Reparto&quot; para más información.{" "}
@@ -81,7 +81,7 @@ export default function Page() {
                 {" "}
                 ¿Cómo puedo contactarlos?{" "}
               </h2>
-              <p className='font-inter mt-4 text-base font-light text-gray-500'>
+              <p className='font-inter mt-4 text-graphite-deep dark:text-graphite-light font-light'>
                 {" "}
                 Puedes contactarnos a través de nuestra sección de
                 &quot;Atención al Cliente&quot; en el final de nuestra página
@@ -94,7 +94,7 @@ export default function Page() {
                 {" "}
                 ¿Ofrecen productos para personas con restricciones alimentarias?{" "}
               </h2>
-              <p className='font-inter mt-4 text-base font-light text-gray-500'>
+              <p className='font-inter mt-4 text-graphite-deep dark:text-graphite-light font-light'>
                 {" "}
                 Sí, tenemos opciones saludables adecuadas para diversas
                 necesidades dietéticas. Consulta nuestro catálogo para más
@@ -103,12 +103,12 @@ export default function Page() {
             </div>
           </div>
         </div>
-        <p className='font-inter mx-auto mt-12 text-center text-base text-gray-500'>
+        <p className='font-inter mx-auto mt-12 text-center text-graphite-deep dark:text-graphite-light'>
           {" "}
           ¿No pudiste resolver tus dudas?{" "}
           <a
             href='https://wa.me/51917774573'
-            className='text-black font-bold dark:text-gray-50'
+            className='text-black font-bold hover:text-graphite-deep dark:text-gray-50 dark:hover:text-green_p-dark'
           >
             <span> </span> contactános.
           </a>

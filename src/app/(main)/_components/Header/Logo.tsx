@@ -16,7 +16,7 @@ export function Logo() {
         height={50}
         className='w-15'
       />
-      <h1 className='text-3xl font-bold text-lime-500'>{siteConfig.name}</h1>
+      <h1 className='text-3xl font-bold text-green_p-deep'>{siteConfig.name}</h1>
     </Link>
   );
 }
