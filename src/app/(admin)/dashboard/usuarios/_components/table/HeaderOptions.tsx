@@ -19,6 +19,8 @@ import {
   EyeOffIcon,
 } from "lucide-react";
 
+const outlineclasses ="border border-graphite-dark dark:border-green_p-light bg-graphite-dark text-green_p-light dark:bg-green_p-light dark:text-graphite-deep hover:bg-graphite-deep hover:text-green_p-light dark:hover:bg-green_p-dark";
+
 interface HeaderOptionsProps<TData, TValue> {
   column: Column<TData, TValue>;
   title: string;
@@ -39,9 +41,9 @@ export function HeaderOptions<TData, TValue>({
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
-            variant='ghost'
+            variant='outline'
             size='sm'
-            className='-ml-3 h-8 data-[state=open]:bg-accent'
+            className='-ml-3 h-8 data-[state=open]:${outlineclasses}'
           >
             <span>{title}</span>
             {column.getIsSorted() === "desc" ? (
