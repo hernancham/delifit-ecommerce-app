@@ -25,7 +25,7 @@ export const SignInButton = () => {
       onClick={() => router.push("/login")}
       className='bg-gray-800 text-white hidden px-7 py-1 text-base font-medium hover:opacity-70 dark:text-white sm:block'
     >
-      Login
+      Ingresar
     </Button>
   );
 };
