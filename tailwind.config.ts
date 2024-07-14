@@ -90,7 +90,8 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       fontFamily: {
-        roboto: ["Roboto", "sans-serif"],
+        roboto: ["var(--font-roboto-slab)"],
+        quicksand: ["var(--font-quicksand)"],
       },
     },
   },

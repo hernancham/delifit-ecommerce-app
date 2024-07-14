@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Quicksand, Roboto_Slab } from "next/font/google";
 import "@/styles/globals.css";
 
 import { cn } from "@/lib/utils";
@@ -9,6 +9,8 @@ import { AuthProvider } from "@/components/context/AuthProvider";
 import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
+const quicksand = Quicksand({ subsets: ["latin"] });
+const robotoSlab = Roboto_Slab({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Delifit App",
@@ -35,7 +37,9 @@ export default function RootLayout({
       <body
         className={cn(
           "flex min-h-screen w-full flex-col bg-background antialiased",
-          inter.className
+          inter.className,
+          quicksand.className,
+          robotoSlab.className
         )}
       >
         <AuthProvider>
