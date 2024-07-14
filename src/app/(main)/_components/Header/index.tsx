@@ -12,7 +12,7 @@ import { OptionsAuth } from "./OptionsAuth";
 import { Session } from "next-auth";
 
 const navbarLinks = [
-  { path: "/menu", label: "Menu" },
+  { path: "/menu", label: "Menú" },
   { path: "/menu/productos", label: "Productos" },
   { path: "/menu/promociones", label: "Promociones" },
   { path: "/menu/carrito", label: "Carrito" },
@@ -23,7 +23,7 @@ export const Header = ({ session }: { session: Session | null }) => {
   return (
     <header
       className={cn(
-        "left-0 top-0 mx-auto flex w-full flex-row items-center bg-lime-500 bg-opacity-10 px-2 sm:px-4 md:px-8 lg:px-16",
+        "left-0 top-0 mx-auto flex w-full flex-row items-center bg-teal-600 dark:bg-teal-950 bg-opacity-10 px-2 sm:px-4 md:px-8 lg:px-16",
         {
           "fixed z-50 bg-opacity-30 backdrop-blur-sm": true,
         }

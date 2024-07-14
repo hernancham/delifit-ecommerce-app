@@ -9,7 +9,7 @@ export default function Page() {
   return (
     <div className='grid min-h-screen text-mcd-black antialiased lg:grid-cols-2'>
       <div className='relative hidden bg-neutral-100 lg:block'>
-        <div className="bg-[url('/food-safety.svg')] bg-center w-[80%] h-[70%] top-[20%] left-[10%] pointer-events-none absolute inset-0 bg-contain bg-no-repeat"></div>
+        <div className="bg-[url('/media/img1_login.jpg')] bg-center bg-cover w-full h-full top-0 left-0 pointer-events-none absolute inset-0 aspect-w-4 aspect-h-3"></div>
       </div>
       <main className='flex items-center justify-center'>
         <div className='flex items-center justify-center'>

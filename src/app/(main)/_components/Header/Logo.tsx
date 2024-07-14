@@ -9,12 +9,12 @@ export function Logo() {
       href='/'
       className='flex w-full items-center gap-4 py-5 lg:py-4'
     >
-      <img
-        src='food-safety.svg'
+      <Image
+        src='/delifit-logo.svg'
         alt='logo'
-        width={20}
-        height={20}
-        className='w-10'
+        width={50}
+        height={50}
+        className='w-15'
       />
       <h1 className='text-3xl font-bold text-lime-500'>{siteConfig.name}</h1>
     </Link>

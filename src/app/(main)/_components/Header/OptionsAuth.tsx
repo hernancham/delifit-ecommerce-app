@@ -26,7 +26,7 @@ export async function OptionsAuth({ user }: { user: User }) {
         >
           <Avatar>
             <AvatarImage
-              src={user.userAvatar ?? usuarioDefault}
+              src={user.userImage ?? usuarioDefault}
               alt='Avatar'
             />
             <AvatarFallback>CN</AvatarFallback>
