@@ -35,9 +35,9 @@
     --radius: 0.5rem;
   }
 
-    .dark {
-      --background: 0 0% 18%;
-      --foreground: 210 40% 98%;
+  .dark {
+    --background: 0 0% 18%;
+    --foreground: 210 40% 98%;
 
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
@@ -74,9 +74,10 @@
     @apply bg-background text-foreground;
   }
 }
-@font-face {
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 400;
-  src: url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
+.roboto_slab {
+  font-family: var(--font-roboto-slab);
+}
+
+.quick_sand {
+  font-family: var(--font-quicksand);
 }

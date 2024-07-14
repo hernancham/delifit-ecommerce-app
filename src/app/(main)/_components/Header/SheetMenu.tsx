@@ -3,7 +3,7 @@ import React from "react";
 
 import Link from "next/link";
 
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -31,18 +31,18 @@ export function SheetMenu({ navbarLinks }: { navbarLinks: TypeNavLink[] }) {
           size='icon'
           className='m-2 shrink-0 rounded-lg bg-slate-50 bg-opacity-5 lg:hidden'
         >
-          <Menu className='h-6 w-6 stroke-current' />
+          <Menu className='h-8 w-8 stroke-current' />
         </Button>
       </SheetTrigger>
       <SheetContent
         side='left'
-        className='bg-white'
+        className='bg-green-100 dark:bg-teal-950 p-8'
       >
-        <SheetHeader>
+        <SheetHeader className='flex justify-between items-center'>
           <Logo />
         </SheetHeader>
-        <nav className='grid gap-6 text-lg font-medium'>
-          <ul>
+        <nav className='mt-8 grid gap-8 text-xl font-medium'>
+          <ul className='space-y-4'>
             {navbarLinks.map((nl, i) => {
               return (
                 <li
@@ -51,7 +51,7 @@ export function SheetMenu({ navbarLinks }: { navbarLinks: TypeNavLink[] }) {
                 >
                   <Link
                     href={nl.path}
-                    className='text-muted-foreground hover:text-foreground'
+                    className='text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
                   >
                     {nl.label}
                   </Link>

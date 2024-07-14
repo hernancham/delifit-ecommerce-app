@@ -1,5 +1,4 @@
 "use client";
-
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -36,8 +35,7 @@ export async function OptionsAuth({ user }: { user: User }) {
       <DropdownMenuContent align='end'>
         <DropdownMenuLabel>Mi cuenta</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>{user.userRole}</DropdownMenuItem>
-        <DropdownMenuItem>{user.userPhone}</DropdownMenuItem>
+        <DropdownMenuItem>Configuración</DropdownMenuItem>
         <DropdownMenuItem>Soporte</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={() => logout()}>

@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-
 export const Hero = () => {
   return (
     <header
@@ -10,12 +8,12 @@ export const Hero = () => {
         backgroundPosition: "center",
       }}
     >
-      <div className='mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20'>
+      <div className='mx-auto w-full max-w-7xl px-5 py-24 md:px-10 md:py-24'>
         <div className='flex flex-col items-center justify-center text-center'>
-          <h1 className='my-28 text-6xl font-extrabold text-white md:text-6xl font-georgia'>
+          <h1 className='font-quicksand my-28 text-5xl font-extrabold text-white md:text-5xl'>
             ENGRÍETE SALUDABLE
           </h1>
-          <p className='mb-6 max-w-lg text-2xl text-white sm:text-4xl md:mb-10 lg:mb-12 font-roboto'>
+          <p className='font-quicksand mb-6 max-w-lg text-xl text-white sm:text-4xl md:mb-10 lg:mb-12 '>
             Disfruta la aventura de comer delicioso y saludable
           </p>
 
