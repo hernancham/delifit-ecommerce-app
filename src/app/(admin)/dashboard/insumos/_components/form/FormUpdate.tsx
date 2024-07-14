@@ -260,14 +260,14 @@ export const FormUpdate = ({
           <Button
             type='submit'
             disabled={isLoading}
-            variant='default'
+            variant='outline'
           >
             Actualizar
           </Button>
           <Button
             type='button'
             disabled={isLoading}
-            variant='secondary'
+            variant='default'
             onClick={() => onCancel()}
           >
             Cancelar

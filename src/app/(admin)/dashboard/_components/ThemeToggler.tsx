@@ -58,7 +58,7 @@ export function ThemeToggler({ isDropDown = false }: { isDropDown?: boolean }) {
   }
   return (
     <>
-      <div className='flex flex-row space-x-2 items-center rounded-full border p-1'>
+      <div className='flex flex-row space-x-2 items-center rounded-full p-1'>
         <button
           className={cn(
             theme === "light"

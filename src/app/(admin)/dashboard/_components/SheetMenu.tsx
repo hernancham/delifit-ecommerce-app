@@ -35,7 +35,7 @@ export function SheetMenu() {
       </SheetTrigger>
       <SheetContent
         side='left'
-        className='sm:max-w-xs bg-green_p-light dark:bg-graphite-deep'
+        className='border-green_p-light dark:border-graphite-deep sm:max-w-xs bg-green_p-light dark:bg-graphite-deep'
       >
         <SheetHeader>
           <SheetTitle>

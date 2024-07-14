@@ -26,7 +26,7 @@ export function SideNav() {
       <div
         className={cn(
           isSidebarExpanded ? "w-[200px]" : "w-[68px]",
-          "border-r transition-all duration-300 ease-in-out transform hidden sm:flex h-full bg-primary-foreground"
+          "border-green_p-light dark:border-graphite-deep transition-all duration-300 ease-in-out transform hidden sm:flex h-full bg-primary-foreground"
         )}
       >
         <aside className='flex h-full flex-col w-full break-words px-4   overflow-x-hidden columns-1 bg-green_p-light dark:bg-graphite-deep'>
