@@ -1,4 +1,6 @@
 "use client";
+import { useSession } from "next-auth/react";
+
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -12,20 +14,21 @@ import { Button } from "@/components/ui/button";
 
 import { usuarioDefault } from "@/config/imageDefault";
 import { logout } from "@/actions/auth/logout";
-import { User } from "next-auth";
 
-export async function OptionsAuth({ user }: { user: User }) {
+export async function OptionsAuth() {
+  const { data: session } = useSession();
+  const userAvatar = session?.user?.userImage;
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant='default'
+          variant='outline'
           size='icon'
           className='overflow-hidden rounded-full'
         >
           <Avatar>
             <AvatarImage
-              src={user?.userImage ?? usuarioDefault} //arreglar pls Hernan
+              src={userAvatar ?? usuarioDefault}
               alt='Avatar'
             />
             <AvatarFallback>CN</AvatarFallback>
