@@ -8,7 +8,7 @@ export const Footer = () => {
     <>
       <footer
         id='Contactanos'
-        className='border-t-4 border-lime-600 bg-lime-50 dark:bg-lime-950 w-full'
+        className='border-t-4 border-graphite-deep bg-green_p-light dark:border-green_p-light dark:bg-graphite-deep w-full'
       >
         <div className='px-4 py-16 sm:px-8 lg:px-4'>
           <div className='flex flex-wrap justify-center sm:justify-between'>
@@ -31,16 +31,16 @@ export const Footer = () => {
                   <p className='text-lg font-semibold text-gray-900 dark:text-white'>
                     ENCUÉNTRANOS
                   </p>
-                  <p className='text-sm text-gray-700 dark:text-gray-300 mb-2'>
+                  <p className='text-sm text-gray-700 dark:text-graphite mb-2'>
                     Intersección de calle Destua con calle Zela
                   </p>
-                  <p className='text-sm text-gray-700 dark:text-gray-300 mb-2'>
+                  <p className='text-sm text-gray-700 dark:text-graphite mb-2'>
                     BULEVAR PLAZA, Tacna - Tacna - Perú
                   </p>
-                  <p className='text-sm text-gray-700 dark:text-gray-300'>
+                  <p className='text-sm text-gray-700 dark:text-graphite'>
                     <a
                       href='mailto:delifit.tacna@gmail.com'
-                      className='text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-300'
+                      className='text-beige-dark hover:text-green-700 dark:text-green_p-dark dark:hover:text-green_p-deep'
                     >
                       delifit.tacna@gmail.com
                     </a>
@@ -56,7 +56,7 @@ export const Footer = () => {
                     <p className='text-lg font-semibold text-gray-900 dark:text-white'>
                       HORARIO DE ATENCIÓN
                     </p>
-                    <ul className='mt-4 space-y-1 text-sm text-gray-700 dark:text-gray-300'>
+                    <ul className='mt-4 space-y-1 text-sm text-gray-700 dark:text-graphite'>
                       {siteConfig.availability.map((aval, i) => (
                         <li key={i}>{aval}</li>
                       ))}
@@ -85,7 +85,7 @@ export const Footer = () => {
             <SocialLinks GroupLink={siteConfig.social} />
           </div>
 
-          <div className='mt-12 border-t border-black pt-12 dark:border-gray-100'>
+          <div className='mt-12 border-t border-black pt-12 dark:border-green_p-light'>
             <div className='sm:flex sm:items-center sm:justify-between'>
               <ul className='flex flex-wrap gap-4 text-xs justify-center'>
                 <li>

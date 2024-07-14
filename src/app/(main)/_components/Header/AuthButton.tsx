@@ -11,7 +11,7 @@ export const SignUpButton = () => {
   return (
     <Button
       onClick={() => router.push("/register")}
-      className='hidden rounded-sm bg-lime-500 px-8 py-1 text-base font-medium text-white transition duration-300 hover:bg-opacity-90 sm:block md:px-9 lg:px-6 xl:px-9'
+      variant='default'
     >
       Registrar
     </Button>
@@ -23,7 +23,7 @@ export const SignInButton = () => {
   return (
     <Button
       onClick={() => router.push("/login")}
-      className='bg-gray-800 text-white hidden px-7 py-1 text-base font-medium hover:opacity-70 dark:text-white sm:block'
+      variant='outline'
     >
       Ingresar
     </Button>
