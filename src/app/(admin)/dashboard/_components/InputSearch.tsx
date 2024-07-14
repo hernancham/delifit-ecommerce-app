@@ -8,7 +8,7 @@ export function InputSearch() {
       <Input
         type='search'
         placeholder='Buscar...'
-        className='w-full rounded-lg bg-background pl-8 md:w-48 lg:w-80 group-hover:border-primary'
+        className='border-background w-full rounded-lg bg-background pl-8 md:w-48 lg:w-80 group-hover:border-primary'
       />
     </div>
   );

@@ -76,7 +76,7 @@ export function DataTable<TData, TValue>({
         />
         <ColumnVisibility table={table} />
       </div>
-      <div className='rounded-md border'>
+      <div className='rounded-md border-graphite-light dark:border-graphite-dark'>
         <Table>
           <TableHeader className=''>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -88,7 +88,7 @@ export function DataTable<TData, TValue>({
                   return (
                     <TableHead
                       key={header.id}
-                      className=''
+                      className='bg-graphite-dark text-green_p-light dark:bg-green_p-light dark:text-graphite-dark'
                     >
                       {header.isPlaceholder
                         ? null
@@ -108,6 +108,7 @@ export function DataTable<TData, TValue>({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
+                  className='border-graphite-light dark:border-graphite-dark bg-graphite-light dark:bg-graphite-dark hover:bg-background dark:hover:bg-background'
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
@@ -149,7 +150,7 @@ function SearchInput<TData>({ table, searchKey }: SearchInputType<TData>) {
       onChange={(event) =>
         table.getColumn(searchKey)?.setFilterValue(event.target.value)
       }
-      className='max-w-sm mx-2 hover:border-primary'
+      className='border-background max-w-sm mx-2 hover:border-primary bg-graphite-light text-graphite-dark dark:bg-graphite-dark dark:text-foreground'
     />
   );
 }

@@ -105,14 +105,14 @@ export const FormCreateCat = ({ setIsOpen }: FormCreateCatProps) => {
           <Button
             type='submit'
             disabled={isLoading}
-            variant='default'
+            variant='outline'
           >
             Guardar
           </Button>
           <Button
             type='button'
             disabled={isLoading}
-            variant='secondary'
+            variant='default'
             onClick={() => onCancel()}
           >
             Cancelar

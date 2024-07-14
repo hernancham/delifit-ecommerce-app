@@ -22,7 +22,7 @@ export async function OptionsAuth() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant='outline'
+          variant='default'
           size='icon'
           className='overflow-hidden rounded-full'
         >
