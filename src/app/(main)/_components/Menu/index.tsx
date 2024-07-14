@@ -50,7 +50,7 @@ const Menus = [
 
 export const Menu = () => {
   return (
-    <div className='py-16 bg-lime-700 text-white'>
+    <div className='py-16 bg-green_p-dark dark:bg-graphite-deep text-black dark:text-white'>
       <div className='container'>
         <div className='mb-10 space-y-5'>
           <h1 className='text-center text-4xl font-bold aos-init aos-animate'>

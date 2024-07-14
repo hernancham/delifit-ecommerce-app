@@ -25,7 +25,7 @@ export const MenuCard = ({ menu }: MenuCardProps) => {
           </p>
           <a
             href='#'
-            className='underline'
+            className='underline hover:text-lime-700 dark:hover:text-green_p-dark'
           >
             Comprar ahora
           </a>

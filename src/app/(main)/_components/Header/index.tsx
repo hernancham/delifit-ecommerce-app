@@ -23,7 +23,7 @@ export const Header = ({ session }: { session: Session | null }) => {
   return (
     <header
       className={cn(
-        "left-0 top-0 mx-auto flex w-full flex-row items-center bg-teal-600 dark:bg-teal-950 bg-opacity-10 px-2 sm:px-4 md:px-8 lg:px-16",
+        "left-0 top-0 mx-auto flex w-full flex-row items-center bg-green_p-deep dark:bg-black dark:bg-opacity-10 px-2 sm:px-4 md:px-8 lg:px-16",
         {
           "fixed z-50 bg-opacity-30 backdrop-blur-sm": true,
         }
