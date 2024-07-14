@@ -29,26 +29,54 @@ interface SiteConfig {
 export const siteConfig: SiteConfig = {
   urlBase: `${process.env.NEXT_PUBLIC_APP_URL}`,
   title: "Delifit",
-  description:
-    "Delifit pone a la disposición de sus clientes la posibilidad de realizar pedidos online.",
+  description: "Delifit, disfruta la aventura de comer delicioso y saludable",
   keywords: ["Delifit", "Comida Saludable", "Food Ordering App"],
   authors: [
     {
-      name: "HernanCham",
+      name: "Hernan Ander Chambilla Chambilla",
       url: "https://github.com/hernancham",
+    },
+    {
+      name: "Rivaldo Danilo Moron Maylle",
+      url: "https://github.com/RDaniloMM",
+    },
+    {
+      name: "Edson Josue Peraza Chambilla",
+      url: "https://github.com/JosueO7",
+    },
+    {
+      name: "Francisco José Castro Flores",
+      url: "https://www.facebook.com/franciscojose.cf",
+    },
+    {
+      name: "Juan José Hermoza Gutierrez",
+      url: "https://www.facebook.com/juan.hermoza.988",
+    },
+    {
+      name: "Elian Yeltzin Paniagua Mariaca",
+      url: "https://github.com/epaniaguam",
+    },
+    {
+      name: "Christopher Liam Piero Llamoca Chura",
+      url: "https://www.instagram.com/chriiscrow/",
     },
   ],
   ogImage: `${process.env.NEXT_PUBLIC_APP_URL}/og-image.png`,
   name: "Delifit",
-  logo: "/food-safety.svg",
+  logo: "/delifit-logo.svg",
   slogan: "Comida Saludable a tu alcance",
   availability: [
-    "Lunes a Viernes de 9:00 am a 6:00 pm",
-    "Sábados de 9:00 am a 2:00 pm",
+    "Lunes a Viernes:",
+    "9:00 a.m. a 6:00 p.m.",
+    "Sábados:",
+    "9:00 a.m. a 2:00 p.m.",
+    "Domingos:",
+    "Solo Delivery de 2 p.m. a 7 p.m.",
   ],
   address: {
-    direction: "Calle 123, Ciudad Bolívar, Bogotá, Colombia",
-    reference: "Frente a la plaza principal",
+    direction:
+      "Intersección de calle Destua con calle Zela - BULEVAR PLAZA, Tacna - Tacna - Perú",
+    reference: "BULEVAR PLAZA",
     mapUrl: "https://goo.gl/maps/123456789",
   },
   phone: "917774573",
