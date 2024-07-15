@@ -20,7 +20,9 @@ export default function Page() {
               footer={
                 <span>
                   ¿Aún no tienes cuenta?{" "}
-                  <Link href={registerRoute}>Registrarse</Link>
+                  <Link href={registerRoute}
+                    className='text-graphite-deep hover:text-black dark:text-graphite-light dark:hover:text-graphite'
+                  >Registrarse</Link>
                 </span>
               }
             >

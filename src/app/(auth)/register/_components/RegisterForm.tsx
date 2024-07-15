@@ -92,6 +92,7 @@ export const RegisterForm = () => {
                   disabled={isPending}
                   type='text'
                   placeholder='John'
+                  className='dark:border-graphite-deep'
                 />
               </FormControl>
               <FormMessage />
@@ -110,6 +111,7 @@ export const RegisterForm = () => {
                   disabled={isPending}
                   type='text'
                   placeholder='Doe'
+                  className='dark:border-graphite-deep'
                 />
               </FormControl>
               <FormMessage />
@@ -128,6 +130,7 @@ export const RegisterForm = () => {
                   disabled={isPending}
                   type='email'
                   placeholder=''
+                  className='dark:border-graphite-deep'
                 />
               </FormControl>
               <FormMessage />
@@ -146,6 +149,7 @@ export const RegisterForm = () => {
                   disabled={isPending}
                   type='text'
                   placeholder=''
+                  className='dark:border-graphite-deep'
                 />
               </FormControl>
               <FormMessage />
@@ -164,6 +168,7 @@ export const RegisterForm = () => {
                   disabled={isPending}
                   type='text'
                   placeholder=''
+                  className='dark:border-graphite-deep'
                 />
               </FormControl>
               <FormMessage />
@@ -182,7 +187,7 @@ export const RegisterForm = () => {
                 onValueChange={field.onChange}
                 value={field.value}
                 defaultValue={field.value}
-              >
+              > 
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue
@@ -218,6 +223,7 @@ export const RegisterForm = () => {
                   disabled={isPending}
                   type='password'
                   placeholder=''
+                  className='dark:border-graphite-deep'
                 />
               </FormControl>
               <FormMessage />
@@ -237,6 +243,7 @@ export const RegisterForm = () => {
                   disabled={isPending}
                   type='password'
                   placeholder=''
+                  className='dark:border-graphite-deep'
                 />
               </FormControl>
               <FormMessage />
@@ -247,7 +254,7 @@ export const RegisterForm = () => {
         <Button
           disabled={isPending}
           type='submit'
-          variant='default'
+          variant='outline'
           className='w-full'
         >
           Registrar
