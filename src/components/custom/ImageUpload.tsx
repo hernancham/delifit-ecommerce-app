@@ -4,6 +4,7 @@ import { useDropzone } from "react-dropzone";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { LoaderCircle, UploadCloudIcon } from "lucide-react";
+import Image from "next/image";
 
 interface ImageUploadProps {
   onSuccess: (url: string) => void;
@@ -90,7 +91,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
       >
         <input {...getInputProps()} />
         {previewUrl ? (
-          <img
+          <Image
             src={previewUrl}
             alt='Preview'
             className='object-cover rounded-lg'
