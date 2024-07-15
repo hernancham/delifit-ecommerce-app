@@ -76,12 +76,21 @@ export const ColUsuarios: ColumnDef<Usuario>[] = [
     ),
   },
   {
-    id: "Tipo Documento",
+    id: "tipo_doc",
     accessorKey: "tipo_doc",
     header: ({ column }) => (
       <HeaderOptions
         column={column}
-        title='Documento'
+        title='Tipo Doc'
+      />
+    ),
+  },
+  {
+    accessorKey: "puntos",
+    header: ({ column }) => (
+      <HeaderOptions
+        column={column}
+        title='Puntos'
       />
     ),
   },
