@@ -8,7 +8,7 @@ export default function SocialLinks({
 }) {
   return (
     <div className='flex items-center'>
-      <ul className='mt-8 flex gap-6'>
+      <ul className='flex gap-12'>
         {GroupLink.map((link, i) => (
           <li key={i}>
             <Link
@@ -21,8 +21,8 @@ export default function SocialLinks({
               <Image
                 src={link.icon}
                 alt={link.name}
-                width={24}
-                height={24}
+                width={36}
+                height={36}
               />
             </Link>
           </li>

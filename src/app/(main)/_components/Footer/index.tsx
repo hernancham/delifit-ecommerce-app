@@ -15,13 +15,13 @@ export const Footer = () => {
             <div className='w-full sm:w-1/2 lg:w-1/3 mb-8 sm:mb-0 text-left'>
               <div className='mx-auto max-w-xs'>
                 <p>
-                  <span className='text-xs uppercase tracking-wide text-gray-500 dark:text-white'>
+                  <span className='text-xs uppercase tracking-wide text-gray-900 dark:text-white'>
                     Llamar a
                   </span>
                   <br />
                   <Link
                     href='tel:917774573'
-                    className='block text-2xl font-medium text-gray-900 hover:opacity-75 dark:text-white sm:text-3xl'
+                    className='block text-2xl font-medium text-gray-900 hover:opacity-75 dark:text-green_p-dark sm:text-3xl'
                   >
                     {siteConfig.phone}
                   </Link>
@@ -91,13 +91,13 @@ export const Footer = () => {
                 <li>
                   <a
                     href='/terminos-y-condiciones'
-                    className='text-gray-500 text-base transition hover:opacity-75 dark:text-white'
+                    className='text-gray-800 text-base transition hover:opacity-75 dark:text-white py-4'
                   >
                     Términos y condiciones
                   </a>
                 </li>
               </ul>
-              <p className='mt-8 text-xs text-gray-500 text-base  dark:text-white sm:mt-0'>
+              <p className='flex flex-wrap gap-4 text-base text-center justify-center  text-gray-800 dark:text-white py-4'>
                 &copy; 2024. Delifitness E.I.R.L Todos los derechos reservados.
               </p>
             </div>
