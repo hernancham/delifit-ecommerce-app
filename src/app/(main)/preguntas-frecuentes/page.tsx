@@ -3,7 +3,7 @@ export default function Page() {
     <section>
       {" "}
       {/* Container */}{" "}
-      <div className='mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20 '>
+      <div className='mx-auto w-full max-w-7xl px-5 py-24 md:px-10 md:py-20 '>
         {" "}
         {/* Component */}{" "}
         <div className='mx-auto flex max-w-xl flex-col items-center justify-center px-6 text-center lg:max-w-3xl lg:px-10 '>

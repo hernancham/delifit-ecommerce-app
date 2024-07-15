@@ -1,19 +1,13 @@
 "use client";
 import React from "react";
-
 import Link from "next/link";
-
-import { Menu, X } from "lucide-react";
-
+import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
   SheetHeader,
-  SheetTitle,
-  SheetDescription,
-  SheetFooter,
   SheetClose,
 } from "@/components/ui/sheet";
 import { Logo } from "./Logo";
@@ -49,12 +43,14 @@ export function SheetMenu({ navbarLinks }: { navbarLinks: TypeNavLink[] }) {
                   key={i}
                   className='hover:underline'
                 >
-                  <Link
-                    href={nl.path}
-                    className='text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
-                  >
-                    {nl.label}
-                  </Link>
+                  <SheetClose asChild>
+                    <Link
+                      href={nl.path}
+                      className='text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+                    >
+                      {nl.label}
+                    </Link>
+                  </SheetClose>
                 </li>
               );
             })}
