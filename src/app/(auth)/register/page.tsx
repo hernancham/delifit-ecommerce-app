@@ -18,7 +18,9 @@ export default function Page() {
           footer={
             <span>
               ¿Ya tienes una cuenta?{" "}
-              <Link href={loginRoute}>Iniciar sesión</Link>
+              <Link href={loginRoute}
+                className='text-graphite-deep hover:text-black dark:text-graphite-light dark:hover:text-graphite'
+              >Iniciar sesión</Link>
             </span>
           }
         >

@@ -65,6 +65,7 @@ export const LoginForm = () => {
                   disabled={isPending}
                   type='text'
                   placeholder='ingresa tu numero'
+                  className='dark:border-graphite-deep'
                 />
               </FormControl>
               <FormMessage />
@@ -83,6 +84,7 @@ export const LoginForm = () => {
                   disabled={isPending}
                   type='password'
                   placeholder='ingresa tu contraseña'
+                  className='dark:border-graphite-deep'
                 />
               </FormControl>
               <FormMessage />
@@ -93,7 +95,7 @@ export const LoginForm = () => {
         <Button
           disabled={isPending}
           type='submit'
-          variant='default'
+          variant='outline'
           className='w-full'
         >
           Ingresar
