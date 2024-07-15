@@ -25,8 +25,8 @@ export const HeaderInsumos = () => {
       <ResponsiveDialog
         isOpen={isCreateCatOpen}
         setIsOpen={setIsCreateCatOpen}
-        title='Crear Categoria Insumo'
-        description='Complete el formulario para crear una categoria de insumo'
+        title='Crear categoría de insumo'
+        description='Complete el formulario para crear una categoría de insumo'
       >
         <FormCreateCat setIsOpen={setIsCreateCatOpen} />
       </ResponsiveDialog>

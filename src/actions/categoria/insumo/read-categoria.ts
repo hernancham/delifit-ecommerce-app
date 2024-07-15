@@ -19,7 +19,7 @@ export const readCategoriaInsumoById = async (
     return data;
   } catch (error) {
     if (error instanceof Error) {
-      console.error("Error al leer la categoria:", error.message);
+      console.error("Error al leer la categoría:", error.message);
     }
     return null;
   }
@@ -32,7 +32,7 @@ export const readCategoriasInsumo = async () => {
     return data;
   } catch (error) {
     if (error instanceof Error) {
-      console.error("Error al leer las categorias:", error.message);
+      console.error("Error al leer las categorías:", error.message);
     }
     return null;
   }

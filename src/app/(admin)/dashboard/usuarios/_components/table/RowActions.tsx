@@ -45,7 +45,7 @@ export const RowActions = ({ row }: RowActionsProps) => {
         isOpen={isEnableOpen}
         setIsOpen={setIsEnableOpen}
         title='Activar Usuario'
-        description='Complete el formulario para activar el insumo'
+        description='Complete el formulario para activar el usuario'
       >
         <FormEnable
           cardId={row.id_usuario}
@@ -56,7 +56,7 @@ export const RowActions = ({ row }: RowActionsProps) => {
         isOpen={isDisableOpen}
         setIsOpen={setIsDisableOpen}
         title='Desactivar Usuario'
-        description='Complete el formulario para desactivar el insumo'
+        description='Complete el formulario para desactivar el usuario'
       >
         <FormDisable
           cardId={row.id_usuario}

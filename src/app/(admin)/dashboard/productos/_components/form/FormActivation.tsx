@@ -15,7 +15,7 @@ import { Loader2 } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateActivityInsumoById } from "@/actions/insumo/update-insumo";
+import { updateActivityProductoById } from "@/actions/producto/update-producto";
 
 export const FormEnable = ({
   cardId,
@@ -26,15 +26,15 @@ export const FormEnable = ({
 }) => {
   const queryClient = useQueryClient();
 
-  const { mutate: eliminarInsumo } = useMutation({
-    mutationFn: updateActivityInsumoById,
+  const { mutate: eliminarProducto } = useMutation({
+    mutationFn: updateActivityProductoById,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["insumos"],
+        queryKey: ["productos"],
       });
       toast({
-        title: "Insumo Activado",
-        description: "El insumo ha sido activado exitosamente",
+        title: "Producto Activado",
+        description: "El producto ha sido activado exitosamente",
         variant: "default",
       });
     },
@@ -52,15 +52,15 @@ export const FormEnable = ({
 
   const onSubmit = () => {
     try {
-      eliminarInsumo({
-        id_insumo: cardId,
+      eliminarProducto({
+        id_producto: cardId,
         activo: true,
       });
       setIsOpen(false);
     } catch (error) {
       toast({
         title: "Error",
-        description: "Ocurrio un error al activar el insumo",
+        description: "Ocurrio un error al activar el producto",
         variant: "destructive",
       });
     }
@@ -118,15 +118,15 @@ export const FormDisable = ({
   const router = useRouter();
   const queryClient = useQueryClient();
 
-  const { mutate: eliminarInsumo } = useMutation({
-    mutationFn: updateActivityInsumoById,
+  const { mutate: eliminarProducto } = useMutation({
+    mutationFn: updateActivityProductoById,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["insumos"],
+        queryKey: ["productos"],
       });
       toast({
-        title: "Insumo Desactivado",
-        description: "El insumo ha sido desactivado exitosamente",
+        title: "Producto Desactivado",
+        description: "El producto ha sido desactivado exitosamente",
         variant: "default",
       });
     },
@@ -144,8 +144,8 @@ export const FormDisable = ({
 
   const onSubmit = () => {
     try {
-      eliminarInsumo({
-        id_insumo: cardId,
+      eliminarProducto({
+        id_producto: cardId,
         activo: false,
       });
       router.refresh();
@@ -153,7 +153,7 @@ export const FormDisable = ({
     } catch (error) {
       toast({
         title: "Error",
-        description: "Ocurrio un error al desactivar el insumo",
+        description: "Ocurrio un error al desactivar el producto",
         variant: "destructive",
       });
     }
