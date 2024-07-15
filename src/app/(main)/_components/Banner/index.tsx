@@ -21,6 +21,7 @@ export const Banner = () => {
               Delifit
             </h1>
             <div className='mb-8 mt-8 h-px w-full bg-green-800 dark:bg-slate-400'></div>
+
             <p className='dark:text-gray-100 text-sm text-gray-500 sm:text-base lg:text-xl text-left'>
               En DELIFIT, por casi cinco años, hemos sido el sabor saludable de
               Tacna, ofreciendo opciones frescas y nutritivas. Desde desayunos
