@@ -12,7 +12,7 @@ export const Hero = () => {
     >
       <div className='mx-auto w-full max-w-7xl px-5 py-24 md:px-10 md:py-24'>
         <div className='flex flex-col items-center justify-center text-center'>
-          <h1 className='font-quicksand my-28 text-5xl font-extrabold text-white md:text-5xl'>
+          <h1 className='font-quicksand my-28 text-5xl font-extrabold text-white md:text-5xl leading-relaxed'>
             ENGRÍETE <span className='text-green_p-deep'>SALUDABLE</span>
           </h1>
 

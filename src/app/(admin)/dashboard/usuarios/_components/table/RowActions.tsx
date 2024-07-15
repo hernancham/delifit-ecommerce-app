@@ -33,8 +33,8 @@ export const RowActions = ({ row }: RowActionsProps) => {
       <ResponsiveDialog
         isOpen={isEditOpen}
         setIsOpen={setIsEditOpen}
-        title='Actualizar Insumo'
-        description='Complete el formulario para actualizar un insumo'
+        title='Actualizar Usuario'
+        description='Complete el formulario para actualizar un usuario'
       >
         <FormUpdate
           setIsOpen={setIsEditOpen}

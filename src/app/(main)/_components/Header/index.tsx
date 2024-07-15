@@ -65,7 +65,7 @@ export const Header = ({ session }: { session: Session | null }) => {
             </div>
           </>
         ) : (
-          <div className=' flex gap-2 m-4'>
+          <div className=' flex gap-2 m-2 md:m-3'>
             <SignInButton />
             <SignUpButton />
           </div>
