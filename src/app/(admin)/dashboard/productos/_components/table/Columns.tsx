@@ -7,7 +7,7 @@ import { HeaderOptions } from "./HeaderOptions";
 import { RowActions } from "./RowActions";
 import { TipoMedida } from "@prisma/client";
 import { Decimal } from "@prisma/client/runtime/library";
-import Image from "next/image";
+import { productoDefault } from "@/config/imageDefault";
 import { Producto } from "@/types/db";
 
 export const ColProductos: ColumnDef<Producto>[] = [
@@ -20,9 +20,7 @@ export const ColProductos: ColumnDef<Producto>[] = [
       return (
         <div className='flex items-center justify-center h-10 w-10'>
           <img
-            src={
-              typeof img_url === "string" ? img_url : "/images/company-icon.png"
-            }
+            src={typeof img_url === "string" ? img_url : productoDefault}
             alt={nombre}
             width={40}
             height={40}

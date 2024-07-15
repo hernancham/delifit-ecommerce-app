@@ -124,9 +124,27 @@ export function DataTable<TData, TValue>({
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className='h-24 text-center'
+                  className='h-24 text-center text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800'
                 >
-                  Sin Resultado...
+                  <div className='flex flex-col items-center justify-center space-y-4'>
+                    <svg
+                      className='w-12 h-12 text-gray-400 dark:text-gray-600'
+                      fill='none'
+                      stroke='currentColor'
+                      viewBox='0 0 24 24'
+                      xmlns='http://www.w3.org/2000/svg'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M9 14l6-6M15 14l-6-6'
+                      />
+                    </svg>
+                    <span className='text-lg font-medium'>
+                      No se encontraron datos disponibles
+                    </span>
+                  </div>
                 </TableCell>
               </TableRow>
             )}
