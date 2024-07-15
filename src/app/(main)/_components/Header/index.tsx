@@ -10,6 +10,11 @@ import { ThemeToggler } from "./ThemeToggler";
 import { SignInButton, SignUpButton } from "./AuthButton";
 import { OptionsAuth } from "./OptionsAuth";
 import { Session } from "next-auth";
+import { Home } from "lucide-react";
+import { Icons } from "@/config/navLinksIcons";
+import { Button } from "@/components/ui/button";
+
+import { useRouter } from "next/navigation";
 
 const navbarLinks = [
   { path: "/menu", label: "Menú" },
@@ -20,6 +25,7 @@ const navbarLinks = [
 ];
 
 export const Header = ({ session }: { session: Session | null }) => {
+  const router = useRouter();
   return (
     <header
       className={cn(
@@ -32,6 +38,19 @@ export const Header = ({ session }: { session: Session | null }) => {
       <div className='flex w-auto flex-none flex-row items-center justify-start'>
         <SheetMenu navbarLinks={navbarLinks} />
         <Logo />
+        {session ? (
+          <Button
+            size='icon'
+            onClick={() => {
+              router.push("/dashboard");
+            }}
+            className='m-2 shrink-0 rounded-lg bg-slate-50 bg-opacity-5'
+          >
+            <Home className='h-7 w-7 stroke-current' />
+          </Button>
+        ) : (
+          <></>
+        )}
       </div>
       <div className='grow'>
         <NavMenu navbarLinks={navbarLinks} />
@@ -40,9 +59,11 @@ export const Header = ({ session }: { session: Session | null }) => {
         {/* <Auth Buttons /> */}
         <ThemeToggler />
         {session ? (
-          <div className=' flex gap-2 m-4'>
-            <OptionsAuth user={session.user} />
-          </div>
+          <>
+            <div className=' flex gap-2 m-4'>
+              <OptionsAuth user={session.user} />
+            </div>
+          </>
         ) : (
           <div className=' flex gap-2 m-4'>
             <SignInButton />

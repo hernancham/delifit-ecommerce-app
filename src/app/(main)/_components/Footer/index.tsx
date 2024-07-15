@@ -90,30 +90,14 @@ export const Footer = () => {
               <ul className='flex flex-wrap gap-4 text-xs justify-center'>
                 <li>
                   <a
-                    href='#'
-                    className='text-gray-500 transition hover:opacity-75 dark:text-white'
+                    href='/terminos-y-condiciones'
+                    className='text-gray-500 text-base transition hover:opacity-75 dark:text-white'
                   >
                     Términos y condiciones
                   </a>
                 </li>
-                <li>
-                  <a
-                    href='#'
-                    className='text-gray-500 transition hover:opacity-75 dark:text-white'
-                  >
-                    Política de privacidad
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='#'
-                    className='text-gray-500 transition hover:opacity-75 dark:text-white'
-                  >
-                    Cookies
-                  </a>
-                </li>
               </ul>
-              <p className='mt-8 text-xs text-gray-500 dark:text-white sm:mt-0'>
+              <p className='mt-8 text-xs text-gray-500 text-base  dark:text-white sm:mt-0'>
                 &copy; 2024. Delifitness E.I.R.L Todos los derechos reservados.
               </p>
             </div>
