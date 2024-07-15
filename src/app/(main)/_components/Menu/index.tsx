@@ -13,37 +13,37 @@ const Menus = [
   {
     name: "Pizza",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    image: "https://randomuser.me/api/portrait",
+    image: "/default/ejemplo/usuario.png",
     price: 10,
   },
   {
     name: "Hamburguer",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    image: "https://randomuser.me/api/portrait",
+    image: "/default/ejemplo/usuario.png",
     price: 10,
   },
   {
     name: "Hot Dog",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    image: "https://randomuser.me/api/portrait",
+    image: "/default/ejemplo/usuario.png",
     price: 10,
   },
   {
     name: "Tacos",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    image: "https://randomuser.me/api/portrait",
+    image: "/default/ejemplo/usuario.png",
     price: 10,
   },
   {
     name: "Sushi",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    image: "https://randomuser.me/api/portrait",
+    image: "/default/ejemplo/usuario.png",
     price: 10,
   },
   {
     name: "Pasta",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    image: "https://randomuser.me/api/portrait",
+    image: "/default/ejemplo/usuario.png",
     price: 10,
   },
 ];

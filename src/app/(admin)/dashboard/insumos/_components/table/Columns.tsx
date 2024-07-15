@@ -19,7 +19,7 @@ export const ColInsumos: ColumnDef<Insumo>[] = [
       const { img_url, nombre } = row.original;
       return (
         <div className='flex items-center justify-center h-10 w-10'>
-          <Image
+          <img
             src={
               typeof img_url === "string" ? img_url : "/images/company-icon.png"
             }
@@ -42,12 +42,12 @@ export const ColInsumos: ColumnDef<Insumo>[] = [
     ),
   },
   {
-    id: "Categoria",
+    id: "Categoría",
     accessorKey: "cat_insumo.nombre",
     header: ({ column }) => (
       <HeaderOptions
         column={column}
-        title='Categoria'
+        title='Categoría'
       />
     ),
     cell: ({ row }) => {

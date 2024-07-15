@@ -44,7 +44,7 @@ export const HeaderInsumos = () => {
           onClick={() => setIsCreateCatOpen(true)}
         >
           <Plus className='mr-4 w-4 h-4' />
-          <span>Categoria</span>
+          <span>Categoría</span>
         </Button>
       </div>
     </div>
