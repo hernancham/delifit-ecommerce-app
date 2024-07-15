@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export const Hero = () => {
   return (
     <header
@@ -18,12 +20,12 @@ export const Hero = () => {
             Disfruta la aventura de comer delicioso y saludable
           </p>
 
-          <a
+          <Link
             href='/menu'
             className='m-10 mb-6 mr-6 w-56 rounded-xl bg-gray-800 px-6 py-4 text-center font-semibold text-white text-xl md:mb-10 lg:mb-12 lg:mr-4 hover:bg-gray-600'
           >
             ¡Quiero pedir!
-          </a>
+          </Link>
         </div>
       </div>
     </header>

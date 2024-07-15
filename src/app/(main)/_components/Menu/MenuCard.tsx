@@ -1,3 +1,4 @@
+import Image from "next/image";
 interface MenuCardProps {
   menu: {
     image: string;
@@ -11,7 +12,7 @@ export const MenuCard = ({ menu }: MenuCardProps) => {
   return (
     <div className='flex flex-col gap-4 py-8 px-6 mx-4 rounded-xl'>
       <div className='mb-3 flex justify-center'>
-        <img
+        <Image
           src={menu.image}
           alt='menu'
           className='rounded-full w-auto sm:max-w-[200px] md:max-w-[250px] shadow-1'

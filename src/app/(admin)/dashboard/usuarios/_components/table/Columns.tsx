@@ -7,7 +7,7 @@ import { HeaderOptions } from "./HeaderOptions";
 import { RowActions } from "./RowActions";
 import { UserRole } from "@prisma/client";
 import { Decimal } from "@prisma/client/runtime/library";
-
+import Image from "next/image";
 import { Usuario } from "@/types/db";
 
 export const ColUsuarios: ColumnDef<Usuario>[] = [
@@ -19,7 +19,7 @@ export const ColUsuarios: ColumnDef<Usuario>[] = [
       const { image, nombre } = row.original;
       return (
         <div className='flex items-center justify-center h-10 w-10'>
-          <img
+          <Image
             src={typeof image === "string" ? image : "/images/company-icon.png"}
             alt={nombre}
             width={40}
