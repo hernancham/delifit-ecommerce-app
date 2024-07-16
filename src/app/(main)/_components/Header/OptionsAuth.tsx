@@ -13,8 +13,11 @@ import { Button } from "@/components/ui/button";
 import { usuarioDefault } from "@/config/imageDefault";
 import { logout } from "@/actions/auth/logout";
 import { User } from "next-auth";
+import { useRouter } from "next/navigation";
 
 export async function OptionsAuth({ user }: { user: User }) {
+  const router = useRouter();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -36,7 +39,7 @@ export async function OptionsAuth({ user }: { user: User }) {
         <DropdownMenuLabel>Mi cuenta</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>Configuración</DropdownMenuItem>
-        <DropdownMenuItem>Soporte</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => router.push('/mi-cuenta/soporte')}>Soporte</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={() => logout()}>
           Cerrar Sesión
