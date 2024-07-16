@@ -90,21 +90,22 @@ export function ShopCar() {
           </ul>
         </div>
         <SheetFooter className='flex !flex-col gap-4'>
-          <Button className='bg-slate-400 hover:bg-slate-500'>
-            Ver mi carrito
-          </Button>
-          <Button
-            onClick={() => handlePedido()}
-            className='bg-lime-300 hover:bg-lime-500'
-          >
-            Completar Pedido S/.{totalPrecio()}
-          </Button>
-          <Link
-            href='#'
-            className='inline-block text-sm text-gray-500 underline underline-offset-4 transition hover:text-gray-600'
-          >
-            Continue shopping
-          </Link>
+          <SheetClose asChild>
+            <Button
+              className='bg-slate-400 hover:bg-slate-500'
+              onClick={() => router.push("/")}
+            >
+              Ver mi carrito
+            </Button>
+          </SheetClose>
+          <SheetClose asChild>
+            <Button
+              onClick={() => handlePedido()}
+              className='bg-lime-300 hover:bg-lime-500'
+            >
+              Completar Pedido S/.{totalPrecio()}
+            </Button>
+          </SheetClose>
           <SheetClose asChild>
             <Button className='w-full'>Cerrar</Button>
           </SheetClose>

@@ -28,14 +28,14 @@ export const GridProductos = () => {
   });
 
   return (
-    <div>
+    <div className='bg-green_p-light'>
       <div className='p-10 text-center'>
-        <h1 className='mb-4 text-4xl font-bold'>Productos</h1>
+        <h1 className='mb-4 mt-12 text-4xl font-bold'>Productos</h1>
         <h2 className='text-3xl'>¡Bienvenido a nuestra tienda!</h2>
       </div>
       <section
         id='Projects'
-        className='grid grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))] gap-8 p-10'
+        className='items-center grid grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))] gap-8 p-10'
       >
         {Productos?.map((producto) => (
           <div key={producto.id_producto}>

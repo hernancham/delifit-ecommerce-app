@@ -11,7 +11,7 @@ export const CardProducto = ({ producto }: { producto: Producto }) => {
   const addToCartProducto = useCartStore((state) => state.addToCartProducto);
 
   return (
-    <div className='min-w-[200px] max-w-xs bg-white rounded-xl  duration-500 hover:scale-105 hover:shadow-xl shadow-md flex flex-col justify-between'>
+    <div className='min-w-[200px] max-w-xs bg-white rounded-xl  duration-500 hover:scale-105 hover:shadow-xl shadow-md flex flex-col justify-between dark:bg-slate-600'>
       <div className='relative'>
         <img
           src={producto.img_url}
@@ -23,7 +23,7 @@ export const CardProducto = ({ producto }: { producto: Producto }) => {
         </h3>
       </div>
       <div className='flex flex-col items-center gap-2 p-2'>
-        <div className='bg-gray-100 rounded-md p-1'>
+        <div className='bg-gray-100 rounded-md p-1 dark:bg-green-900'>
           {producto.cat_producto.nombre}
         </div>
         <div>
