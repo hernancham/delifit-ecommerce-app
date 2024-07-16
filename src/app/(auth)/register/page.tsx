@@ -16,17 +16,11 @@ export default function Page() {
         <div className='flex flex-col items-center justify-center h-full'>
           <section className='w-full max-w-md'>
             <CardAuth
-              title={
-                <div className='flex flex-col items-center'>
-                  <div className="bg-[url('/delifit-logo.svg')] bg-center bg-cover w-20 h-20 mb-1"></div>
-                  Registrar cuenta
-                </div>
+              header={
+                <div className="bg-[url('/delifit-logo.svg')] bg-center bg-cover w-20 h-20"></div>
               }
-              description={
-                <div className='flex flex-col text-center'>
-                  Crea una cuenta para empezar a disfrutar de nuestros servicios
-                </div>
-              }
+              title='Registrar cuenta'
+              description='Crea una cuenta para empezar a disfrutar de nuestros servicios'
               footer={
                 <span>
                   ¿Ya tienes una cuenta?{" "}

@@ -11,16 +11,14 @@ export default function Page() {
         <div className="bg-[url('/media/img1_login.jpg')] bg-center bg-cover w-full h-full rounded-lg border border-gray-300 overflow-hidden"></div>
         <div className='absolute inset-0 bg-black opacity-15 rounded-lg'></div>
       </div>
-      <main className='flex items-center justify-center '>
+      <main className='flex items-center justify-center'>
         <div className='flex flex-col items-center justify-center max-lg:mt-28'>
           <section className='w-full max-w-md'>
             <CardAuth
-              title={
-                <div className='flex flex-col items-center'>
-                  <div className="bg-[url('/delifit-logo.svg')] bg-center bg-cover w-20 h-20 mb-1"></div>
-                  Iniciar sesión
-                </div>
+              header={
+                <div className="bg-[url('/delifit-logo.svg')] bg-center bg-cover w-20 h-20"></div>
               }
+              title='Iniciar sesión'
               description='Bienvenido de nuevo, entra y empieza a disfrutar'
               footer={
                 <span>
