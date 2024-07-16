@@ -54,7 +54,7 @@ function Funciones() {
           </div>
           <div className='flex justify-center items-end'>
             <button
-              onClick={() => router.push("/productos")}
+              onClick={() => router.push("/menu/productos")}
               className='bg-graphite-light dark:bg-green_p text-black dark:text-black border border-stone-700 px-4 py-2 rounded-sm flex items-center justify-center hover:bg-graphite dark:hover:bg-green_p-dark'
             >
               <svg

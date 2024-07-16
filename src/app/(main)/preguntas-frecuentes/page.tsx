@@ -23,7 +23,7 @@ export default function Page() {
           <div className='mx-4 flex max-w-3xl flex-col lg:shrink lg:grow lg:basis-96'>
             {" "}
             {/* FAQ BLOCK */}{" "}
-            <div className='relative my-3 w-full rounded-md border border-gray-300 px-12 py-8'>
+            <div className='relative my-3 w-full rounded-md border border-gray-800 dark:border-gray-300 px-12 py-8'>
               <h2 className='font-bold text-black text-xl dark:text-gray-50'>
                 {" "}
                 ¿Qué tipo de productos ofrece Delifit Tacna?{" "}
@@ -36,7 +36,7 @@ export default function Page() {
               </p>
             </div>{" "}
             {/* FAQ BLOCK */}{" "}
-            <div className='relative my-3 w-full rounded-md border border-gray-300 px-12 py-8'>
+            <div className='relative my-3 w-full rounded-md border border-gray-800 dark:border-gray-300 px-12 py-8'>
               <h2 className='font-bold text-black text-xl dark:text-gray-50'>
                 {" "}
                 ¿Qué son las &quot;Deli Box&quot;?{" "}
@@ -50,7 +50,7 @@ export default function Page() {
               </p>
             </div>{" "}
             {/* FAQ BLOCK */}{" "}
-            <div className='relative my-3 w-full rounded-md border border-gray-300 px-12 py-8'>
+            <div className='relative my-3 w-full rounded-md border border-gray-800 dark:border-gray-300 px-12 py-8'>
               <h2 className='font-bold text-black text-xl dark:text-gray-50'>
                 {" "}
                 ¿Dónde se encuentran ubicados?{" "}
@@ -66,7 +66,7 @@ export default function Page() {
           <div className='mx-4 flex max-w-3xl flex-col lg:shrink lg:grow lg:basis-96'>
             {" "}
             {/* FAQ BLOCK */}{" "}
-            <div className='relative my-3 w-full rounded-md border border-gray-300 px-12 py-8'>
+            <div className='relative my-3 w-full rounded-md border border-gray-800 dark:border-gray-300 px-12 py-8'>
               <h2 className='font-bold text-black text-xl dark:text-gray-50'>
                 {" "}
                 ¿Realizan entregas a domicilio?{" "}
@@ -78,7 +78,7 @@ export default function Page() {
               </p>
             </div>{" "}
             {/* FAQ BLOCK */}{" "}
-            <div className='relative my-3 w-full rounded-md border border-gray-300 px-12 py-8'>
+            <div className='relative my-3 w-full rounded-md border border-gray-800 dark:border-gray-300 px-12 py-8'>
               <h2 className='font-bold text-black text-xl dark:text-gray-50'>
                 {" "}
                 ¿Cómo puedo contactarlos?{" "}
@@ -91,7 +91,7 @@ export default function Page() {
               </p>
             </div>{" "}
             {/* FAQ BLOCK */}{" "}
-            <div className='relative my-3 w-full rounded-md border border-gray-300 px-12 py-8'>
+            <div className='relative my-3 w-full rounded-md border border-gray-800 dark:border-gray-300 px-12 py-8'>
               <h2 className='font-bold text-black text-xl dark:text-gray-50'>
                 {" "}
                 ¿Ofrecen productos para personas con restricciones alimentarias?{" "}
