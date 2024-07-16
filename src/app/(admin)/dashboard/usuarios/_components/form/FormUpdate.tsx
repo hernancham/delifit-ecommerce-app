@@ -206,7 +206,7 @@ export const FormUpdate = ({ setIsOpen, usuario }: FormUpdateProps) => {
             name='tipo_doc'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Tipo de medida</FormLabel>
+                <FormLabel>Tipo de documento</FormLabel>
                 <Select
                   disabled={isLoading}
                   onValueChange={field.onChange}
@@ -216,7 +216,7 @@ export const FormUpdate = ({ setIsOpen, usuario }: FormUpdateProps) => {
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue
-                        placeholder='Selecciona un tipo de documento'
+                        placeholder='Tipo de documento'
                         defaultValue={field.value}
                       />
                     </SelectTrigger>

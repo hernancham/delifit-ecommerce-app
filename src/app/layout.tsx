@@ -36,7 +36,7 @@ export default function RootLayout({
     >
       <body
         className={cn(
-          "flex min-h-screen w-full flex-col bg-background antialiased",
+          "flex min-h-screen w-full flex-col bg-background antialiased  bg-gray-300 dark:bg-neutral-800",
           inter.className,
           quicksand.className,
           robotoSlab.className

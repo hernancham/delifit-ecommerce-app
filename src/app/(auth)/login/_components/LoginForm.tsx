@@ -64,7 +64,7 @@ export const LoginForm = () => {
                   {...field}
                   disabled={isPending}
                   type='text'
-                  placeholder='ingresa tu numero'
+                  placeholder='Ingresa tu número'
                   className='dark:border-graphite-deep'
                 />
               </FormControl>
@@ -83,7 +83,7 @@ export const LoginForm = () => {
                   {...field}
                   disabled={isPending}
                   type='password'
-                  placeholder='ingresa tu contraseña'
+                  placeholder='Ingresa tu contraseña'
                   className='dark:border-graphite-deep'
                 />
               </FormControl>

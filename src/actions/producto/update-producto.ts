@@ -51,3 +51,31 @@ export const updateProductoById = async (values: updateProductoByIdType) => {
     return null;
   }
 };
+
+interface updateActivityProductoByIdType {
+  id_producto: string;
+  activo: boolean;
+}
+
+export const updateActivityProductoById = async (
+  values: updateActivityProductoByIdType
+) => {
+  try {
+    // Actualizar el producto en la base de datos
+    const data = await prisma.producto.update({
+      where: {
+        id_producto: values.id_producto,
+      },
+      data: {
+        activo: values.activo,
+      },
+    });
+
+    return data;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("Error al actualizar el producto:", error.message);
+    }
+    return null;
+  }
+};

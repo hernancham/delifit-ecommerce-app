@@ -19,7 +19,7 @@ export const deleteCategoriaProductoById = async (
     return data;
   } catch (error) {
     if (error instanceof Error) {
-      console.error("Error al eliminar la categoria:", error.message);
+      console.error("Error al eliminar la categoría:", error.message);
     }
     return null;
   }

@@ -62,8 +62,20 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
       setUploading(false);
     }
   };
-
-  const sizeFile = acceptedFiles.map((file) => `${file.size / 1024} kB`);
+  const sizeFile = acceptedFiles.map((file, index) => {
+    const fileSize = file?.size || 0;
+    const fileSizeInKB = fileSize / 1024;
+    const fileSizeText = `${fileSizeInKB.toFixed(2)} kB`;
+    const textColor = fileSize < 1048576 ? "green" : "red";
+    return (
+      <span
+        key={index}
+        style={{ color: textColor }}
+      >
+        {fileSizeText}
+      </span>
+    );
+  });
 
   return (
     <div className='flex flex-col gap-2'>

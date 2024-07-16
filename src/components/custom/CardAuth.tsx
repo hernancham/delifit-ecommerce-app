@@ -33,13 +33,13 @@ export const CardAuth = ({
   footer,
 }: CardWrapperProps) => {
   return (
-    <Card className='w-[400px] shadow-md py-4'>
-      <CardHeader className='w-full flex flex-col gap-y-4 items-center justify-center'>
+    <Card className='w-[400px] shadow-md'>
+      <CardHeader className='w-full flex flex-col gap-y-1 items-center justify-center'>
         {header}
         <CardTitle className={cn("text-3xl font-semibold", font.className)}>
           {title}
         </CardTitle>
-        <CardDescription className='text-muted-foreground text-sm'>
+        <CardDescription className='text-muted-foreground text-sm text-center'>
           {description}
         </CardDescription>
       </CardHeader>

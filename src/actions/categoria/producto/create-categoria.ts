@@ -19,7 +19,7 @@ export const createCategoriaProducto = async (
     return data;
   } catch (error) {
     if (error instanceof Error) {
-      console.error("Error al crear la categoria:", error.message);
+      console.error("Error al crear la categoría:", error.message);
     }
     return null;
   }

@@ -9,20 +9,44 @@ import {
 } from "@/components/ui/carousel";
 import { MenuCard } from "./MenuCard";
 
-import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
-
-// Types
-import { Producto } from "@/types/db";
-
-const getProductos = async () => {
-  try {
-    const response = await axios.get<Producto[]>("/api/producto");
-    return response.data;
-  } catch (error) {
-    throw new Error("Error al leer los Productos");
-  }
-};
+const Menus = [
+  {
+    name: "Pizza",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    image: "https://randomuser.me/api/portrait",
+    price: 10,
+  },
+  {
+    name: "Hamburguer",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    image: "https://randomuser.me/api/portrait",
+    price: 10,
+  },
+  {
+    name: "Hot Dog",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    image: "https://randomuser.me/api/portrait",
+    price: 10,
+  },
+  {
+    name: "Tacos",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    image: "https://randomuser.me/api/portrait",
+    price: 10,
+  },
+  {
+    name: "Sushi",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    image: "https://randomuser.me/api/portrait",
+    price: 10,
+  },
+  {
+    name: "Pasta",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    image: "https://randomuser.me/api/portrait",
+    price: 10,
+  },
+];
 
 export const Menu = () => {
   const {

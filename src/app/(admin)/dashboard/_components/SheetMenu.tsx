@@ -9,7 +9,6 @@ import {
   SheetHeader,
   SheetFooter,
   SheetTitle,
-  SheetDescription,
   SheetClose,
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
@@ -41,20 +40,23 @@ export function SheetMenu() {
           <SheetTitle>
             <LogoLink />
           </SheetTitle>
-          <SheetDescription>Explore la opciones de navegación</SheetDescription>
         </SheetHeader>
         <nav className='grid gap-6 text-lg font-medium my-10'>
           {navLinks.map((link) => {
             if (link.position === "top") {
               return (
-                <Link
+                <SheetClose
+                  asChild
                   key={link.name}
-                  href={link.href}
-                  className='flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground'
                 >
-                  <link.icon />
-                  {link.name}
-                </Link>
+                  <Link
+                    href={link.href}
+                    className='flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground'
+                  >
+                    <link.icon />
+                    {link.name}
+                  </Link>
+                </SheetClose>
               );
             }
           })}
@@ -64,14 +66,18 @@ export function SheetMenu() {
           {navLinks.map((link) => {
             if (link.position === "bottom") {
               return (
-                <Link
+                <SheetClose
+                  asChild
                   key={link.name}
-                  href={link.href}
-                  className='flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground'
                 >
-                  <link.icon />
-                  {link.name}
-                </Link>
+                  <Link
+                    href={link.href}
+                    className='flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground'
+                  >
+                    <link.icon />
+                    {link.name}
+                  </Link>
+                </SheetClose>
               );
             }
           })}

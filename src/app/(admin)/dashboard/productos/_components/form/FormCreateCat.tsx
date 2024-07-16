@@ -92,7 +92,7 @@ export const FormCreateCat = ({ setIsOpen }: FormCreateCatProps) => {
                   <Input
                     {...field}
                     disabled={isLoading}
-                    placeholder='Nuevo insumo'
+                    placeholder='Nuevo producto'
                     type='text'
                   />
                 </FormControl>
