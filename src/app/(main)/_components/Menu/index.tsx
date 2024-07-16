@@ -9,46 +9,32 @@ import {
 } from "@/components/ui/carousel";
 import { MenuCard } from "./MenuCard";
 
-const Menus = [
-  {
-    name: "Pizza",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    image: "/default/ejemplo/usuario.png",
-    price: 10,
-  },
-  {
-    name: "Hamburguer",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    image: "/default/ejemplo/usuario.png",
-    price: 10,
-  },
-  {
-    name: "Hot Dog",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    image: "/default/ejemplo/usuario.png",
-    price: 10,
-  },
-  {
-    name: "Tacos",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    image: "/default/ejemplo/usuario.png",
-    price: 10,
-  },
-  {
-    name: "Sushi",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    image: "/default/ejemplo/usuario.png",
-    price: 10,
-  },
-  {
-    name: "Pasta",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    image: "/default/ejemplo/usuario.png",
-    price: 10,
-  },
-];
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+
+// Types
+import { Producto } from "@/types/db";
+
+const getProductos = async () => {
+  try {
+    const response = await axios.get<Producto[]>("/api/producto");
+    return response.data;
+  } catch (error) {
+    throw new Error("Error al leer los Productos");
+  }
+};
 
 export const Menu = () => {
+  const {
+    data: Productos,
+    isError,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["productos"],
+    queryFn: getProductos,
+  });
+
   return (
     <div className='py-16 bg-green_p-dark dark:bg-graphite-deep text-black dark:text-white'>
       <div className='container'>
@@ -66,12 +52,12 @@ export const Menu = () => {
               autoplay={{ delay: 5000, stopOnInteraction: false }}
             >
               <CarouselContent>
-                {Menus.map((menu, index) => (
+                {Productos?.map((producto, index) => (
                   <CarouselItem
                     key={index}
                     className='md:basis-1/3 lg:basis-1/4'
                   >
-                    <MenuCard menu={menu} />
+                    <MenuCard producto={producto} />
                   </CarouselItem>
                 ))}
               </CarouselContent>
