@@ -43,7 +43,7 @@ export function ShopCar() {
         </SheetHeader>
         <div>
           <h2 className='text-2xl font-bold'>Lista Productos</h2>
-          <ul className='space-y-4 min-h-32'>
+          <ul className='flex-1 max-h-36 overflow-y-auto px-6 py-6'>
             {cartProductos.map((producto) => (
               <li key={producto.id_producto}>
                 <ShopCarItemProducto producto={producto} />
@@ -51,7 +51,7 @@ export function ShopCar() {
             ))}
           </ul>
           <h2 className='text-2xl font-bold'>Lista Promociones</h2>
-          <ul className='space-y-4 min-h-32'>
+          <ul className='flex-1 max-h-36 overflow-y-auto px-6 py-6'>
             {cartPromociones.map((promocion) => (
               <li key={promocion.id_promocion}>
                 <ShopCarItemPromocion promocion={promocion} />
@@ -64,7 +64,7 @@ export function ShopCar() {
             Ver mi carrito
           </Button>
           <Button className='bg-lime-300 hover:bg-lime-500'>
-            Completar Pedido
+            Completar Pedido S/.{totalPrecio()}
           </Button>
           <Link
             href='#'
