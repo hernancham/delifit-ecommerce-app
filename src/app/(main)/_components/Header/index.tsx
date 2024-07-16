@@ -15,6 +15,7 @@ import { Icons } from "@/config/navLinksIcons";
 import { Button } from "@/components/ui/button";
 
 import { useRouter } from "next/navigation";
+import { ShopCar } from "./ShopCar";
 
 const navbarLinks = [
   { path: "/menu", label: "Menú" },
@@ -70,6 +71,7 @@ export const Header = ({ session }: { session: Session | null }) => {
             <SignUpButton />
           </div>
         )}
+        <ShopCar />
       </div>
     </header>
   );
