@@ -38,7 +38,9 @@ export const GridProductos = () => {
         className='grid grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))] gap-8 p-10'
       >
         {Productos?.map((producto) => (
-          <CardProducto producto={producto} />
+          <div key={producto.id_producto}>
+            <CardProducto producto={producto} />
+          </div>
         ))}
       </section>
       <div className='px-10 py-10 text-center'>
