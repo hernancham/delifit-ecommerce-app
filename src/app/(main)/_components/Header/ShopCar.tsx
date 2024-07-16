@@ -17,13 +17,43 @@ import { Logo } from "./Logo";
 
 import { ShopCarItemProducto, ShopCarItemPromocion } from "./ShopCarItem";
 import { useCartStore } from "@/store/shopcart";
+import { useMutation } from "@tanstack/react-query";
+
+import { createPedido } from "@/actions/pedido/create-pedido";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export function ShopCar() {
+  const { data } = useSession();
+  const router = useRouter();
   const cartProductos = useCartStore((state) => state.cartProductos);
   const cartPromociones = useCartStore((state) => state.cartPromociones);
-
   const totalPrecio = useCartStore((state) => state.totalPrice);
+  const { mutate: crearUsuario } = useMutation({
+    mutationFn: createPedido,
+    onSuccess: () => {},
+  });
 
+  const handlePedido = () => {
+    if (data?.user.userId) {
+      crearUsuario({
+        id_usuario: data.user.userId,
+        total: totalPrecio(),
+        productos: cartProductos.map((producto) => ({
+          id_producto: producto.id_producto,
+          precio_cantidad: producto.cantidad * producto.precio,
+          cantidad: producto.cantidad,
+        })),
+        promocion: cartPromociones.map((promocion) => ({
+          id_promocion: promocion.id_promocion,
+          precio_cantidad: promocion.cantidad * promocion.precio,
+          cantidad: promocion.cantidad,
+        })),
+      });
+    } else {
+      router.push("/login");
+    }
+  };
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -63,7 +93,10 @@ export function ShopCar() {
           <Button className='bg-slate-400 hover:bg-slate-500'>
             Ver mi carrito
           </Button>
-          <Button className='bg-lime-300 hover:bg-lime-500'>
+          <Button
+            onClick={() => handlePedido()}
+            className='bg-lime-300 hover:bg-lime-500'
+          >
             Completar Pedido S/.{totalPrecio()}
           </Button>
           <Link
