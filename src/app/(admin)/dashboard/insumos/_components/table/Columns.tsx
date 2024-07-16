@@ -7,7 +7,7 @@ import { HeaderOptions } from "./HeaderOptions";
 import { RowActions } from "./RowActions";
 import { TipoMedida } from "@prisma/client";
 import { Decimal } from "@prisma/client/runtime/library";
-
+import { insumoDefault } from "@/config/imageDefault";
 import { Insumo } from "@/types/db";
 
 export const ColInsumos: ColumnDef<Insumo>[] = [
@@ -20,9 +20,7 @@ export const ColInsumos: ColumnDef<Insumo>[] = [
       return (
         <div className='flex items-center justify-center h-10 w-10'>
           <img
-            src={
-              typeof img_url === "string" ? img_url : "/images/company-icon.png"
-            }
+            src={typeof img_url === "string" ? img_url : insumoDefault}
             alt={nombre}
             width={40}
             height={40}
@@ -42,12 +40,12 @@ export const ColInsumos: ColumnDef<Insumo>[] = [
     ),
   },
   {
-    id: "Categoria",
+    id: "Categoría",
     accessorKey: "cat_insumo.nombre",
     header: ({ column }) => (
       <HeaderOptions
         column={column}
-        title='Categoria'
+        title='Categoría'
       />
     ),
     cell: ({ row }) => {

@@ -25,8 +25,8 @@ export const HeaderInsumos = () => {
       <ResponsiveDialog
         isOpen={isCreateCatOpen}
         setIsOpen={setIsCreateCatOpen}
-        title='Crear Categoria Insumo'
-        description='Complete el formulario para crear una categoria de insumo'
+        title='Crear categoría de insumo'
+        description='Complete el formulario para crear una categoría de insumo'
       >
         <FormCreateCat setIsOpen={setIsCreateCatOpen} />
       </ResponsiveDialog>
@@ -44,7 +44,7 @@ export const HeaderInsumos = () => {
           onClick={() => setIsCreateCatOpen(true)}
         >
           <Plus className='mr-4 w-4 h-4' />
-          <span>Categoria</span>
+          <span>Categoría</span>
         </Button>
       </div>
     </div>

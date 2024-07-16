@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Page() {
   return (
     <section>
@@ -106,12 +108,12 @@ export default function Page() {
         <p className='font-inter mx-auto mt-12 text-center text-graphite-deep dark:text-graphite-light'>
           {" "}
           ¿No pudiste resolver tus dudas?{" "}
-          <a
+          <Link
             href='https://wa.me/51917774573'
             className='text-black font-bold hover:text-graphite-deep dark:text-gray-50 dark:hover:text-green_p-dark'
           >
             <span> </span> contactános.
-          </a>
+          </Link>
         </p>
       </div>
     </section>

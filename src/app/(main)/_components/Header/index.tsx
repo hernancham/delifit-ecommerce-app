@@ -30,7 +30,7 @@ export const Header = ({ session }: { session: Session | null }) => {
   return (
     <header
       className={cn(
-        "left-0 top-0 mx-auto flex w-full flex-row items-center bg-green_p-deep dark:bg-black dark:bg-opacity-10 px-2 sm:px-4 md:px-8 lg:px-16",
+        "left-0 top-0 mx-auto flex w-full flex-row items-center bg-lime-600 dark:bg-black dark:bg-opacity-20 px-2 sm:px-4 md:px-8 lg:px-16",
         {
           "fixed z-50 bg-opacity-30 backdrop-blur-sm": true,
         }
@@ -39,7 +39,7 @@ export const Header = ({ session }: { session: Session | null }) => {
       <div className='flex w-auto flex-none flex-row items-center justify-start'>
         <SheetMenu navbarLinks={navbarLinks} />
         <Logo />
-        {session ? (
+        {session && session.user.userRole === "ADMIN" ? (
           <Button
             size='icon'
             onClick={() => {
@@ -49,9 +49,7 @@ export const Header = ({ session }: { session: Session | null }) => {
           >
             <Home className='h-7 w-7 stroke-current' />
           </Button>
-        ) : (
-          <></>
-        )}
+        ) : null}
       </div>
       <div className='grow'>
         <NavMenu navbarLinks={navbarLinks} />
@@ -66,7 +64,7 @@ export const Header = ({ session }: { session: Session | null }) => {
             </div>
           </>
         ) : (
-          <div className=' flex gap-2 m-4'>
+          <div className=' flex gap-2 m-2 md:m-3'>
             <SignInButton />
             <SignUpButton />
           </div>

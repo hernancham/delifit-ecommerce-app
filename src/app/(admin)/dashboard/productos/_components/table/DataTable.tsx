@@ -30,6 +30,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -45,6 +46,7 @@ export function DataTable<TData, TValue>({
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [expandedRows, setExpandedRows] = useState<Set<number>>(new Set());
 
   const table = useReactTable({
     data,
@@ -62,6 +64,18 @@ export function DataTable<TData, TValue>({
     },
   });
 
+  const toggleRowExpansion = (rowIndex: number) => {
+    setExpandedRows((prev) => {
+      const newExpandedRows = new Set(prev);
+      if (newExpandedRows.has(rowIndex)) {
+        newExpandedRows.delete(rowIndex);
+      } else {
+        newExpandedRows.add(rowIndex);
+      }
+      return newExpandedRows;
+    });
+  };
+
   return (
     <div>
       <div className='flex items-center py-4'>
@@ -73,27 +87,22 @@ export function DataTable<TData, TValue>({
       </div>
       <div className='rounded-md border-graphite-light dark:border-graphite-dark'>
         <Table>
-          <TableHeader className=''>
+          <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow
-                key={headerGroup.id}
-                className=''
-              >
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <TableHead
-                      key={header.id}
-                      className='bg-graphite-dark text-green_p-light dark:bg-green_p-light dark:text-graphite-dark'
-                    >
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
-                    </TableHead>
-                  );
-                })}
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <TableHead
+                    key={header.id}
+                    className='bg-graphite-dark text-green_p-light dark:bg-green_p-light dark:text-graphite-dark'
+                  >
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </TableHead>
+                ))}
               </TableRow>
             ))}
           </TableHeader>
@@ -105,11 +114,34 @@ export function DataTable<TData, TValue>({
                   data-state={row.getIsSelected() && "selected"}
                   className='border-graphite-light dark:border-graphite-dark bg-graphite-light dark:bg-graphite-dark hover:bg-background dark:hover:bg-background'
                 >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                  {row.getVisibleCells().map((cell, index) => (
+                    <TableCell
+                      key={cell.id}
+                      className={`px-4 py-2 relative ${
+                        index === 2
+                          ? expandedRows.has(row.index)
+                            ? "max-w-none whitespace-normal"
+                            : "max-w-xs whitespace-nowrap overflow-hidden text-ellipsis"
+                          : ""
+                      }`}
+                    >
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
+                      )}
+                      {index === 2 && (
+                        <Button
+                          variant='link'
+                          size='sm'
+                          onClick={() => toggleRowExpansion(row.index)}
+                          className='absolute right-0 top-1/2 transform -translate-y-1/2'
+                        >
+                          {expandedRows.has(row.index) ? (
+                            <ChevronUp className='h-4 w-4' />
+                          ) : (
+                            <ChevronDown className='h-4 w-4' />
+                          )}
+                        </Button>
                       )}
                     </TableCell>
                   ))}
@@ -119,9 +151,27 @@ export function DataTable<TData, TValue>({
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className='h-24 text-center'
+                  className='h-24 text-center text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800'
                 >
-                  Sin Resultado...
+                  <div className='flex flex-col items-center justify-center space-y-4'>
+                    <svg
+                      className='w-12 h-12 text-gray-400 dark:text-gray-600'
+                      fill='none'
+                      stroke='currentColor'
+                      viewBox='0 0 24 24'
+                      xmlns='http://www.w3.org/2000/svg'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M9 14l6-6M15 14l-6-6'
+                      />
+                    </svg>
+                    <span className='text-lg font-medium'>
+                      No se encontraron datos disponibles
+                    </span>
+                  </div>
                 </TableCell>
               </TableRow>
             )}

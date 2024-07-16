@@ -127,7 +127,7 @@ export const FormUpdate = ({
                   <Input
                     {...field}
                     disabled={isLoading}
-                    placeholder='Nuevo insumo'
+                    placeholder='Nuevo producto'
                     type='text'
                   />
                 </FormControl>

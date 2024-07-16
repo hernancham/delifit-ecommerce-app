@@ -33,8 +33,8 @@ export const RowActions = ({ row }: RowActionsProps) => {
       <ResponsiveDialog
         isOpen={isEditOpen}
         setIsOpen={setIsEditOpen}
-        title='Actualizar Insumo'
-        description='Complete el formulario para actualizar un insumo'
+        title='Actualizar Usuario'
+        description='Complete el formulario para actualizar un usuario'
       >
         <FormUpdate
           setIsOpen={setIsEditOpen}
@@ -45,7 +45,7 @@ export const RowActions = ({ row }: RowActionsProps) => {
         isOpen={isEnableOpen}
         setIsOpen={setIsEnableOpen}
         title='Activar Usuario'
-        description='Complete el formulario para activar el insumo'
+        description='Complete el formulario para activar el usuario'
       >
         <FormEnable
           cardId={row.id_usuario}
@@ -56,7 +56,7 @@ export const RowActions = ({ row }: RowActionsProps) => {
         isOpen={isDisableOpen}
         setIsOpen={setIsDisableOpen}
         title='Desactivar Usuario'
-        description='Complete el formulario para desactivar el insumo'
+        description='Complete el formulario para desactivar el usuario'
       >
         <FormDisable
           cardId={row.id_usuario}

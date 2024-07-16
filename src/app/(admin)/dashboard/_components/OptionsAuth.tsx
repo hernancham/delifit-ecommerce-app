@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 
 import { usuarioDefault } from "@/config/imageDefault";
 import { logout } from "@/actions/auth/logout";
+import { User } from "next-auth";
 
 export async function OptionsAuth() {
   const { data: session } = useSession();
@@ -22,9 +23,9 @@ export async function OptionsAuth() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant='outline'
+          variant='ghost'
           size='icon'
-          className='overflow-hidden rounded-full'
+          className='rounded-full'
         >
           <Avatar>
             <AvatarImage

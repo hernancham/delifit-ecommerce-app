@@ -10,11 +10,11 @@ export const LogoLink = () => {
       <Image
         src='/delifit-logo.svg'
         alt='Delifit'
-        width={32}
-        height={32}
+        width={36}
+        height={36}
         className='transition-all group-hover:scale-150'
       />
-      <span className='sr-only'>Delifit Admin</span>
+      <span className='sr-only'>Delifit App</span>
     </Link>
   );
 };
