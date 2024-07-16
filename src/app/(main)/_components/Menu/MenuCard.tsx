@@ -1,4 +1,3 @@
-import Image from "next/image";
 interface MenuCardProps {
   menu: {
     image: string;

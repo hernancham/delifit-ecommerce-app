@@ -39,7 +39,7 @@ export const CardAuth = ({
         <CardTitle className={cn("text-3xl font-semibold", font.className)}>
           {title}
         </CardTitle>
-        <CardDescription className='text-muted-foreground text-sm'>
+        <CardDescription className='text-muted-foreground text-sm text-center'>
           {description}
         </CardDescription>
       </CardHeader>

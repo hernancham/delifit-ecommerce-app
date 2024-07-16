@@ -13,7 +13,7 @@ export default function Page() {
         <div className='absolute inset-0 bg-black opacity-15 rounded-lg'></div>
       </div>
       <main className='flex items-center justify-center '>
-        <div className='flex flex-col items-center justify-center h-full'>
+        <div className='flex flex-col items-center justify-center'>
           <section className='w-full max-w-md'>
             <CardAuth
               header={

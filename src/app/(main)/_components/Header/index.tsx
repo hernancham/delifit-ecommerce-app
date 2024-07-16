@@ -48,9 +48,7 @@ export const Header = ({ session }: { session: Session | null }) => {
           >
             <Home className='h-7 w-7 stroke-current' />
           </Button>
-        ) : (
-          <></>
-        )}
+        ) : null}
       </div>
       <div className='grow'>
         <NavMenu navbarLinks={navbarLinks} />

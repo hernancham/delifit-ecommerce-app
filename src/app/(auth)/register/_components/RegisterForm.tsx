@@ -78,14 +78,16 @@ export const RegisterForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className='space-y-6'
+        className='space-y-3'
       >
         <FormField
           control={form.control}
           name='nombre'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Nombre</FormLabel>
+              <FormLabel className='max-sm:text-lg sm:text-base'>
+                Nombre
+              </FormLabel>
               <FormControl>
                 <Input
                   {...field}
@@ -104,7 +106,9 @@ export const RegisterForm = () => {
           name='apellido'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Apellido</FormLabel>
+              <FormLabel className='max-sm:text-lg sm:text-base'>
+                Apellido
+              </FormLabel>
               <FormControl>
                 <Input
                   {...field}
@@ -123,7 +127,9 @@ export const RegisterForm = () => {
           name='email'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Correo electrónico</FormLabel>
+              <FormLabel className='max-sm:text-lg sm:text-base'>
+                Correo electrónico
+              </FormLabel>
               <FormControl>
                 <Input
                   {...field}
@@ -142,7 +148,9 @@ export const RegisterForm = () => {
           name='telefono'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Teléfono</FormLabel>
+              <FormLabel className='max-sm:text-lg sm:text-base'>
+                Teléfono
+              </FormLabel>
               <FormControl>
                 <Input
                   {...field}
@@ -161,7 +169,9 @@ export const RegisterForm = () => {
           name='documento'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Número de documento</FormLabel>
+              <FormLabel className='max-sm:text-lg sm:text-base'>
+                Número de documento
+              </FormLabel>
               <FormControl>
                 <Input
                   {...field}
@@ -180,7 +190,9 @@ export const RegisterForm = () => {
           name='tipo_doc'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Tipo de documento</FormLabel>
+              <FormLabel className='max-sm:text-lg sm:text-base'>
+                Tipo de documento
+              </FormLabel>
               <Select
                 {...field}
                 disabled={isPending}
@@ -216,7 +228,9 @@ export const RegisterForm = () => {
           name='password'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Contraseña</FormLabel>
+              <FormLabel className='max-sm:text-lg sm:text-base'>
+                Contraseña
+              </FormLabel>
               <FormControl>
                 <Input
                   {...field}
@@ -236,7 +250,9 @@ export const RegisterForm = () => {
           name='confirmPassword'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Confirmar Contraseña</FormLabel>
+              <FormLabel className='max-sm:text-lg sm:text-base'>
+                Confirmar Contraseña
+              </FormLabel>
               <FormControl>
                 <Input
                   {...field}
@@ -255,7 +271,7 @@ export const RegisterForm = () => {
           disabled={isPending}
           type='submit'
           variant='outline'
-          className='w-full'
+          className='w-full text-lg'
         >
           Registrar
         </Button>
