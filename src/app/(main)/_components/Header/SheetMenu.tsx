@@ -30,7 +30,7 @@ export function SheetMenu({ navbarLinks }: { navbarLinks: TypeNavLink[] }) {
       </SheetTrigger>
       <SheetContent
         side='left'
-        className='bg-green-100 dark:bg-teal-950 p-8'
+        className='bg-green_p-light dark:bg-graphite-deep p-8'
       >
         <SheetHeader className='flex justify-between items-center'>
           <Logo />
