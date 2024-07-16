@@ -28,7 +28,7 @@ export const GridProductos = () => {
   });
 
   return (
-    <div className='bg-green_p-light'>
+    <div className='bg-green_p-light dark:bg-neutral-700'>
       <div className='p-10 text-center'>
         <h1 className='mb-4 mt-12 text-4xl font-bold'>Productos</h1>
         <h2 className='text-3xl'>¡Bienvenido a nuestra tienda!</h2>
