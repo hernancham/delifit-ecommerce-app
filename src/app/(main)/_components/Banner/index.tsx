@@ -2,8 +2,8 @@ import Image from "next/image";
 
 export const Banner = () => {
   return (
-    <section>
-      <div className='mx-auto w-full max-w-7xl px-5 py-12 md:px-10 md:py-16 lg:py-20'>
+    <section className='bg-gray-200 dark:bg-neutral-800'>
+      <div className='mx-auto w-full max-w-7xl px-5 py-12 md:px-10 md:py-16 lg:py-20 '>
         <div className='grid gap-12 sm:gap-20 lg:grid-cols-2'>
           <div className='flex justify-center lg:justify-start'>
             <div className='max-h-[530px] max-w-[570px] w-full overflow-hidden rounded-md'>

@@ -91,7 +91,7 @@ export const RegisterForm = () => {
                   {...field}
                   disabled={isPending}
                   type='text'
-                  placeholder='John'
+                  placeholder='Ingresa tu nombre'
                   className='dark:border-graphite-deep'
                 />
               </FormControl>
@@ -110,7 +110,7 @@ export const RegisterForm = () => {
                   {...field}
                   disabled={isPending}
                   type='text'
-                  placeholder='Doe'
+                  placeholder='Ingresa tus apellidos'
                   className='dark:border-graphite-deep'
                 />
               </FormControl>
@@ -187,7 +187,7 @@ export const RegisterForm = () => {
                 onValueChange={field.onChange}
                 value={field.value}
                 defaultValue={field.value}
-              > 
+              >
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue
