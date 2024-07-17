@@ -19,7 +19,7 @@ export const ShopCarItemProducto = ({ producto }: ShopCarItemProductoProps) => {
   );
 
   return (
-    <div className='flex items-center justify-between p-2 border-b border-gray-200'>
+    <div className='flex items-center justify-between p-2 border-b border-graphite-deep dark:border-green_p-light'>
       <div className='flex items-center gap-2 flex-1'>
         <img
           src={producto.img_url}
@@ -27,8 +27,8 @@ export const ShopCarItemProducto = ({ producto }: ShopCarItemProductoProps) => {
           className='w-16 h-16 object-cover rounded-lg'
         />
         <div className='flex-1'>
-          <h3 className='text-base font-bold'>{producto.nombre}</h3>
-          <p className='text-sm text-gray-500'>S/. {producto.precio}</p>
+          <h3 className='text-sm font-bold'>{producto.nombre}</h3>
+          <p className='text-sm text-gray-500 dark:text-graphite-light'>S/. {producto.precio}</p>
         </div>
       </div>
       <div className='flex flex-col items-center gap-1'>
@@ -41,7 +41,7 @@ export const ShopCarItemProducto = ({ producto }: ShopCarItemProductoProps) => {
                   producto.cantidad - 1
                 )
           }
-          className='bg-lime-500 text-white text-xl px-2 py-1 rounded-md'
+          className='bg-green_p-deep dark:bg-graphite-dark dark:text-white dark:hover:text-green_p-deep px-2 py-1 hover:text-white rounded-md text-xl'
         >
           -
         </button>
@@ -50,7 +50,7 @@ export const ShopCarItemProducto = ({ producto }: ShopCarItemProductoProps) => {
           onClick={() =>
             updateCantidadProducto(producto.id_producto, producto.cantidad + 1)
           }
-          className='bg-lime-500 text-white px-2 py-1 rounded-md'
+          className='bg-green_p-deep dark:bg-graphite-dark dark:text-white dark:hover:text-green_p-deep px-2 py-1 hover:text-white rounded-md'
         >
           +
         </button>

@@ -78,7 +78,7 @@ export function ShopCar() {
       </SheetTrigger>
       <SheetContent
         side='right'
-        className='bg-green-100 dark:bg-teal-950 p-8'
+        className='bg-green_p-light dark:bg-graphite-deep p-8'
       >
         {carritoVacio ? (
           <div className='flex flex-col items-center justify-center h-full'>
@@ -121,7 +121,7 @@ export function ShopCar() {
           <SheetFooter className='flex !flex-col gap-3 mt-4'>
             <SheetClose asChild>
               <Button
-                className='bg-slate-400 hover:bg-slate-500'
+                className='bg-graphite-deep hover:bg-graphite-dark text-green_p-dark dark:bg-green_p-dark dark:text-black dark:hover:bg-green_p'                
                 onClick={() => router.push("/menu/carrito")}
               >
                 Ver mi carrito
@@ -130,13 +130,13 @@ export function ShopCar() {
             <SheetClose asChild>
               <Button
                 onClick={() => handlePedido()}
-                className='bg-lime-300 hover:bg-lime-500'
-              >
+                className='bg-green_p-deep hover:bg-lime-400 dark:bg-background dark:text-lime-400 dark:hover:bg-graphite-dark'
+                >
                 Completar Pedido S/.{totalPrecio()}
               </Button>
             </SheetClose>
             <SheetClose asChild>
-              <Button className='w-full'>Cerrar</Button>
+              <Button className='w-full bg-transparent hover:bg-transparent dark:bg-transparent'>Cerrar</Button>
             </SheetClose>
           </SheetFooter>
         )}
