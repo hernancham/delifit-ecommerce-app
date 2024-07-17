@@ -14,48 +14,41 @@ interface ShopCarItemProductoProps {
 
 export const ShopCarItemProducto = ({ producto }: ShopCarItemProductoProps) => {
   const removeProducto = useCartStore((state) => state.removeFromCartProducto);
-  const removePromocion = useCartStore(
-    (state) => state.removeFromCartPromocion
-  );
-
-  const updateCantidadroducto = useCartStore(
+  const updateCantidadProducto = useCartStore(
     (state) => state.updateCantidadProducto
-  );
-  const updateCantidadPromocion = useCartStore(
-    (state) => state.updateCantidadPromocion
   );
 
   return (
     <div className='flex items-center justify-between p-2 border-b border-gray-200'>
-      <div className='flex items-center gap-2'>
+      <div className='flex items-center gap-2 flex-1'>
         <img
           src={producto.img_url}
           alt={producto.nombre}
           className='w-16 h-16 object-cover rounded-lg'
         />
-        <div>
-          <h3 className='text-lg font-bold'>{producto.nombre}</h3>
+        <div className='flex-1'>
+          <h3 className='text-base font-bold'>{producto.nombre}</h3>
           <p className='text-sm text-gray-500'>S/. {producto.precio}</p>
         </div>
       </div>
-      <div className='flex items-center gap-2'>
+      <div className='flex flex-col items-center gap-1'>
         <button
           onClick={() =>
             producto.cantidad === 1
               ? removeProducto(producto.id_producto)
-              : updateCantidadroducto(
+              : updateCantidadProducto(
                   producto.id_producto,
                   producto.cantidad - 1
                 )
           }
-          className='bg-lime-500 text-white px-2 py-1 rounded-md'
+          className='bg-lime-500 text-white text-xl px-2 py-1 rounded-md'
         >
           -
         </button>
         <span>{producto.cantidad}</span>
         <button
           onClick={() =>
-            updateCantidadroducto(producto.id_producto, producto.cantidad + 1)
+            updateCantidadProducto(producto.id_producto, producto.cantidad + 1)
           }
           className='bg-lime-500 text-white px-2 py-1 rounded-md'
         >
@@ -79,13 +72,8 @@ interface ShopCarItemPromocionProps {
 export const ShopCarItemPromocion = ({
   promocion,
 }: ShopCarItemPromocionProps) => {
-  const removeProducto = useCartStore((state) => state.removeFromCartProducto);
   const removePromocion = useCartStore(
     (state) => state.removeFromCartPromocion
-  );
-
-  const updateCantidadroducto = useCartStore(
-    (state) => state.updateCantidadProducto
   );
   const updateCantidadPromocion = useCartStore(
     (state) => state.updateCantidadPromocion
@@ -93,18 +81,18 @@ export const ShopCarItemPromocion = ({
 
   return (
     <div className='flex items-center justify-between p-2 border-b border-gray-200'>
-      <div className='flex items-center gap-2'>
+      <div className='flex items-center gap-2 flex-1'>
         <img
           src={promocion.img_url}
           alt={promocion.nombre}
           className='w-16 h-16 object-cover rounded-lg'
         />
-        <div>
-          <h3 className='text-lg font-bold'>{promocion.nombre}</h3>
+        <div className='flex-1'>
+          <h3 className='text-sm font-bold'>{promocion.nombre}</h3>
           <p className='text-sm text-gray-500'>S/. {promocion.precio}</p>
         </div>
       </div>
-      <div className='flex items-center gap-2'>
+      <div className='flex flex-col items-center gap-1'>
         <button
           onClick={() =>
             promocion.cantidad === 1
@@ -114,7 +102,7 @@ export const ShopCarItemPromocion = ({
                   promocion.cantidad - 1
                 )
           }
-          className='bg-lime-500 text-white px-2 py-1 rounded-md'
+          className='bg-lime-500 text-white text-xl px-2 py-1 rounded-md'
         >
           -
         </button>

@@ -29,6 +29,9 @@ export function ShopCar() {
   const cartProductos = useCartStore((state) => state.cartProductos);
   const cartPromociones = useCartStore((state) => state.cartPromociones);
   const totalPrecio = useCartStore((state) => state.totalPrice);
+  const cantidadProductos = useCartStore(
+    (state) => state.cartCantidadProductos
+  );
   const { mutate: crearUsuario } = useMutation({
     mutationFn: createPedido,
     onSuccess: () => {},
@@ -54,62 +57,89 @@ export function ShopCar() {
       router.push("/login");
     }
   };
+
+  const carritoVacio =
+    cartProductos.length === 0 && cartPromociones.length === 0;
+
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button
-          size='icon'
-          className='m-2 shrink-0 rounded-lg bg-slate-50 bg-opacity-5'
-        >
-          <ShoppingCart className='h-8 w-8 stroke-current' />
-        </Button>
+        <div className='relative flex items-center'>
+          <Button
+            size='icon'
+            className='m-1 shrink-0 rounded-lg bg-slate-50 bg-opacity-5'
+          >
+            <ShoppingCart className='h-8 w-8 stroke-current' />
+          </Button>
+          <div className='flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white'>
+            {cantidadProductos}
+          </div>
+        </div>
       </SheetTrigger>
       <SheetContent
         side='right'
         className='bg-green-100 dark:bg-teal-950 p-8'
       >
-        <SheetHeader className='flex justify-center items-center'>
-          <Logo />
-        </SheetHeader>
-        <div>
-          <h2 className='text-2xl font-bold'>Lista Productos</h2>
-          <ul className='flex-1 max-h-36 overflow-y-auto px-6 py-6'>
-            {cartProductos.map((producto) => (
-              <li key={producto.id_producto}>
-                <ShopCarItemProducto producto={producto} />
-              </li>
-            ))}
-          </ul>
-          <h2 className='text-2xl font-bold'>Lista Promociones</h2>
-          <ul className='flex-1 max-h-36 overflow-y-auto px-6 py-6'>
-            {cartPromociones.map((promocion) => (
-              <li key={promocion.id_promocion}>
-                <ShopCarItemPromocion promocion={promocion} />
-              </li>
-            ))}
-          </ul>
-        </div>
-        <SheetFooter className='flex !flex-col gap-4'>
-          <SheetClose asChild>
-            <Button
-              className='bg-slate-400 hover:bg-slate-500'
-              onClick={() => router.push("/")}
-            >
-              Ver mi carrito
-            </Button>
-          </SheetClose>
-          <SheetClose asChild>
-            <Button
-              onClick={() => handlePedido()}
-              className='bg-lime-300 hover:bg-lime-500'
-            >
-              Completar Pedido S/.{totalPrecio()}
-            </Button>
-          </SheetClose>
-          <SheetClose asChild>
-            <Button className='w-full'>Cerrar</Button>
-          </SheetClose>
-        </SheetFooter>
+        {carritoVacio ? (
+          <div className='flex flex-col items-center justify-center h-full'>
+            <img
+              src='/media/shopping-cart.svg'
+              alt='Carrito Vacío'
+              className='w-24 h-24 mb-4'
+            />
+            <p className='text-xl font-bold mb-4'>Carrito vacío</p>
+          </div>
+        ) : (
+          <div>
+            {cartProductos.length > 0 && (
+              <>
+                <h2 className='text-2xl font-bold mb-4'>Lista Productos</h2>
+                <ul className='flex-1 max-h-48 overflow-y-auto py-4'>
+                  {cartProductos.map((producto) => (
+                    <li key={producto.id_producto}>
+                      <ShopCarItemProducto producto={producto} />
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+            {cartPromociones.length > 0 && (
+              <>
+                <h2 className='text-2xl font-bold mb-4'>Lista Promociones</h2>
+                <ul className='flex-1 max-h-48 overflow-y-auto py-6'>
+                  {cartPromociones.map((promocion) => (
+                    <li key={promocion.id_promocion}>
+                      <ShopCarItemPromocion promocion={promocion} />
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+          </div>
+        )}
+        {!carritoVacio && (
+          <SheetFooter className='flex !flex-col gap-3 mt-4'>
+            <SheetClose asChild>
+              <Button
+                className='bg-slate-400 hover:bg-slate-500'
+                onClick={() => router.push("/menu/carrito")}
+              >
+                Ver mi carrito
+              </Button>
+            </SheetClose>
+            <SheetClose asChild>
+              <Button
+                onClick={() => handlePedido()}
+                className='bg-lime-300 hover:bg-lime-500'
+              >
+                Completar Pedido S/.{totalPrecio()}
+              </Button>
+            </SheetClose>
+            <SheetClose asChild>
+              <Button className='w-full'>Cerrar</Button>
+            </SheetClose>
+          </SheetFooter>
+        )}
       </SheetContent>
     </Sheet>
   );

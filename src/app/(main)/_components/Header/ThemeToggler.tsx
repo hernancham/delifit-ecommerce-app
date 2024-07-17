@@ -89,7 +89,9 @@ export function ThemeToggler({ isDropDown = false }: { isDropDown?: boolean }) {
 
         <button
           className={cn(
-            theme === "dark" ? "bg-graphite-deep rounded-full" : "bg-transparent",
+            theme === "dark"
+              ? "bg-graphite-deep rounded-full"
+              : "bg-transparent",
             "p-1"
           )}
           onClick={() => setTheme("dark")}

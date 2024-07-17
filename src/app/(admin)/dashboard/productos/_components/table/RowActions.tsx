@@ -57,7 +57,7 @@ export const RowActions = ({ row }: RowActionsProps) => {
       <ResponsiveDialog
         isOpen={isEnableOpen}
         setIsOpen={setIsEnableOpen}
-        title='Activar Insumo'
+        title='Activar producto'
         description='Complete el formulario para activar el producto'
       >
         <FormEnable

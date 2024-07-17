@@ -7,7 +7,7 @@ import { Logo } from "./Logo";
 import { SheetMenu } from "./SheetMenu";
 import { NavMenu } from "./NavMenu";
 import { ThemeToggler } from "./ThemeToggler";
-import { SignInButton, SignUpButton } from "./AuthButton";
+import { SignInButton } from "./AuthButton";
 import { OptionsAuth } from "./OptionsAuth";
 import { Session } from "next-auth";
 import { Home } from "lucide-react";
@@ -64,9 +64,8 @@ export const Header = ({ session }: { session: Session | null }) => {
             </div>
           </>
         ) : (
-          <div className=' flex gap-2 m-2 md:m-3'>
+          <div className=' flex gap-2 m-3'>
             <SignInButton />
-            <SignUpButton />
           </div>
         )}
         <ShopCar />

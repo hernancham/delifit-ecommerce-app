@@ -17,6 +17,9 @@ interface useCartStoreProps {
     cantidad: number;
   }[];
 
+  cartCantidadProductos: number;
+  cartCantidadPromociones: number;
+
   addToCartProducto: (product: {
     id_producto: string;
     img_url: string;
@@ -36,15 +39,17 @@ interface useCartStoreProps {
   updateCantidadProducto: (productId: string, cantidad: number) => void;
   updateCantidadPromocion: (promotionId: string, cantidad: number) => void;
 
+  updateCantidadCarrito: () => void;
   totalPrice: () => number;
 }
 
 export const useCartStore = create<useCartStoreProps>((set, get) => ({
   // Estado inicial del carrito de productos
   cartProductos: [],
-
+  cartCantidadProductos: 0,
   // Estado inicial del carrito de promociones
   cartPromociones: [],
+  cartCantidadPromociones: 0,
 
   // Función para agregar un producto al carrito
   addToCartProducto: (product) => {
@@ -62,11 +67,13 @@ export const useCartStore = create<useCartStoreProps>((set, get) => ({
     } else {
       set((state) => ({
         cartProductos: [...state.cartProductos, { ...product, cantidad: 1 }],
+        cartCantidadProductos: state.cartCantidadProductos + 1,
       }));
     }
+    get().updateCantidadCarrito();
   },
 
-  // Función para agregar una promocion al carrito
+  // Función para agregar una promoción al carrito
   addToCartPromocion: (promotion) => {
     const existingPromotion = get().cartPromociones.find(
       (item) => item.id_promocion === promotion.id_promocion
@@ -85,8 +92,10 @@ export const useCartStore = create<useCartStoreProps>((set, get) => ({
           ...state.cartPromociones,
           { ...promotion, cantidad: 1 },
         ],
+        cartCantidadPromociones: state.cartCantidadPromociones + 1,
       }));
     }
+    get().updateCantidadCarrito();
   },
 
   // Función para eliminar un producto del carrito
@@ -95,16 +104,28 @@ export const useCartStore = create<useCartStoreProps>((set, get) => ({
       cartProductos: state.cartProductos.filter(
         (item) => item.id_producto !== productId
       ),
+      cartCantidadProductos: state.cartProductos.some(
+        (item) => item.id_producto === productId
+      )
+        ? state.cartCantidadProductos - 1
+        : state.cartCantidadProductos,
     }));
+    get().updateCantidadCarrito();
   },
 
-  // Función para eliminar una promocion del carrito
+  // Función para eliminar una promoción del carrito
   removeFromCartPromocion: (promotionId) => {
     set((state) => ({
       cartPromociones: state.cartPromociones.filter(
         (item) => item.id_promocion !== promotionId
       ),
+      cartCantidadPromociones: state.cartPromociones.some(
+        (item) => item.id_promocion === promotionId
+      )
+        ? state.cartCantidadPromociones - 1
+        : state.cartCantidadPromociones,
     }));
+    get().updateCantidadCarrito();
   },
 
   // Función para actualizar la cantidad de un producto
@@ -116,9 +137,10 @@ export const useCartStore = create<useCartStoreProps>((set, get) => ({
           : item
       ),
     }));
+    get().updateCantidadCarrito();
   },
 
-  // Función para actualizar la cantidad de una promocion
+  // Función para actualizar la cantidad de una promoción
   updateCantidadPromocion: (promotionId, cantidad) => {
     set((state) => ({
       cartPromociones: state.cartPromociones.map((item) =>
@@ -127,6 +149,17 @@ export const useCartStore = create<useCartStoreProps>((set, get) => ({
           : item
       ),
     }));
+    get().updateCantidadCarrito();
+  },
+
+  // Función para actualizar el número de elementos únicos en el carrito
+  updateCantidadCarrito: () => {
+    const cartProductosUnicos = get().cartProductos.length;
+    const cartPromocionesUnicas = get().cartPromociones.length;
+    set({
+      cartCantidadProductos: cartProductosUnicos,
+      cartCantidadPromociones: cartPromocionesUnicas,
+    });
   },
 
   // Función para obtener el precio total del carrito
