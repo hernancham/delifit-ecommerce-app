@@ -36,6 +36,7 @@ import { updateUsuarioById } from "@/actions/usuario/update-usuario";
 // config and constants
 import { usuarioDefault } from "@/config/imageDefault";
 import { TIPOS_DOCUMENTO } from "@/constants/prisma";
+import { ROLES } from "@/constants/prisma";
 
 // Types
 import { Usuario } from "@/types/db";
@@ -67,6 +68,7 @@ export const FormUpdate = ({ setIsOpen, usuario }: FormUpdateProps) => {
     defaultValues: {
       nombre: usuario.nombre,
       apellido: usuario.apellido,
+      rol: usuario.rol,
       telefono: usuario.telefono,
       email: usuario.email,
       documento: usuario.documento,
@@ -81,8 +83,9 @@ export const FormUpdate = ({ setIsOpen, usuario }: FormUpdateProps) => {
     try {
       actualizarUsuario({
         id_usuario: usuario.id_usuario,
-        apellido: values.apellido,
         nombre: values.nombre,
+        apellido: values.apellido,
+        rol: values.rol,
         email: values.email,
         telefono: values.telefono,
         documento: values.documento,
@@ -93,7 +96,7 @@ export const FormUpdate = ({ setIsOpen, usuario }: FormUpdateProps) => {
     } catch (error) {
       toast({
         title: "Error",
-        description: "Ocurrio un error al actualizar el insumo",
+        description: "Ocurrio un error al actualizar el usuario",
         variant: "destructive",
       });
     }
@@ -143,6 +146,41 @@ export const FormUpdate = ({ setIsOpen, usuario }: FormUpdateProps) => {
                     type='text'
                   />
                 </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='rol'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Rol</FormLabel>
+                <Select
+                  disabled={isLoading}
+                  onValueChange={field.onChange}
+                  value={field.value}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue
+                        placeholder='Rol'
+                        defaultValue={field.value}
+                      />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {ROLES.map((rol) => (
+                      <SelectItem
+                        key={rol}
+                        value={rol}
+                      >
+                        {rol}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
                 <FormMessage />
               </FormItem>
             )}

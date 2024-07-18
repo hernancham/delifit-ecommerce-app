@@ -17,7 +17,7 @@ export default function Page() {
           <section className='w-full max-w-md'>
             <CardAuth
               header={
-                <div className="bg-[url('/delifit-logo.svg')] bg-center bg-cover w-20 h-20"></div>
+                <div className="bg-[url('/delifit-logos/delifit-logo.svg')] bg-center bg-cover w-20 h-20"></div>
               }
               title='Registrar cuenta'
               description='Crea una cuenta para empezar a disfrutar de nuestros servicios'

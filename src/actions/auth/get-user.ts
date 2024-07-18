@@ -40,3 +40,15 @@ export const getUsuarioByDocumento = async (documento: string) => {
     return null;
   }
 };
+
+export const getUsuarioById = async (id_usuario: string) => {
+  try {
+    const user = await prisma.usuario.findUnique({
+      where: { id_usuario: id_usuario },
+    });
+    return user;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};

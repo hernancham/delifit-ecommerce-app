@@ -63,7 +63,7 @@ export const siteConfig: SiteConfig = {
   ],
   ogImage: `${process.env.NEXT_PUBLIC_APP_URL}/og-image.png`,
   name: "Delifit",
-  logo: "/delifit-logo.svg",
+  logo: "/delifit-logos/delifit-logo.svg",
   slogan: "Comida Saludable a tu alcance",
   availability: [
     "Lunes a Viernes:",

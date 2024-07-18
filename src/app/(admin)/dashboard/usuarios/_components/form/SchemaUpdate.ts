@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import { TIPOS_DOCUMENTO } from "@/constants/prisma";
-
+import { ROLES } from "@/constants/prisma";
 export const formSchema = z.object({
   nombre: z
     .string()
@@ -11,6 +11,7 @@ export const formSchema = z.object({
     .string()
     .min(2, "Debe tener al menos 2 caracteres")
     .max(40, "Debe tener menos de 40 caracteres"),
+  rol: z.enum(ROLES),
   email: z
     .string()
     .email("Email inválido")

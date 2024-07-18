@@ -94,7 +94,6 @@ export const ColInsumos: ColumnDef<Insumo>[] = [
     },
   },
   {
-    id: "Fecha Creación",
     accessorKey: "createdAt",
     header: ({ column }) => (
       <HeaderOptions
@@ -109,7 +108,6 @@ export const ColInsumos: ColumnDef<Insumo>[] = [
     },
   },
   {
-    id: "Fecha Actualización",
     accessorKey: "updatedAt",
     header: ({ column }) => (
       <HeaderOptions

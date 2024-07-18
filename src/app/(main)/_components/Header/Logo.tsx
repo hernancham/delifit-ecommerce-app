@@ -10,10 +10,10 @@ export function Logo() {
       className='flex w-full items-center gap-4 py-5 lg:py-4'
     >
       <Image
-        src='/delifit-logo.svg'
+        src='/delifit-logos/delifit-logo.svg'
         alt='logo'
-        width={50}
-        height={50}
+        width={42}
+        height={42}
         className='w-15'
       />
     </Link>

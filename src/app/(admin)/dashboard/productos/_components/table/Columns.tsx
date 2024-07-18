@@ -98,7 +98,6 @@ export const ColProductos: ColumnDef<Producto>[] = [
     },
   },
   {
-    id: "Fecha Creación",
     accessorKey: "createdAt",
     header: ({ column }) => (
       <HeaderOptions
@@ -113,7 +112,6 @@ export const ColProductos: ColumnDef<Producto>[] = [
     },
   },
   {
-    id: "Fecha Actualización",
     accessorKey: "updatedAt",
     header: ({ column }) => (
       <HeaderOptions

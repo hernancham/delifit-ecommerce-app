@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 
 import { Plus } from "lucide-react";
 
-export const HeaderInsumos = () => {
+export const HeaderUsuarios = () => {
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   return (
     <div className='flex items-center justify-between flex-wrap gap-2'>

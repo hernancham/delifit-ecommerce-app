@@ -2,11 +2,13 @@
 
 import { prisma } from "@/lib/prisma";
 import { TipoDocumento } from "@prisma/client";
+import { UserRole } from "@prisma/client";
 
 interface updateUsuarioByIdType {
   id_usuario: string;
   nombre: string;
   apellido: string;
+  rol: string;
   email: string;
   telefono: string;
   documento: string;
@@ -24,6 +26,7 @@ export const updateUsuarioById = async (values: updateUsuarioByIdType) => {
       data: {
         nombre: values.nombre,
         apellido: values.apellido,
+        rol: values.rol as UserRole,
         email: values.email,
         telefono: values.telefono,
         documento: values.documento,

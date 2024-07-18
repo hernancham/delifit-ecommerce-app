@@ -131,7 +131,6 @@ export const ColUsuarios: ColumnDef<Usuario>[] = [
     },
   },
   {
-    id: "Fecha Creación",
     accessorKey: "createdAt",
     header: ({ column }) => (
       <HeaderOptions
@@ -146,7 +145,6 @@ export const ColUsuarios: ColumnDef<Usuario>[] = [
     },
   },
   {
-    id: "Fecha Actualización",
     accessorKey: "updatedAt",
     header: ({ column }) => (
       <HeaderOptions

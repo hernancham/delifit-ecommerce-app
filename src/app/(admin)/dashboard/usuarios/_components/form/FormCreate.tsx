@@ -46,8 +46,8 @@ export const FormCreate = ({ setIsOpen }: FormCreateProps) => {
     mutationFn: createUsuario,
     onSuccess: () => {
       toast({
-        title: "Insumo Creado",
-        description: "El insumo ha sido creado exitosamente",
+        title: "Usuario Creado",
+        description: "El usuario ha sido creado exitosamente",
         variant: "default",
       });
     },
@@ -87,7 +87,7 @@ export const FormCreate = ({ setIsOpen }: FormCreateProps) => {
     } catch (error) {
       toast({
         title: "Error",
-        description: "Ocurrio un error al crear el insumo",
+        description: "Ocurrio un error al crear el usuario",
         variant: "destructive",
       });
     }

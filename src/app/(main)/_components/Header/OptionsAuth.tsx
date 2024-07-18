@@ -38,8 +38,12 @@ export async function OptionsAuth({ user }: { user: User }) {
       <DropdownMenuContent align='end'>
         <DropdownMenuLabel>Mi cuenta</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Configuración</DropdownMenuItem>
-        <DropdownMenuItem onClick={() => router.push('/mi-cuenta/soporte')}>Soporte</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => router.push("/mi-cuenta")}>
+          Configuración
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => router.push("/mi-cuenta/soporte")}>
+          Soporte
+        </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={() => logout()}>
           Cerrar Sesión

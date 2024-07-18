@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import {persist} from 'zustand/middleware'
 
 interface useCartStoreProps {
   cartProductos: {
@@ -43,7 +44,7 @@ interface useCartStoreProps {
   totalPrice: () => number;
 }
 
-export const useCartStore = create<useCartStoreProps>((set, get) => ({
+export const useCartStore = create(persist<useCartStoreProps>((set, get) => ({
   // Estado inicial del carrito de productos
   cartProductos: [],
   cartCantidadProductos: 0,
@@ -176,4 +177,7 @@ export const useCartStore = create<useCartStoreProps>((set, get) => ({
 
     return totalProductos + totalPromociones;
   },
+}),{
+  name: 'cart-storage',
+  
 }));
