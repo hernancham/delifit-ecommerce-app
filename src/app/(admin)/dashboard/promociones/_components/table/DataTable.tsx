@@ -45,8 +45,6 @@ export function DataTable<TData, TValue>({
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({
-    documento: false,
-    tipo_doc: false,
     updatedAt: false,
     createdAt: false,
   });

@@ -2,10 +2,11 @@
 
 import { type Dispatch, type SetStateAction } from "react";
 
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { formSchema, type formType } from "./SchemaUpdate";
+import DatePicker from "react-datepicker";
 
 import {
   Form,
@@ -32,32 +33,35 @@ import { ImageUpload } from "@/components/custom/ImageUpload";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 // actions
-import { updateUsuarioById } from "@/actions/usuario/update-usuario";
-// config and constants
-import { usuarioDefault } from "@/config/imageDefault";
-import { TIPOS_DOCUMENTO } from "@/constants/prisma";
-import { ROLES } from "@/constants/prisma";
-
+import { updatePromocionById } from "@/actions/promocion/update-promocion";
 // Types
-import { Usuario } from "@/types/db";
+import { CategoriaPromocion, Promocion } from "@/types/db";
+import { updateCategoriaPromocionById } from "@/actions/categoria/promocion/update-categoria";
+import { promocionDefault } from "@/config/imageDefault";
+import { Trigger } from "@radix-ui/react-tooltip";
 
 interface FormUpdateProps {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-  usuario: Usuario;
+  promocion: Promocion;
+  categoria: CategoriaPromocion[];
 }
 
-export const FormUpdate = ({ setIsOpen, usuario }: FormUpdateProps) => {
+export const FormUpdate = ({
+  setIsOpen,
+  promocion,
+  categoria,
+}: FormUpdateProps) => {
   const queryClient = useQueryClient();
 
-  const { mutate: actualizarUsuario } = useMutation({
-    mutationFn: updateUsuarioById,
+  const { mutate: actualizarPromocion } = useMutation({
+    mutationFn: updatePromocionById,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["usuarios"],
+        queryKey: ["promociones"],
       });
       toast({
-        title: "Usuario Actualizado",
-        description: "El usuario ha sido actualizado exitosamente",
+        title: "Promoción Actualizada",
+        description: "La promoción ha sido actualizado exitosamente",
         variant: "default",
       });
     },
@@ -66,14 +70,14 @@ export const FormUpdate = ({ setIsOpen, usuario }: FormUpdateProps) => {
   const form = useForm<formType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      nombre: usuario.nombre,
-      apellido: usuario.apellido,
-      rol: usuario.rol,
-      telefono: usuario.telefono,
-      email: usuario.email,
-      documento: usuario.documento,
-      tipo_doc: usuario.tipo_doc,
-      image: usuario.image,
+      nombre: promocion.nombre,
+      descripcion: promocion.descripcion,
+      precio_base: promocion.precio_base,
+      precio_oferta: promocion.precio_oferta,
+      id_cat_promocion: promocion.id_cat_promocion,
+      fecha_inicio: promocion.fecha_inicio,
+      fecha_fin: promocion.fecha_fin,
+      img_url: promocion.img_url,
     },
   });
 
@@ -81,22 +85,24 @@ export const FormUpdate = ({ setIsOpen, usuario }: FormUpdateProps) => {
 
   const onSubmit = (values: formType) => {
     try {
-      actualizarUsuario({
-        id_usuario: usuario.id_usuario,
+      actualizarPromocion({
         nombre: values.nombre,
-        apellido: values.apellido,
-        rol: values.rol,
-        email: values.email,
-        telefono: values.telefono,
-        documento: values.documento,
-        tipo_doc: values.tipo_doc,
-        image: values.image,
+        descripcion: values.descripcion,
+        precio_base: values.precio_base,
+        precio_oferta: values.precio_oferta,
+        fecha_inicio: values.fecha_inicio,
+        fecha_fin: values.fecha_fin,
+        img_url: values.img_url,
+        id_promocion: promocion.id_promocion,
+        dia_promocion: values.dia_promocion,
+        id_cat_promocion: values.id_cat_promocion,
+        productos: [],
       });
       setIsOpen(false);
     } catch (error) {
       toast({
         title: "Error",
-        description: "Ocurrio un error al actualizar el usuario",
+        description: "Ocurrio un error al actualizar la promoción",
         variant: "destructive",
       });
     }
@@ -113,18 +119,18 @@ export const FormUpdate = ({ setIsOpen, usuario }: FormUpdateProps) => {
         onSubmit={form.handleSubmit(onSubmit)}
         className='space-y-6'
       >
-        <div className='flex-1 max-h-[70vh] overflow-y-auto px-6 py-6'>
+        <div className='space-y-4'>
           <FormField
             control={form.control}
             name='nombre'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Nombres</FormLabel>
+                <FormLabel>Nombre</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
                     disabled={isLoading}
-                    placeholder=''
+                    placeholder='Nueva promoción'
                     type='text'
                   />
                 </FormControl>
@@ -134,16 +140,16 @@ export const FormUpdate = ({ setIsOpen, usuario }: FormUpdateProps) => {
           />
           <FormField
             control={form.control}
-            name='apellido'
+            name='descripcion'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Apellido</FormLabel>
+                <FormLabel>Descripcion</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
                     disabled={isLoading}
-                    placeholder=''
                     type='text'
+                    placeholder='0'
                   />
                 </FormControl>
                 <FormMessage />
@@ -152,31 +158,67 @@ export const FormUpdate = ({ setIsOpen, usuario }: FormUpdateProps) => {
           />
           <FormField
             control={form.control}
-            name='rol'
+            name='precio_base'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Rol</FormLabel>
+                <FormLabel>Precio Base</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    disabled={isLoading}
+                    type='number'
+                    placeholder='0'
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='precio_oferta'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Precio Oferta</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    disabled={isLoading}
+                    type='number'
+                    placeholder='0'
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='id_cat_promocion'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Categoria</FormLabel>
                 <Select
                   disabled={isLoading}
                   onValueChange={field.onChange}
-                  value={field.value}
-                  defaultValue={field.value}
+                  value={String(field.value)}
+                  defaultValue={String(field.value)}
                 >
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue
-                        placeholder='Rol'
+                        placeholder='Selecciona una Categoría'
                         defaultValue={field.value}
                       />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {ROLES.map((rol) => (
+                    {categoria?.map((cat) => (
                       <SelectItem
-                        key={rol}
-                        value={rol}
+                        key={cat.id_cat_promocion}
+                        value={cat.id_cat_promocion}
                       >
-                        {rol}
+                        {cat.nombre}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -187,104 +229,62 @@ export const FormUpdate = ({ setIsOpen, usuario }: FormUpdateProps) => {
           />
           <FormField
             control={form.control}
-            name='telefono'
+            name='fecha_inicio'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Telefono</FormLabel>
+                <FormLabel>Fecha Inicio</FormLabel>
                 <FormControl>
-                  <Input
-                    {...field}
-                    disabled={isLoading}
-                    placeholder=''
-                    type='text'
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name='email'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    disabled={isLoading}
-                    placeholder=''
-                    type='text'
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name='documento'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Documento</FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    disabled={isLoading}
-                    placeholder=''
-                    type='text'
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name='tipo_doc'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Tipo de documento</FormLabel>
-                <Select
-                  disabled={isLoading}
-                  onValueChange={field.onChange}
-                  value={field.value}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue
-                        placeholder='Tipo de documento'
-                        defaultValue={field.value}
+                  <Controller
+                    control={form.control}
+                    name='fecha_inicio'
+                    render={({ field }) => (
+                      <DatePicker
+                        selected={field.value}
+                        onChange={field.onChange}
+                        dateFormat='dd/MM/yyyy'
+                        placeholderText='Seleccione una fecha'
                       />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {TIPOS_DOCUMENTO.map((doc) => (
-                      <SelectItem
-                        key={doc}
-                        value={doc}
-                      >
-                        {doc}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                    )}
+                  />
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
           <FormField
             control={form.control}
-            name='image'
+            name='fecha_fin'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Fecha Fin</FormLabel>
+                <FormControl>
+                  <Controller
+                    control={form.control}
+                    name='fecha_fin'
+                    render={({ field }) => (
+                      <DatePicker
+                        selected={field.value}
+                        onChange={field.onChange}
+                        dateFormat='dd/MM/yyyy'
+                        placeholderText='Seleccione una fecha'
+                      />
+                    )}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='img_url'
             render={({ field: { value, onChange, ...fieldProps } }) => (
               <FormItem>
                 <FormLabel>Imagen</FormLabel>
                 <FormControl>
                   <ImageUpload
-                    preview={usuario?.image}
                     onSuccess={(url) => {
-                      form.setValue("image", url);
+                      form.setValue("img_url", url);
                       toast({
                         title: "Imagen subida",
                         description: "La imagen ha sido subida exitosamente",
@@ -292,7 +292,7 @@ export const FormUpdate = ({ setIsOpen, usuario }: FormUpdateProps) => {
                       });
                     }}
                     onError={(error) => {
-                      form.setValue("image", usuarioDefault);
+                      form.setValue("img_url", promocionDefault);
                       toast({
                         title: "Error",
                         description: error,

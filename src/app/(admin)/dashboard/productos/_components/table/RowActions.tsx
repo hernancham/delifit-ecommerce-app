@@ -20,7 +20,7 @@ import { FormEnable, FormDisable } from "../form/FormActivation";
 
 import { useQuery } from "@tanstack/react-query";
 // Data
-import { getCategoriasProduto } from "@/data/productos";
+import { getCategoriasProducto } from "@/data/productos";
 // Types
 import { Producto } from "@/types/db";
 
@@ -35,7 +35,7 @@ export const RowActions = ({ row }: RowActionsProps) => {
 
   const { data: categoria } = useQuery({
     queryKey: ["categorias_productos"],
-    queryFn: getCategoriasProduto,
+    queryFn: getCategoriasProducto,
   });
 
   return (

@@ -93,7 +93,7 @@ export const FormUpdate = ({
         precio_base: values.precio_base,
         img_url: values.img_url,
         id_producto: producto.id_producto,
-        id_cat_prodcuto: values.id_cat_producto,
+        id_cat_producto: values.id_cat_producto,
         insumos: [],
       });
       setIsOpen(false);
@@ -186,7 +186,7 @@ export const FormUpdate = ({
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue
-                        placeholder='Selecciona una Categoria'
+                        placeholder='Selecciona una Categoría'
                         defaultValue={field.value}
                       />
                     </SelectTrigger>

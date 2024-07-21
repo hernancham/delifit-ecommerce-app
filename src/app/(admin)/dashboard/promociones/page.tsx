@@ -1,11 +1,11 @@
-import { HeaderUsuarios } from "./_components/HeaderPromocion";
-import { TablaUsuarios } from "./_components/TablaUsuarios";
+import { HeaderPromocion } from "./_components/HeaderPromocion";
+import { TablaPromocion } from "./_components/TablaPromocion";
 
 export default function Page() {
   return (
     <div className='container mx-auto py-6'>
-      <HeaderUsuarios />
-      <TablaUsuarios />
+      <HeaderPromocion />
+      <TablaPromocion />
     </div>
   );
 }

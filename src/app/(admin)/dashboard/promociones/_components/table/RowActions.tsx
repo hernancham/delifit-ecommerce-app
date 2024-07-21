@@ -17,10 +17,15 @@ import { MoreHorizontal, Edit, Eye, EyeOff } from "lucide-react";
 import { ResponsiveDialog } from "@/components/custom/ResposiveDialog";
 import { FormUpdate } from "../form/FormUpdate";
 import { FormEnable, FormDisable } from "../form/FormActivation";
-import { Usuario } from "@/types/db";
+
+import { useQuery } from "@tanstack/react-query";
+// Data
+import { getCategoriasPromocion } from "@/data/promociones";
+// Types
+import { Promocion } from "@/types/db";
 
 interface RowActionsProps {
-  row: Usuario;
+  row: Promocion;
 }
 
 export const RowActions = ({ row }: RowActionsProps) => {
@@ -28,39 +33,47 @@ export const RowActions = ({ row }: RowActionsProps) => {
   const [isEnableOpen, setIsEnableOpen] = useState(false);
   const [isDisableOpen, setIsDisableOpen] = useState(false);
 
+  const { data: categoria } = useQuery({
+    queryKey: ["categorias_promociones"],
+    queryFn: getCategoriasPromocion,
+  });
+
   return (
     <>
       <ResponsiveDialog
         isOpen={isEditOpen}
         setIsOpen={setIsEditOpen}
-        title='Actualizar Usuario'
-        description='Complete el formulario para actualizar un usuario'
+        title='Actualizar Producto'
+        description='Complete el formulario para actualizar un producto'
       >
-        <FormUpdate
-          setIsOpen={setIsEditOpen}
-          usuario={row}
-        />
+        {categoria && (
+          <FormUpdate
+            setIsOpen={setIsEditOpen}
+            promocion={row}
+            categoria={categoria}
+          />
+        )}
       </ResponsiveDialog>
       <ResponsiveDialog
         isOpen={isEnableOpen}
         setIsOpen={setIsEnableOpen}
-        title='Activar Usuario'
-        description='Complete el formulario para activar el usuario'
+        title='Activar producto'
+        description='Complete el formulario para activar el producto'
       >
         <FormEnable
-          cardId={row.id_usuario}
           setIsOpen={setIsEnableOpen}
+          cardId={row.id_promocion}
         />
       </ResponsiveDialog>
       <ResponsiveDialog
         isOpen={isDisableOpen}
         setIsOpen={setIsDisableOpen}
-        title='Desactivar Usuario'
-        description='Complete el formulario para desactivar el usuario'
+        title='Desactivar Producto'
+        description='Complete el formulario para desactivar el producto'
       >
         <FormDisable
-          cardId={row.id_usuario}
           setIsOpen={setIsDisableOpen}
+          cardId={row.id_promocion}
         />
       </ResponsiveDialog>
 

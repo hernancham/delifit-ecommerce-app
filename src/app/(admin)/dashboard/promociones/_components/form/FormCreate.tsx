@@ -1,13 +1,13 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { type Dispatch, type SetStateAction } from "react";
+import { useState, type Dispatch, type SetStateAction } from "react";
 
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { formSchema, type formType } from "./SchemaCreate";
-
+import DatePicker from "react-datepicker";
 import {
   Form,
   FormControl,
@@ -27,13 +27,21 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
-import { useMutation } from "@tanstack/react-query";
+
+import { ImageUpload } from "@/components/custom/ImageUpload";
+
+import axios from "axios";
+import { useQuery, useMutation } from "@tanstack/react-query";
 
 // actions
-import { createUsuario } from "@/actions/usuario/create-usuario";
-// constants
-import { TIPOS_DOCUMENTO } from "@/constants/prisma";
-import { usuarioDefault } from "@/config/imageDefault";
+import { createPromocion } from "@/actions/promocion/create-promocion";
+// config and constants
+import { promocionDefault } from "@/config/imageDefault";
+// Types
+import { CategoriaPromocion } from "@/types/db";
+
+import { getCategoriasPromocion } from "@/data/promociones";
+import { date } from "zod";
 
 interface FormCreateProps {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -41,13 +49,19 @@ interface FormCreateProps {
 
 export const FormCreate = ({ setIsOpen }: FormCreateProps) => {
   const router = useRouter();
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
-  const { mutate: crearUsuario } = useMutation({
-    mutationFn: createUsuario,
+  const { data: categoria, isLoading: isCatLoading } = useQuery({
+    queryKey: ["categorias_promociones"],
+    queryFn: getCategoriasPromocion,
+  });
+
+  const { mutate: crearPromocion } = useMutation({
+    mutationFn: createPromocion,
     onSuccess: () => {
       toast({
-        title: "Usuario Creado",
-        description: "El usuario ha sido creado exitosamente",
+        title: "Promocion Creada",
+        description: "La promocion ha sido creada exitosamente",
         variant: "default",
       });
     },
@@ -57,14 +71,13 @@ export const FormCreate = ({ setIsOpen }: FormCreateProps) => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       nombre: "",
-      apellido: "",
-      email: "",
-      telefono: "",
-      documento: TIPOS_DOCUMENTO[0],
-      tipo_doc: "",
-      password: "",
-      confirmPassword: "",
-      image: usuarioDefault,
+      descripcion: "",
+      precio_base: 0,
+      precio_oferta: 0,
+      id_cat_promocion: categoria?.[0]?.id_cat_promocion ?? "",
+      fecha_inicio: new Date(),
+      fecha_fin: new Date(),
+      img_url: promocionDefault,
     },
   });
 
@@ -72,29 +85,30 @@ export const FormCreate = ({ setIsOpen }: FormCreateProps) => {
 
   const onSubmit = (values: formType) => {
     try {
-      crearUsuario({
+      crearPromocion({
         nombre: values.nombre,
-        apellido: values.apellido,
-        email: values.email,
-        telefono: values.telefono,
-        documento: values.documento,
-        tipo_doc: values.tipo_doc,
-        password: values.password,
-        image: values.image,
+        descripcion: values.descripcion,
+        precio_base: values.precio_base,
+        precio_oferta: values.precio_oferta,
+        fecha_inicio: values.fecha_inicio,
+        fecha_fin: values.fecha_fin,
+        img_url: values.img_url,
+        dia_promocion: values.dia_promocion,
+        id_cat_promocion: values.id_cat_promocion,
+        productos: [],
       });
-      router.refresh();
       setIsOpen(false);
     } catch (error) {
       toast({
         title: "Error",
-        description: "Ocurrio un error al crear el usuario",
+        description: "Ocurrio un error al actualizar la promoción",
         variant: "destructive",
       });
     }
   };
 
   const onCancel = () => {
-    router.refresh();
+    // form.reset();
     setIsOpen(false);
   };
 
@@ -110,12 +124,12 @@ export const FormCreate = ({ setIsOpen }: FormCreateProps) => {
             name='nombre'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Nombres</FormLabel>
+                <FormLabel>Nombre</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
                     disabled={isLoading}
-                    placeholder=''
+                    placeholder='Nueva promoción'
                     type='text'
                   />
                 </FormControl>
@@ -125,16 +139,16 @@ export const FormCreate = ({ setIsOpen }: FormCreateProps) => {
           />
           <FormField
             control={form.control}
-            name='apellido'
+            name='descripcion'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Apellido</FormLabel>
+                <FormLabel>Descripcion</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
                     disabled={isLoading}
                     type='text'
-                    placeholder=''
+                    placeholder='0'
                   />
                 </FormControl>
                 <FormMessage />
@@ -143,15 +157,15 @@ export const FormCreate = ({ setIsOpen }: FormCreateProps) => {
           />
           <FormField
             control={form.control}
-            name='email'
+            name='precio_base'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Correo electrónico</FormLabel>
+                <FormLabel>Precio Base</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
                     disabled={isLoading}
-                    type='email'
+                    type='number'
                     placeholder=''
                   />
                 </FormControl>
@@ -161,15 +175,15 @@ export const FormCreate = ({ setIsOpen }: FormCreateProps) => {
           />
           <FormField
             control={form.control}
-            name='telefono'
+            name='precio_oferta'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Teléfono</FormLabel>
+                <FormLabel>Precio Oferta</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
                     disabled={isLoading}
-                    type='text'
+                    type='number'
                     placeholder=''
                   />
                 </FormControl>
@@ -179,50 +193,31 @@ export const FormCreate = ({ setIsOpen }: FormCreateProps) => {
           />
           <FormField
             control={form.control}
-            name='documento'
+            name='id_cat_promocion'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Número de documento</FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    disabled={isLoading}
-                    type='text'
-                    placeholder=''
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name='tipo_doc'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Tipo de documento</FormLabel>
+                <FormLabel>Categoria</FormLabel>
                 <Select
-                  {...field}
                   disabled={isLoading}
                   onValueChange={field.onChange}
-                  value={field.value}
-                  defaultValue={field.value}
+                  value={String(field.value)}
+                  defaultValue={String(field.value)}
                 >
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue
-                        placeholder='Selecciona un tipo de documento'
+                        placeholder='Selecciona una Categoría'
                         defaultValue={field.value}
                       />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {TIPOS_DOCUMENTO.map((tipo) => (
+                    {categoria?.map((cat) => (
                       <SelectItem
-                        key={tipo}
-                        value={tipo}
+                        key={cat.id_cat_promocion}
+                        value={cat.id_cat_promocion}
                       >
-                        {tipo}
+                        {cat.nombre}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -233,35 +228,66 @@ export const FormCreate = ({ setIsOpen }: FormCreateProps) => {
           />
           <FormField
             control={form.control}
-            name='password'
+            name='fecha_inicio'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Contraseña</FormLabel>
+                <FormLabel>Fecha inicial</FormLabel>
+                <DatePicker
+                  selected={selectedDate}
+                  onChange={(date) => setSelectedDate(date)}
+                />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='fecha_fin'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Fecha Fin</FormLabel>
                 <FormControl>
-                  <Input
-                    {...field}
-                    disabled={isLoading}
-                    type='password'
-                    placeholder=''
+                  <Controller
+                    control={form.control}
+                    name='fecha_fin'
+                    render={({ field }) => (
+                      <DatePicker
+                        selected={field.value}
+                        onChange={field.onChange}
+                        dateFormat='dd/MM/yyyy'
+                        placeholderText='Seleccione una fecha'
+                      />
+                    )}
                   />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-
           <FormField
             control={form.control}
-            name='confirmPassword'
-            render={({ field }) => (
+            name='img_url'
+            render={({ field: { value, onChange, ...fieldProps } }) => (
               <FormItem>
-                <FormLabel>Confirmar Contraseña</FormLabel>
+                <FormLabel>Imagen</FormLabel>
                 <FormControl>
-                  <Input
-                    {...field}
-                    disabled={isLoading}
-                    type='password'
-                    placeholder=''
+                  <ImageUpload
+                    onSuccess={(url) => {
+                      form.setValue("img_url", url);
+                      toast({
+                        title: "Imagen subida",
+                        description: "La imagen ha sido subida exitosamente",
+                        variant: "default",
+                      });
+                    }}
+                    onError={(error) => {
+                      form.setValue("img_url", promocionDefault);
+                      toast({
+                        title: "Error",
+                        description: error,
+                        variant: "destructive",
+                      });
+                    }}
+                    className='size-40 bg-inherit hover:bg-secondary outline-dashed border-primary rounded-lg'
                   />
                 </FormControl>
                 <FormMessage />
@@ -275,7 +301,7 @@ export const FormCreate = ({ setIsOpen }: FormCreateProps) => {
             disabled={isLoading}
             variant='outline'
           >
-            Guardar
+            Crear Promoción
           </Button>
           <Button
             type='button'

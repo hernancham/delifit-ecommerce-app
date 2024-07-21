@@ -11,20 +11,20 @@ interface createProductoType {
   nombre: string;
   descripcion: string;
   precio_base: number;
-  id_cat_prodcuto: string;
+  id_cat_producto: string;
   img_url: string;
   insumos: InsumoOnProductoType[];
 }
 
 export const createProducto = async (values: createProductoType) => {
   try {
-    // Crear el insumo en la base de datos
+    // Crear el producto en la base de datos
     const data = await prisma.producto.create({
       data: {
         nombre: values.nombre,
         descripcion: values.descripcion,
         precio_base: values.precio_base,
-        id_cat_producto: values.id_cat_prodcuto,
+        id_cat_producto: values.id_cat_producto,
         img_url: values.img_url,
       },
     });

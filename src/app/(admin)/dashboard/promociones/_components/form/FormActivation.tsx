@@ -15,7 +15,7 @@ import { Loader2 } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateActivityUsuarioById } from "@/actions/usuario/update-usuario";
+import { updateActivityPromocionById } from "@/actions/promocion/update-promocion";
 
 export const FormEnable = ({
   cardId,
@@ -27,15 +27,15 @@ export const FormEnable = ({
   const router = useRouter();
   const queryClient = useQueryClient();
 
-  const { mutate: eliminarUsuario } = useMutation({
-    mutationFn: updateActivityUsuarioById,
+  const { mutate: eliminarPromocion } = useMutation({
+    mutationFn: updateActivityPromocionById,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["usuarios"],
+        queryKey: ["promociones"],
       });
       toast({
-        title: "Usuario Activado",
-        description: "El usuario ha sido activado exitosamente",
+        title: "Promoción Activada",
+        description: "La promoción ha sido activada exitosamente",
         variant: "default",
       });
     },
@@ -53,8 +53,8 @@ export const FormEnable = ({
 
   const onSubmit = () => {
     try {
-      eliminarUsuario({
-        id_usuario: cardId,
+      eliminarPromocion({
+        id_promocion: cardId,
         activo: true,
       });
       router.refresh();
@@ -62,7 +62,7 @@ export const FormEnable = ({
     } catch (error) {
       toast({
         title: "Error",
-        description: "Ocurrio un error al activar al usuario",
+        description: "Ocurrio un error al activar la promoción",
         variant: "destructive",
       });
     }
@@ -121,15 +121,15 @@ export const FormDisable = ({
   const router = useRouter();
   const queryClient = useQueryClient();
 
-  const { mutate: eliminarUsuario } = useMutation({
-    mutationFn: updateActivityUsuarioById,
+  const { mutate: eliminarPromocion } = useMutation({
+    mutationFn: updateActivityPromocionById,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["usuarios"],
+        queryKey: ["promociones"],
       });
       toast({
-        title: "Usuario Desactivado",
-        description: "El usuario ha sido desactivado exitosamente",
+        title: "Promoción Desactivada",
+        description: "La promoción ha sido desactivada exitosamente",
         variant: "default",
       });
     },
@@ -147,8 +147,8 @@ export const FormDisable = ({
 
   const onSubmit = () => {
     try {
-      eliminarUsuario({
-        id_usuario: cardId,
+      eliminarPromocion({
+        id_promocion: cardId,
         activo: false,
       });
       router.refresh();
@@ -156,7 +156,7 @@ export const FormDisable = ({
     } catch (error) {
       toast({
         title: "Error",
-        description: "Ocurrio un error al desactivar al usuario",
+        description: "Ocurrio un error al desactivar la promoción",
         variant: "destructive",
       });
     }

@@ -27,7 +27,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
-
+import { MultiSelect } from "@/components/custom/MultiSelect";
 import { ImageUpload } from "@/components/custom/ImageUpload";
 
 import axios from "axios";
@@ -54,7 +54,7 @@ const getCategoriasProducto = async () => {
     );
     return response.data;
   } catch (error) {
-    throw new Error("Error al leer las categorias de insumos");
+    throw new Error("Error al leer las categorias de productos");
   }
 };
 
@@ -66,7 +66,7 @@ export const FormCreate = ({ setIsOpen }: FormCreateProps) => {
   const router = useRouter();
 
   const { data: categoria, isLoading: isCatLoading } = useQuery({
-    queryKey: ["categorias_insumos"],
+    queryKey: ["categorias_productos"],
     queryFn: getCategoriasProducto,
   });
 
@@ -74,8 +74,8 @@ export const FormCreate = ({ setIsOpen }: FormCreateProps) => {
     mutationFn: createProducto,
     onSuccess: () => {
       toast({
-        title: "Insumo Creado",
-        description: "El insumo ha sido creado exitosamente",
+        title: "Producto Creado",
+        description: "El producto ha sido creado exitosamente",
         variant: "default",
       });
     },
@@ -100,7 +100,7 @@ export const FormCreate = ({ setIsOpen }: FormCreateProps) => {
         nombre: values.nombre,
         descripcion: values.descripcion,
         precio_base: values.precio_base,
-        id_cat_prodcuto: values.id_cat_producto,
+        id_cat_producto: values.id_cat_producto,
         img_url: values.img_url,
         insumos: [],
       });
@@ -109,7 +109,7 @@ export const FormCreate = ({ setIsOpen }: FormCreateProps) => {
     } catch (error) {
       toast({
         title: "Error",
-        description: "Ocurrio un error al crear el insumo",
+        description: "Ocurrio un error al crear el producto",
         variant: "destructive",
       });
     }
@@ -197,7 +197,7 @@ export const FormCreate = ({ setIsOpen }: FormCreateProps) => {
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue
-                        placeholder='Selecciona una Categoria'
+                        placeholder='Selecciona una categoría'
                         defaultValue={field.value}
                       />
                     </SelectTrigger>
@@ -217,6 +217,7 @@ export const FormCreate = ({ setIsOpen }: FormCreateProps) => {
               </FormItem>
             )}
           />
+
           <FormField
             control={form.control}
             name='img_url'

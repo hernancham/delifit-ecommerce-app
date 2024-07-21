@@ -13,6 +13,27 @@ export async function GET(request: Request) {
           activo: activo === "true",
           id_cat_promocion: id_categoria ?? undefined,
         },
+        select: {
+          id_promocion: true,
+          img_url: true,
+          nombre: true,
+          descripcion: true,
+          precio_base: true,
+          precio_oferta: true,
+          id_cat_promocion: true,
+          fecha_inicio: true,
+          fecha_fin: true,
+          dia_promocion: true,
+          activo: true,
+          createdAt: true,
+          updatedAt: true,
+          cat_promocion: {
+            select: {
+              nombre: true,
+              id_cat_promocion: true,
+            },
+          },
+        },
       });
     } else {
       data = await prisma.promocion.findMany({

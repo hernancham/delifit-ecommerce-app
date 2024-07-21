@@ -1,7 +1,7 @@
 import axios from "axios";
 import { CategoriaProducto, Producto } from "@/types/db";
 
-export const getInsumo = async (id: string) => {
+export const getProducto = async (id: string) => {
   try {
     const response = await axios.get<Producto>(`/api/producto/${id}`);
     return response.data;
@@ -10,7 +10,7 @@ export const getInsumo = async (id: string) => {
   }
 };
 
-export const getCategoriasProduto = async () => {
+export const getCategoriasProducto = async () => {
   try {
     const response = await axios.get<CategoriaProducto[]>(
       "/api/categoria/producto",
