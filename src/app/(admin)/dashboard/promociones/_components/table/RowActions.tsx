@@ -43,8 +43,8 @@ export const RowActions = ({ row }: RowActionsProps) => {
       <ResponsiveDialog
         isOpen={isEditOpen}
         setIsOpen={setIsEditOpen}
-        title='Actualizar Producto'
-        description='Complete el formulario para actualizar un producto'
+        title='Actualizar Promoción'
+        description='Complete el formulario para actualizar una promoción'
       >
         {categoria && (
           <FormUpdate
@@ -57,8 +57,8 @@ export const RowActions = ({ row }: RowActionsProps) => {
       <ResponsiveDialog
         isOpen={isEnableOpen}
         setIsOpen={setIsEnableOpen}
-        title='Activar producto'
-        description='Complete el formulario para activar el producto'
+        title='Activar promoción'
+        description='Complete el formulario para activar la promoción'
       >
         <FormEnable
           setIsOpen={setIsEnableOpen}
@@ -68,8 +68,8 @@ export const RowActions = ({ row }: RowActionsProps) => {
       <ResponsiveDialog
         isOpen={isDisableOpen}
         setIsOpen={setIsDisableOpen}
-        title='Desactivar Producto'
-        description='Complete el formulario para desactivar el producto'
+        title='Desactivar Promoción'
+        description='Complete el formulario para desactivar la promoción'
       >
         <FormDisable
           setIsOpen={setIsDisableOpen}

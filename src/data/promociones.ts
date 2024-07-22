@@ -1,7 +1,7 @@
 import axios from "axios";
 import { CategoriaPromocion, Promocion } from "@/types/db";
 
-export const getProducto = async (id: string) => {
+export const getPromocion = async (id: string) => {
   try {
     const response = await axios.get<Promocion>(`/api/promocion/${id}`);
     return response.data;

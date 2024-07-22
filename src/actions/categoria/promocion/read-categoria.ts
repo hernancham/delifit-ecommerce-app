@@ -14,6 +14,10 @@ export const readCategoriaPromocionById = async (
       where: {
         id_cat_promocion: values.id_cat_promocion,
       },
+      select: {
+        id_cat_promocion: true,
+        nombre: true,
+      },
     });
 
     return data;
@@ -25,7 +29,7 @@ export const readCategoriaPromocionById = async (
   }
 };
 
-export const readCategoriaPromocion = async () => {
+export const readCategoriasPromocion = async () => {
   try {
     const data = await prisma.categoriaPromocion.findMany();
 

@@ -47,6 +47,24 @@ export const ColPromocion: ColumnDef<Promocion>[] = [
     ),
   },
   {
+    id: "Categoria",
+    accessorKey: "cat_promocion.nombre",
+    header: ({ column }) => (
+      <HeaderOptions
+        column={column}
+        title='Categoría'
+      />
+    ),
+    cell: ({ row }) => {
+      const { cat_promocion } = row.original;
+      return (
+        <span>
+          {cat_promocion?.nombre ?? "Undefined: Esto no debe mostrarse"}
+        </span>
+      );
+    },
+  },
+  {
     accessorKey: "precio_base",
     header: ({ column }) => (
       <HeaderOptions
@@ -85,11 +103,11 @@ export const ColPromocion: ColumnDef<Promocion>[] = [
       const { estado_promocion } = row.original;
       return estado_promocion ? (
         <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800'>
-          Disponible
+          Activa
         </span>
       ) : (
         <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800'>
-          Expirada
+          Inactiva
         </span>
       );
     },
@@ -194,20 +212,7 @@ export const ColPromocion: ColumnDef<Promocion>[] = [
       return date.toLocaleDateString();
     },
   },
-  {
-    id: "Categoría",
-    accessorKey: "cat_promocion.nombre",
-    header: ({ column }) => (
-      <HeaderOptions
-        column={column}
-        title='Categoría'
-      />
-    ),
-    cell: ({ row }) => {
-      const { cat_promocion } = row.original;
-      return <span>{cat_promocion.nombre}</span>;
-    },
-  },
+
   {
     id: "Acciones",
     header: "Acciones",

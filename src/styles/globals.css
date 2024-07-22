@@ -81,3 +81,15 @@
 .quick_sand {
   font-family: var(--font-quicksand);
 }
+
+.input.date-picker {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.date-picker-popper {
+  z-index: 1000;
+}

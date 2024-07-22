@@ -1,6 +1,6 @@
 "use client";
 
-import { type Dispatch, type SetStateAction } from "react";
+import { useState, type Dispatch, type SetStateAction } from "react";
 
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -29,7 +29,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 
 import { ImageUpload } from "@/components/custom/ImageUpload";
-
+import { MultiSelect } from "@/components/custom/MultiSelect";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 // actions
@@ -52,7 +52,16 @@ export const FormUpdate = ({
   categoria,
 }: FormUpdateProps) => {
   const queryClient = useQueryClient();
-
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+  const dias = [
+    "Lunes",
+    "Martes",
+    "Miércoles",
+    "Jueves",
+    "Viernes",
+    "Sábado",
+    "Domingo",
+  ];
   const { mutate: actualizarPromocion } = useMutation({
     mutationFn: updatePromocionById,
     onSuccess: () => {
@@ -119,156 +128,190 @@ export const FormUpdate = ({
         onSubmit={form.handleSubmit(onSubmit)}
         className='space-y-6'
       >
-        <div className='space-y-4'>
-          <FormField
-            control={form.control}
-            name='nombre'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Nombre</FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    disabled={isLoading}
-                    placeholder='Nueva promoción'
-                    type='text'
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name='descripcion'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Descripcion</FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    disabled={isLoading}
-                    type='text'
-                    placeholder='0'
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name='precio_base'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Precio Base</FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    disabled={isLoading}
-                    type='number'
-                    placeholder='0'
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name='precio_oferta'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Precio Oferta</FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    disabled={isLoading}
-                    type='number'
-                    placeholder='0'
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name='id_cat_promocion'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Categoria</FormLabel>
-                <Select
-                  disabled={isLoading}
-                  onValueChange={field.onChange}
-                  value={String(field.value)}
-                  defaultValue={String(field.value)}
-                >
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
+          <div className='space-y-4'>
+            <FormField
+              control={form.control}
+              name='nombre'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Nombre</FormLabel>
                   <FormControl>
-                    <SelectTrigger>
-                      <SelectValue
-                        placeholder='Selecciona una Categoría'
-                        defaultValue={field.value}
-                      />
-                    </SelectTrigger>
+                    <Input
+                      {...field}
+                      disabled={isLoading}
+                      placeholder='Nueva promoción'
+                      type='text'
+                    />
                   </FormControl>
-                  <SelectContent>
-                    {categoria?.map((cat) => (
-                      <SelectItem
-                        key={cat.id_cat_promocion}
-                        value={cat.id_cat_promocion}
-                      >
-                        {cat.nombre}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='descripcion'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Descripción</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      disabled={isLoading}
+                      type='text'
+                      placeholder='Descripción de la promoción'
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='precio_base'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Precio Base</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      disabled={isLoading}
+                      type='number'
+                      placeholder='0'
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='precio_oferta'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Precio Oferta</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      disabled={isLoading}
+                      type='number'
+                      placeholder='0'
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+
+          <div className='space-y-4'>
+            <FormField
+              control={form.control}
+              name='id_cat_promocion'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Categoría</FormLabel>
+                  <Select
+                    disabled={isLoading}
+                    onValueChange={field.onChange}
+                    value={String(field.value)}
+                    defaultValue={String(field.value)}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue
+                          placeholder='Selecciona una categoría'
+                          defaultValue={field.value}
+                        />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {categoria?.map((cat) => (
+                        <SelectItem
+                          key={cat.id_cat_promocion}
+                          value={cat.id_cat_promocion}
+                        >
+                          {cat.nombre}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='fecha_inicio'
+              render={() => (
+                <FormItem>
+                  <FormLabel>Fecha Inicio</FormLabel>
+                  <FormControl>
+                    <Controller
+                      control={form.control}
+                      name='fecha_inicio'
+                      render={({ field }) => (
+                        <DatePicker
+                          selected={selectedDate}
+                          onChange={(date) => {
+                            setSelectedDate(date);
+                            field.onChange(date);
+                          }}
+                          dateFormat='dd/MM/yyyy'
+                          placeholderText='Seleccione una fecha'
+                          className='input date-picker'
+                          popperClassName='date-picker-popper'
+                        />
+                      )}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='fecha_fin'
+              render={() => (
+                <FormItem>
+                  <FormLabel>Fecha Fin</FormLabel>
+                  <FormControl>
+                    <Controller
+                      control={form.control}
+                      name='fecha_fin'
+                      render={({ field }) => (
+                        <DatePicker
+                          selected={field.value}
+                          onChange={field.onChange}
+                          dateFormat='dd/MM/yyyy'
+                          placeholderText='Seleccione una fecha'
+                          className='input date-picker'
+                          popperClassName='date-picker-popper'
+                        />
+                      )}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+        </div>
+        <div className='flex flex-col items-center space-y-4 mt-4'>
           <FormField
             control={form.control}
-            name='fecha_inicio'
+            name='dia_promocion'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Fecha Inicio</FormLabel>
+                <FormLabel>Días</FormLabel>
                 <FormControl>
-                  <Controller
-                    control={form.control}
-                    name='fecha_inicio'
-                    render={({ field }) => (
-                      <DatePicker
-                        selected={field.value}
-                        onChange={field.onChange}
-                        dateFormat='dd/MM/yyyy'
-                        placeholderText='Seleccione una fecha'
-                      />
-                    )}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name='fecha_fin'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Fecha Fin</FormLabel>
-                <FormControl>
-                  <Controller
-                    control={form.control}
-                    name='fecha_fin'
-                    render={({ field }) => (
-                      <DatePicker
-                        selected={field.value}
-                        onChange={field.onChange}
-                        dateFormat='dd/MM/yyyy'
-                        placeholderText='Seleccione una fecha'
-                      />
-                    )}
+                  <MultiSelect
+                    options={dias.map((dia) => ({ value: dia, label: dia }))}
+                    value={field.value}
+                    onChange={field.onChange}
+                    onValueChange={field.onChange}
+                    placeholder='Seleccione los días'
+                    className='input multi-select'
                   />
                 </FormControl>
                 <FormMessage />
@@ -307,7 +350,8 @@ export const FormUpdate = ({
             )}
           />
         </div>
-        <div className=' flex items-center justify-end gap-x-2'>
+
+        <div className='flex justify-center mt-4'>
           <Button
             type='submit'
             disabled={isLoading}
@@ -319,7 +363,8 @@ export const FormUpdate = ({
             type='button'
             disabled={isLoading}
             variant='default'
-            onClick={() => onCancel()}
+            onClick={onCancel}
+            className='ml-2'
           >
             Cancelar
           </Button>

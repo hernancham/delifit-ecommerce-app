@@ -1,3 +1,9 @@
+import { GridPromociones } from "./_components/GridPromociones";
+
 export default function Page() {
-  return <div>Pagina de Prueba</div>;
+  return (
+    <section>
+      <GridPromociones />
+    </section>
+  );
 }
