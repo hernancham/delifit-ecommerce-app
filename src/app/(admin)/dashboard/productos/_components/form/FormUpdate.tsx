@@ -35,8 +35,6 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateProductoById } from "@/actions/producto/update-producto";
 // config and constants
 import { productoDefault } from "@/config/imageDefault";
-import { TipoMedida } from "@prisma/client";
-
 // Types
 import { CategoriaProducto, Producto } from "@/types/db";
 

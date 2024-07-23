@@ -33,7 +33,11 @@ export const updatePromocionById = async (values: updatePromocionByIdType) => {
         nombre: values.nombre,
         descripcion: values.descripcion,
         precio_base: values.precio_base,
+        precio_oferta: values.precio_oferta,
         id_cat_promocion: values.id_cat_promocion,
+        fecha_inicio: values.fecha_inicio,
+        fecha_fin: values.fecha_fin,
+        dia_promocion: values.dia_promocion,
         img_url: values.img_url,
       },
     });

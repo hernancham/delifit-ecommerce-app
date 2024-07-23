@@ -6,8 +6,7 @@ import { CardPromocion } from "./CardPromocion";
 import { useState, useMemo } from "react";
 
 // Types
-
-import { Promocion, CategoriaPromocion } from "@prisma/client";
+import { Promocion } from "@/types/db";
 
 const getPromociones = async () => {
   try {
@@ -20,6 +19,7 @@ const getPromociones = async () => {
 
 export const GridPromociones = () => {
   const [query, setQuery] = useState("");
+
   const {
     data: promociones,
     isError,
@@ -45,7 +45,7 @@ export const GridPromociones = () => {
       <div className='flex justify-center mb-5'>
         <input
           className='p-3 border border-gray-300 rounded-md'
-          placeholder='Buscar promociones...'
+          placeholder='Buscar productos...'
           onChange={(event) => setQuery(event.target.value)}
           value={query}
         />

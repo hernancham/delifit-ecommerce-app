@@ -32,6 +32,9 @@ export function ShopCar() {
   const cantidadProductos = useCartStore(
     (state) => state.cartCantidadProductos
   );
+  const cantidadPromociones = useCartStore(
+    (state) => state.cartCantidadPromociones
+  );
   const { mutate: crearUsuario } = useMutation({
     mutationFn: createPedido,
     onSuccess: () => {},
@@ -72,7 +75,7 @@ export function ShopCar() {
             <ShoppingCart className='h-8 w-8 stroke-current' />
           </Button>
           <div className='flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white'>
-            {cantidadProductos}
+            {cantidadProductos + cantidadPromociones}
           </div>
         </div>
       </SheetTrigger>
@@ -121,7 +124,7 @@ export function ShopCar() {
           <SheetFooter className='flex !flex-col gap-3 mt-4'>
             <SheetClose asChild>
               <Button
-                className='bg-graphite-deep hover:bg-graphite-dark text-green_p-dark dark:bg-green_p-dark dark:text-black dark:hover:bg-green_p'                
+                className='bg-graphite-deep hover:bg-graphite-dark text-green_p-dark dark:bg-green_p-dark dark:text-black dark:hover:bg-green_p'
                 onClick={() => router.push("/menu/carrito")}
               >
                 Ver mi carrito
@@ -131,12 +134,14 @@ export function ShopCar() {
               <Button
                 onClick={() => handlePedido()}
                 className='bg-green_p-deep hover:bg-lime-400 dark:bg-background dark:text-lime-400 dark:hover:bg-graphite-dark'
-                >
+              >
                 Completar Pedido S/.{totalPrecio()}
               </Button>
             </SheetClose>
             <SheetClose asChild>
-              <Button className='w-full bg-transparent hover:bg-transparent dark:bg-transparent'>Cerrar</Button>
+              <Button className='w-full bg-transparent hover:bg-transparent dark:bg-transparent'>
+                Cerrar
+              </Button>
             </SheetClose>
           </SheetFooter>
         )}

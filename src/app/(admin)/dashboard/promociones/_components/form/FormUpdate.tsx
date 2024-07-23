@@ -5,7 +5,7 @@ import { useState, type Dispatch, type SetStateAction } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { formSchema, type formType } from "./SchemaUpdate";
+import { formSchema, type formType } from "./SchemaCreate";
 import DatePicker from "react-datepicker";
 
 import {
@@ -84,8 +84,9 @@ export const FormUpdate = ({
       precio_base: promocion.precio_base,
       precio_oferta: promocion.precio_oferta,
       id_cat_promocion: promocion.id_cat_promocion,
-      fecha_inicio: promocion.fecha_inicio,
-      fecha_fin: promocion.fecha_fin,
+      fecha_inicio: new Date(promocion.fecha_inicio),
+      fecha_fin: new Date(promocion.fecha_fin),
+      dia_promocion: promocion.dia_promocion,
       img_url: promocion.img_url,
     },
   });
@@ -118,7 +119,7 @@ export const FormUpdate = ({
   };
 
   const onCancel = () => {
-    // form.reset();
+    //form.reset();
     setIsOpen(false);
   };
 
@@ -307,11 +308,10 @@ export const FormUpdate = ({
                 <FormControl>
                   <MultiSelect
                     options={dias.map((dia) => ({ value: dia, label: dia }))}
-                    value={field.value}
-                    onChange={field.onChange}
+                    defaultValue={field.value}
                     onValueChange={field.onChange}
+                    value={field.value}
                     placeholder='Seleccione los días'
-                    className='input multi-select'
                   />
                 </FormControl>
                 <FormMessage />
