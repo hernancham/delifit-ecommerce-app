@@ -38,7 +38,7 @@ import { updatePromocionById } from "@/actions/promocion/update-promocion";
 import { CategoriaPromocion, Promocion } from "@/types/db";
 import { updateCategoriaPromocionById } from "@/actions/categoria/promocion/update-categoria";
 import { promocionDefault } from "@/config/imageDefault";
-import { Trigger } from "@radix-ui/react-tooltip";
+import { useRouter } from "next/navigation";
 
 interface FormUpdateProps {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -52,6 +52,7 @@ export const FormUpdate = ({
   categoria,
 }: FormUpdateProps) => {
   const queryClient = useQueryClient();
+  const router = useRouter();
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const dias = [
     "Lunes",
@@ -108,6 +109,7 @@ export const FormUpdate = ({
         id_cat_promocion: values.id_cat_promocion,
         productos: [],
       });
+      router.refresh();
       setIsOpen(false);
     } catch (error) {
       toast({

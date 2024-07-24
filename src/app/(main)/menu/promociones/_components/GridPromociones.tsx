@@ -45,7 +45,7 @@ export const GridPromociones = () => {
       <div className='flex justify-center mb-5'>
         <input
           className='p-3 border border-gray-300 rounded-md'
-          placeholder='Buscar productos...'
+          placeholder='Buscar promociones...'
           onChange={(event) => setQuery(event.target.value)}
           value={query}
         />

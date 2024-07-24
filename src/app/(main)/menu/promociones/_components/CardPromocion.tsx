@@ -16,16 +16,16 @@ export const CardPromocion = ({ promocion }: { promocion: Promocion }) => {
         <img
           src={promocion.img_url}
           alt={promocion.nombre}
-          className='w-full aspect-square object-cover rounded-t-xl '
+          className='w-full aspect-square object-cover rounded-t-xl'
         />
         <div className='absolute inset-0 bg-gradient-to-t from-beige-light via-transparent to-transparent rounded-t-xl dark:from-graphite-deep'></div>
-        <h3 className='absolute inset-x-0 bottom-0 block text-lg font-bold capitalize text-black dark:text-white p-4 shadow'>
+        <h3 className='absolute inset-x-0 bottom-0 block text-lg font-bold capitalize text-black dark:text-white p-4 shadow text-center'>
           {promocion.nombre}
         </h3>
       </div>
       <div className='flex flex-col items-center gap-2 p-2'>
         <div className='text-beige-dark dark:text-green_p-dark rounded-md p-1'>
-          {promocion.cat_promocion?.nombre ?? "Error Undefined"}
+          {promocion.cat_promocion.nombre}
         </div>
         <div>
           <span className='font-bold'>Precio:</span> S/.{" "}

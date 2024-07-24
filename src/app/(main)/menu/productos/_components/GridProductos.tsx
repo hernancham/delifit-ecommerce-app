@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import { CardProducto } from "./CardProduto";
+import { CardProducto } from "./CardProducto";
 import { useState, useMemo } from "react";
 
 // Types

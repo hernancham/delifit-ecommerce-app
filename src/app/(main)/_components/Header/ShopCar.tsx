@@ -13,8 +13,6 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 
-import { Logo } from "./Logo";
-
 import { ShopCarItemProducto, ShopCarItemPromocion } from "./ShopCarItem";
 import { useCartStore } from "@/store/shopcart";
 import { useMutation } from "@tanstack/react-query";
@@ -22,9 +20,9 @@ import { useMutation } from "@tanstack/react-query";
 import { createPedido } from "@/actions/pedido/create-pedido";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { User } from "next-auth";
 
-export function ShopCar() {
-  const { data } = useSession();
+export function ShopCar({ user }: { user: User }) {
   const router = useRouter();
   const cartProductos = useCartStore((state) => state.cartProductos);
   const cartPromociones = useCartStore((state) => state.cartPromociones);
@@ -41,9 +39,9 @@ export function ShopCar() {
   });
 
   const handlePedido = () => {
-    if (data?.user.userId) {
+    if (user.userId) {
       crearUsuario({
-        id_usuario: data.user.userId,
+        id_usuario: user.userId,
         total: totalPrecio(),
         productos: cartProductos.map((producto) => ({
           id_producto: producto.id_producto,
