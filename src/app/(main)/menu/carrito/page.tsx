@@ -18,9 +18,9 @@ export default function Carrito({ user }: { user: User }) {
   });
 
   const handlePedido = () => {
-    if (user.userId) {
+    if (user?.userId) {
       crearUsuario({
-        id_usuario: user.userId,
+        id_usuario: user?.userId,
         total: totalPrecio(),
         productos: cartProductos.map((producto) => ({
           id_producto: producto.id_producto,
