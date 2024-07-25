@@ -23,7 +23,8 @@ import { useRouter } from "next/navigation";
 import { User } from "next-auth";
 
 export function ShopCar() {
-  const user = useSession().data?.user;
+  const session = useSession();
+
   const router = useRouter();
   const cartProductos = useCartStore((state) => state.cartProductos);
   const cartPromociones = useCartStore((state) => state.cartPromociones);
@@ -38,6 +39,7 @@ export function ShopCar() {
     mutationFn: createPedido,
     onSuccess: () => {},
   });
+  const user = session.data?.user;
 
   const handlePedido = () => {
     if (user?.userId) {

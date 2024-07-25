@@ -10,8 +10,12 @@ import { useMutation } from "@tanstack/react-query";
 import { createPedido } from "@/actions/pedido/create-pedido";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { User } from "next-auth";
-export default function Carrito({ user }: { user: User }) {
+import { useSession } from "next-auth/react";
+
+export default function Carrito() {
+  const session = useSession();
+  const user = session.data?.user;
+
   const { mutate: crearUsuario } = useMutation({
     mutationFn: createPedido,
     onSuccess: () => {},
