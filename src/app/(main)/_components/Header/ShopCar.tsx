@@ -22,7 +22,8 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { User } from "next-auth";
 
-export function ShopCar({ user }: { user: User }) {
+export function ShopCar() {
+  const user = useSession().data?.user;
   const router = useRouter();
   const cartProductos = useCartStore((state) => state.cartProductos);
   const cartPromociones = useCartStore((state) => state.cartPromociones);
@@ -39,7 +40,7 @@ export function ShopCar({ user }: { user: User }) {
   });
 
   const handlePedido = () => {
-    if (user.userId) {
+    if (user?.userId) {
       crearUsuario({
         id_usuario: user.userId,
         total: totalPrecio(),

@@ -5,23 +5,29 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Usuario } from "@prisma/client";
 import { useEffect, useState } from "react";
-import { User } from "next-auth";
-async function GetUserInfo(user: User) {
-  const res = await axios.get<Usuario>("/api/usuario/" + user.userId);
+
+import Image from "next/image";
+async function GetUserInfo(session: any) {
+  const res = await axios.get<Usuario>(
+    "/api/usuario/" + session.data.user.userId
+  );
   return res.data;
 }
 
-export default function MiCuenta({ user }: { user: User }) {
+export default function MiCuenta() {
+  const session = useSession();
   const router = useRouter();
   const [usuario, setUsuario] = useState<Usuario | null>(null);
 
   useEffect(() => {
     async function fetchData() {
-      const userInfo = await GetUserInfo(user);
-      setUsuario(userInfo);
+      if (session.status === "authenticated") {
+        const userInfo = await GetUserInfo(session);
+        setUsuario(userInfo);
+      }
     }
     fetchData();
-  }, [user]);
+  }, [session]);
 
   if (!usuario) {
     return <div className='mt-20'>No usuario :/</div>;
@@ -42,10 +48,17 @@ export default function MiCuenta({ user }: { user: User }) {
 
       <div className='w-full max-w-3xl grid grid-cols-1 md:grid-cols-2 gap-6'>
         <div
-          className='bg-white shadow-lg rounded-lg p-6 cursor-pointer hover:bg-gray-50'
-          onClick={() => router.push("/historial-pedidos")}
+          className='bg-white shadow-lg rounded-lg p-6 cursor-pointer hover:bg-gray-50 text-center'
+          onClick={() => router.push("/mi-cuenta/historial-pedidos")}
         >
-          <h2 className='text-2xl font-semibold dark:text-black'>
+          <Image
+            src='/page-icons/order-history.png'
+            alt='Historial de Pedidos'
+            width={64}
+            height={64}
+            className='mx-auto'
+          />
+          <h2 className='text-2xl font-semibold dark:text-black '>
             Historial de Pedidos
           </h2>
           <p className='mt-2 text-gray-600'>
@@ -53,9 +66,16 @@ export default function MiCuenta({ user }: { user: User }) {
           </p>
         </div>
         <div
-          className='bg-white shadow-lg rounded-lg p-6 cursor-pointer hover:bg-gray-50'
-          onClick={() => router.push("/configuracion")}
+          className='bg-white shadow-lg rounded-lg p-6 cursor-pointer hover:bg-gray-50 items-center text-center'
+          onClick={() => router.push("/mi-cuenta/configuracion")}
         >
+          <Image
+            src='/page-icons/user-edit.png'
+            alt='Configuración'
+            width={64}
+            height={64}
+            className='mx-auto'
+          />
           <h2 className='text-2xl font-semibold dark:text-black'>
             Actualizar Datos Personales
           </h2>
