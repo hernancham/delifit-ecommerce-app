@@ -4,6 +4,8 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { CardProducto } from "./CardProducto";
 import { useState, useMemo } from "react";
+import { CategoriaProducto } from "@prisma/client";
+import { MultiSelect } from "@/components/custom/MultiSelect";
 
 // Types
 import { Producto } from "@/types/db";
@@ -17,8 +19,20 @@ const getProductos = async () => {
   }
 };
 
+const getCategoriasProductos = async () => {
+  try {
+    const response = await axios.get<CategoriaProducto[]>(
+      "/api/categoria/producto"
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error("Error al leer las categorías de productos");
+  }
+};
+
 export const GridProductos = () => {
   const [query, setQuery] = useState("");
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
   const {
     data: productos,
@@ -30,24 +44,53 @@ export const GridProductos = () => {
     queryFn: getProductos,
   });
 
+  const {
+    data: categorias,
+    isError: isErrorCategorias,
+    isLoading: isLoadingCategorias,
+    error: errorCategorias,
+  } = useQuery({
+    queryKey: ["categorias"],
+    queryFn: getCategoriasProductos,
+  });
+
   const filteredProductos = useMemo(() => {
-    if (!query) return productos;
-    return productos?.filter((producto) =>
-      producto.nombre.toLowerCase().includes(query.toLowerCase())
-    );
-  }, [query, productos]);
+    let filtered = productos;
+    if (query) {
+      filtered = filtered?.filter((producto) =>
+        producto.nombre.toLowerCase().includes(query.toLowerCase())
+      );
+    }
+    if (selectedCategories.length > 0) {
+      filtered = filtered?.filter((producto) =>
+        selectedCategories.includes(producto.id_cat_producto)
+      );
+    }
+    return filtered;
+  }, [query, selectedCategories, productos]);
+
+  const categoryOptions = categorias?.map((categoria) => ({
+    label: categoria.nombre,
+    value: categoria.id_cat_producto,
+  }));
 
   return (
     <div className='bg-green_p-light dark:bg-neutral-700'>
       <div className='p-10 text-center'>
         <h1 className='mt-12 text-4xl font-bold'>Productos</h1>
       </div>
-      <div className='flex justify-center mb-5'>
+      <div className='flex justify-center mb-5 space-x-4'>
         <input
           className='p-3 border border-gray-300 rounded-md'
           placeholder='Buscar productos...'
           onChange={(event) => setQuery(event.target.value)}
           value={query}
+        />
+        <MultiSelect
+          options={categoryOptions ?? []}
+          onValueChange={setSelectedCategories}
+          placeholder='Filtrar por categoría'
+          className='h-10 w-40' // Ajuste del tamaño vertical y horizontal
         />
       </div>
       <section

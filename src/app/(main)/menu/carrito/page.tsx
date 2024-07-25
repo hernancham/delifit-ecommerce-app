@@ -58,11 +58,11 @@ export default function Carrito() {
   return (
     <div className='bg-green_p-light dark:bg-graphite-deep p-8'>
       {carritoVacio ? (
-        <div className='flex flex-col items-center justify-center h-full'>
+        <div className='flex flex-col items-center justify-center h-full mt-20'>
           <img
             src='/media/shopping-cart.svg'
             alt='Carrito Vacío'
-            className='w-24 h-24 mb-4'
+            className='w-36 h-36 mb-4'
           />
           <p className='text-xl font-bold mb-4'>Carrito vacío</p>
         </div>
@@ -70,7 +70,7 @@ export default function Carrito() {
         <div>
           {cartProductos.length > 0 && (
             <>
-              <h2 className='text-2xl font-bold mt-20 mb-4'>Lista Productos</h2>
+              <h2 className='text-2xl font-bold mt-14 mb-4'>Lista Productos</h2>
               <ul className='flex-1 max-h-48 overflow-y-auto py-4'>
                 {cartProductos.map((producto) => (
                   <li key={producto.id_producto}>
@@ -82,7 +82,9 @@ export default function Carrito() {
           )}
           {cartPromociones.length > 0 && (
             <>
-              <h2 className='text-2xl font-bold mb-4'>Lista Promociones</h2>
+              <h2 className='text-2xl font-bold mt-14 mb-4'>
+                Lista Promociones
+              </h2>
               <ul className='flex-1 max-h-48 overflow-y-auto py-6'>
                 {cartPromociones.map((promocion) => (
                   <li key={promocion.id_promocion}>
@@ -92,14 +94,14 @@ export default function Carrito() {
               </ul>
             </>
           )}
+          <Button
+            onClick={() => handlePedido()}
+            className='bg-green_p-deep hover:bg-lime-400 dark:bg-background dark:text-lime-400 dark:hover:bg-graphite-dark'
+          >
+            Completar Pedido S/.{totalPrecio()}
+          </Button>
         </div>
       )}
-      <Button
-        onClick={() => handlePedido()}
-        className='bg-green_p-deep hover:bg-lime-400 dark:bg-background dark:text-lime-400 dark:hover:bg-graphite-dark'
-      >
-        Completar Pedido S/.{totalPrecio()}
-      </Button>
     </div>
   );
 }

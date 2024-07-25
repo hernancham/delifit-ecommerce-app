@@ -18,7 +18,7 @@ import { useRouter } from "next/navigation";
 import { ShopCar } from "./ShopCar";
 
 const navbarLinks = [
-  { path: "/menu", label: "Menú" },
+  //{ path: "/menu", label: "Menú" },
   { path: "/menu/productos", label: "Productos" },
   { path: "/menu/promociones", label: "Promociones" },
   { path: "/menu/carrito", label: "Carrito" },

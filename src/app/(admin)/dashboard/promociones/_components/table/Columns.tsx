@@ -103,11 +103,11 @@ export const ColPromocion: ColumnDef<Promocion>[] = [
       const { estado_promocion } = row.original;
       return estado_promocion ? (
         <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800'>
-          Activa
+          Vigente
         </span>
       ) : (
         <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800'>
-          Inactiva
+          No vigente
         </span>
       );
     },

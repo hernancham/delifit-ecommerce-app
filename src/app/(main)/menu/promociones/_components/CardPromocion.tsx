@@ -37,7 +37,7 @@ export const CardPromocion = ({ promocion }: { promocion: Promocion }) => {
               id_promocion: promocion.id_promocion,
               img_url: promocion.img_url,
               nombre: promocion.nombre,
-              precio: promocion.precio_base,
+              precio: promocion.precio_oferta,
             })
           }
           className='bg-graphite-deep text-white w-full hover:bg-graphite-dark dark:bg-green_p-dark dark:text-graphite-deep dark:hover:bg-green_p w-full'
