@@ -35,7 +35,7 @@ export default function MiCuenta() {
 
   return (
     <div className='min-h-screen bg-gray-100 dark:bg-neutral-700 flex flex-col items-center pt-20'>
-      <h1 className='text-3xl font-bold mb-6 dark:text-gray-100'>
+      <h1 className='text-3xl font-bold mb-6 dark:text-gray-100 text-center'>
         Bienvenido, {usuario.nombre + " " + usuario.apellido}
       </h1>
 
@@ -48,7 +48,7 @@ export default function MiCuenta() {
 
       <div className='w-full max-w-3xl grid grid-cols-1 md:grid-cols-2 gap-6'>
         <div
-          className='bg-white shadow-lg rounded-lg p-6 cursor-pointer hover:bg-gray-50 text-center'
+          className='bg-white shadow-lg rounded-lg p-8 cursor-pointer hover:bg-gray-50 text-center'
           onClick={() => router.push("/mi-cuenta/historial-pedidos")}
         >
           <Image
@@ -56,7 +56,7 @@ export default function MiCuenta() {
             alt='Historial de Pedidos'
             width={64}
             height={64}
-            className='mx-auto'
+            className='mx-auto py-2'
           />
           <h2 className='text-2xl font-semibold dark:text-black '>
             Historial de Pedidos
@@ -74,7 +74,7 @@ export default function MiCuenta() {
             alt='Configuración'
             width={64}
             height={64}
-            className='mx-auto'
+            className='mx-auto py-2'
           />
           <h2 className='text-2xl font-semibold dark:text-black'>
             Actualizar Datos Personales

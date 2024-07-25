@@ -79,9 +79,9 @@ export const GridProductos = () => {
       <div className='p-10 text-center'>
         <h1 className='mt-12 text-4xl font-bold'>Productos</h1>
       </div>
-      <div className='flex justify-center mb-5 space-x-4'>
+      <div className='flex justify-center mb-5 space-x-4 '>
         <input
-          className='p-3 border border-gray-300 rounded-md'
+          className='ml-4 py-3 px-1 border border-gray-300 rounded-md'
           placeholder='Buscar productos...'
           onChange={(event) => setQuery(event.target.value)}
           value={query}
@@ -89,13 +89,13 @@ export const GridProductos = () => {
         <MultiSelect
           options={categoryOptions ?? []}
           onValueChange={setSelectedCategories}
-          placeholder='Filtrar por categoría'
-          className='h-10 w-40' // Ajuste del tamaño vertical y horizontal
+          placeholder='Filtrar por cat.'
+          className='h-10 w-40 max-sm:w-20' // Ajuste del tamaño vertical y horizontal
         />
       </div>
       <section
         id='Projects'
-        className='grid grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))] gap-8 p-10 items-center'
+        className='grid grid-cols-[repeat(auto-fit,_minmax(240px,_1fr))] gap-8 p-10 items-center'
       >
         {filteredProductos?.map((producto) => (
           <div key={producto.id_producto}>

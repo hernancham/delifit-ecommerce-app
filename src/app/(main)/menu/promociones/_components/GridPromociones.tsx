@@ -90,12 +90,12 @@ export const GridPromociones = () => {
           options={categoryOptions ?? []}
           onValueChange={setSelectedCategories}
           placeholder='Filtrar por categoría'
-          className='h-10 w-40' // Ajuste del tamaño vertical y horizontal
+          className='h-10 w-40 max-sm:w-20' // Ajuste del tamaño vertical y horizontal
         />
       </div>
       <section
         id='Projects'
-        className='grid grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))] gap-8 p-10 items-center'
+        className='grid grid-cols-[repeat(auto-fit,_minmax(240px,_1fr))] gap-8 p-10 items-center'
       >
         {filteredPromociones?.map((promocion) => (
           <div key={promocion.id_promocion}>

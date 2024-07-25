@@ -14,6 +14,7 @@ export interface Usuario {
   tipo_doc: TipoDocumento;
   rol: UserRole;
   puntos: number;
+  password: string;
   createdAt: Date;
   updatedAt: Date;
 }
