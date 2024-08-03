@@ -222,7 +222,7 @@ export const FormUpdate = ({ usuario }: FormUpdateProps) => {
                   </FormItem>
                 )}
               />
-              {/* <FormField
+              <FormField
                 control={form.control}
                 name='tipo_doc'
                 render={({ field }) => (
@@ -235,7 +235,6 @@ export const FormUpdate = ({ usuario }: FormUpdateProps) => {
                       onValueChange={field.onChange}
                       value={field.value}
                       defaultValue={field.value}
-                      className='bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400'
                     >
                       <FormControl>
                         <SelectTrigger>
@@ -260,7 +259,7 @@ export const FormUpdate = ({ usuario }: FormUpdateProps) => {
                     <FormMessage />
                   </FormItem>
                 )}
-              /> */}
+              />
               {/* <FormField
                 control={form.control}
                 name='password'
