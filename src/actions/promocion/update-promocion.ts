@@ -70,7 +70,7 @@ export const updateActivityPromocionById = async (
   values: updateActivityPromocionByIdType
 ) => {
   try {
-    // Actualizar el producto en la base de datos
+    // Actualizar la promocion en la base de datos
     const data = await prisma.promocion.update({
       where: {
         id_promocion: values.id_promocion,
