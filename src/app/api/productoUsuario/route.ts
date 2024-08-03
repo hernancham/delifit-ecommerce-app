@@ -40,6 +40,7 @@ export async function GET(request: Request) {
     } else {
       data = await prisma.producto.findMany({
         where: {
+          activo: true,
           id_cat_producto: {
             notIn: excludedCategoryIds,
           },

@@ -36,6 +36,9 @@ export async function GET(request: Request) {
       });
     } else {
       data = await prisma.promocion.findMany({
+        where: {
+          activo: true,
+        },
         select: {
           id_promocion: true,
           img_url: true,
