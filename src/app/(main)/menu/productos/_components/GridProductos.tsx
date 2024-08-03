@@ -12,7 +12,7 @@ import { Producto } from "@/types/db";
 
 const getProductos = async () => {
   try {
-    const response = await axios.get<Producto[]>("/api/producto");
+    const response = await axios.get<Producto[]>("/api/productoUsuario");
     return response.data;
   } catch (error) {
     throw new Error("Error al leer los Productos");
@@ -22,7 +22,7 @@ const getProductos = async () => {
 const getCategoriasProductos = async () => {
   try {
     const response = await axios.get<CategoriaProducto[]>(
-      "/api/categoria/producto"
+      "/api/categoria/productoUsuario"
     );
     return response.data;
   } catch (error) {
@@ -69,6 +69,18 @@ export const GridProductos = () => {
     return filtered;
   }, [query, selectedCategories, productos]);
 
+  const groupedProductos = useMemo(() => {
+    if (!filteredProductos) return {};
+    return filteredProductos.reduce((acc, producto) => {
+      const category = producto.cat_producto.nombre;
+      if (!acc[category]) {
+        acc[category] = [];
+      }
+      acc[category].push(producto);
+      return acc;
+    }, {} as Record<string, Producto[]>);
+  }, [filteredProductos]);
+
   const categoryOptions = categorias?.map((categoria) => ({
     label: categoria.nombre,
     value: categoria.id_cat_producto,
@@ -76,12 +88,9 @@ export const GridProductos = () => {
 
   return (
     <div className='bg-green_p-light dark:bg-neutral-700'>
-      <div className='p-10 text-center'>
-        <h1 className='mt-12 text-4xl font-bold'>Productos</h1>
-      </div>
-      <div className='flex justify-center mb-5 space-x-4 '>
+      <div className='flex flex-col md:flex-row justify-center items-center mb-5 space-y-4 md:space-y-0 md:space-x-4 pt-24 px-4'>
         <input
-          className='ml-4 py-3 px-1 border border-gray-300 rounded-md'
+          className='py-3 px-2 border-gray-300 rounded-md w-full md:w-60'
           placeholder='Buscar productos...'
           onChange={(event) => setQuery(event.target.value)}
           value={query}
@@ -89,20 +98,26 @@ export const GridProductos = () => {
         <MultiSelect
           options={categoryOptions ?? []}
           onValueChange={setSelectedCategories}
-          placeholder='Filtrar por cat.'
-          className='h-10 w-40 max-sm:w-20' // Ajuste del tamaño vertical y horizontal
+          placeholder='Filtrar por categoría'
+          className='h-10 w-full md:w-40'
         />
       </div>
-      <section
-        id='Projects'
-        className='grid grid-cols-[repeat(auto-fit,_minmax(240px,_1fr))] gap-8 p-10 items-center'
-      >
-        {filteredProductos?.map((producto) => (
-          <div key={producto.id_producto}>
-            <CardProducto producto={producto} />
+      {Object.entries(groupedProductos).map(([category, productos]) => (
+        <section
+          key={category}
+          className='mb-10 text-center dark:text-white text-green-800'
+        >
+          <h2 className='text-3xl font-semibold mb-8'>{category}</h2>
+          <div className='flex flex-wrap justify-center gap-9'>
+            {productos.map((producto) => (
+              <CardProducto
+                key={producto.id_producto}
+                producto={producto}
+              />
+            ))}
           </div>
-        ))}
-      </section>
+        </section>
+      ))}
     </div>
   );
 };

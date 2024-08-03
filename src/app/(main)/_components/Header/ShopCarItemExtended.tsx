@@ -1,6 +1,7 @@
 "use client";
 
 import { useCartStore } from "@/store/shopcart";
+import { Trash } from "lucide-react";
 
 interface ShopCarItemProductoProps {
   producto: {
@@ -9,6 +10,7 @@ interface ShopCarItemProductoProps {
     nombre: string;
     precio: number;
     cantidad: number;
+    incluir: boolean;
   };
 }
 
@@ -17,10 +19,18 @@ export const ShopCarItemProducto = ({ producto }: ShopCarItemProductoProps) => {
   const updateCantidadProducto = useCartStore(
     (state) => state.updateCantidadProducto
   );
+  const toggleIncluir = useCartStore((state) => state.toggleIncluirProducto);
 
   return (
     <div className='flex items-center justify-between p-4 border rounded-lg shadow-md bg-white dark:bg-neutral-800 border-gray-300 dark:border-gray-700'>
       <div className='flex items-center gap-4 flex-1'>
+        {/* Checkbox para incluir o no en el pedido */}
+        <input
+          type='checkbox'
+          checked={producto.incluir}
+          onChange={() => toggleIncluir(producto.id_producto)}
+          className='mr-4'
+        />
         <img
           src={producto.img_url}
           alt={producto.nombre}
@@ -31,7 +41,7 @@ export const ShopCarItemProducto = ({ producto }: ShopCarItemProductoProps) => {
             {producto.nombre}
           </h3>
           <p className='text-sm text-gray-600 dark:text-gray-400'>
-            S/. {producto.precio}
+            <span className='text-xl font-bold'>S/. {producto.precio}</span>
           </p>
         </div>
       </div>
@@ -58,6 +68,13 @@ export const ShopCarItemProducto = ({ producto }: ShopCarItemProductoProps) => {
         >
           +
         </button>
+        {/* Botón de eliminar */}
+        <button
+          onClick={() => removeProducto(producto.id_producto)}
+          className='text-red-500 hover:text-red-600'
+        >
+          <Trash className='w-6 h-6' />
+        </button>
       </div>
     </div>
   );
@@ -70,6 +87,7 @@ interface ShopCarItemPromocionProps {
     nombre: string;
     precio: number;
     cantidad: number;
+    incluir: boolean;
   };
 }
 
@@ -82,10 +100,18 @@ export const ShopCarItemPromocion = ({
   const updateCantidadPromocion = useCartStore(
     (state) => state.updateCantidadPromocion
   );
+  const toggleIncluir = useCartStore((state) => state.toggleIncluirPromocion);
 
   return (
     <div className='flex items-center justify-between p-4 border rounded-lg shadow-md bg-white dark:bg-neutral-800 border-gray-300 dark:border-gray-700'>
       <div className='flex items-center gap-4 flex-1'>
+        {/* Checkbox para incluir o no en el pedido */}
+        <input
+          type='checkbox'
+          checked={promocion.incluir}
+          onChange={() => toggleIncluir(promocion.id_promocion)}
+          className='mr-4'
+        />
         <img
           src={promocion.img_url}
           alt={promocion.nombre}
@@ -96,7 +122,7 @@ export const ShopCarItemPromocion = ({
             {promocion.nombre}
           </h3>
           <p className='text-sm text-gray-600 dark:text-gray-400'>
-            S/. {promocion.precio}
+            <span className='text-xl font-bold'>S/. {promocion.precio}</span>
           </p>
         </div>
       </div>
@@ -125,6 +151,13 @@ export const ShopCarItemPromocion = ({
           className='bg-lime-500 text-white text-lg px-3 py-1 rounded-md hover:bg-lime-400'
         >
           +
+        </button>
+        {/* Botón de eliminar */}
+        <button
+          onClick={() => removePromocion(promocion.id_promocion)}
+          className='text-red-500 hover:text-red-600'
+        >
+          <Trash className='w-6 h-6' />
         </button>
       </div>
     </div>

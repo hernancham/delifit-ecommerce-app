@@ -4,15 +4,13 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { CardPromocion } from "./CardPromocion";
 import { useState, useMemo } from "react";
-
-// Types
 import { Promocion } from "@/types/db";
 import { CategoriaPromocion } from "@prisma/client";
 import { MultiSelect } from "@/components/custom/MultiSelect";
 
 const getPromociones = async () => {
   try {
-    const response = await axios.get<Promocion[]>("/api/promocion");
+    const response = await axios.get<Promocion[]>("/api/promocionUsuario");
     return response.data;
   } catch (error) {
     throw new Error("Error al leer las promociones");
@@ -69,6 +67,18 @@ export const GridPromociones = () => {
     return filtered;
   }, [query, selectedCategories, promociones]);
 
+  const groupedPromociones = useMemo(() => {
+    if (!filteredPromociones) return {};
+    return filteredPromociones.reduce((acc, promocion) => {
+      const category = promocion.cat_promocion.nombre;
+      if (!acc[category]) {
+        acc[category] = [];
+      }
+      acc[category].push(promocion);
+      return acc;
+    }, {} as Record<string, Promocion[]>);
+  }, [filteredPromociones]);
+
   const categoryOptions = categorias?.map((categoria) => ({
     label: categoria.nombre,
     value: categoria.id_cat_promocion,
@@ -76,12 +86,9 @@ export const GridPromociones = () => {
 
   return (
     <div className='bg-green_p-light dark:bg-neutral-700'>
-      <div className='p-10 text-center'>
-        <h1 className='mt-12 text-4xl font-bold'>Promociones</h1>
-      </div>
-      <div className='flex justify-center mb-5 space-x-4'>
+      <div className='flex flex-col md:flex-row justify-center items-center mb-5 space-y-4 md:space-y-0 md:space-x-4 pt-24 px-4'>
         <input
-          className='p-3 border border-gray-300 rounded-md'
+          className='py-3 px-2 border-gray-300 rounded-md w-full md:w-60'
           placeholder='Buscar promociones...'
           onChange={(event) => setQuery(event.target.value)}
           value={query}
@@ -90,19 +97,25 @@ export const GridPromociones = () => {
           options={categoryOptions ?? []}
           onValueChange={setSelectedCategories}
           placeholder='Filtrar por categoría'
-          className='h-10 w-40 max-sm:w-20' // Ajuste del tamaño vertical y horizontal
+          className='h-10 w-full md:w-40'
         />
       </div>
-      <section
-        id='Projects'
-        className='grid grid-cols-[repeat(auto-fit,_minmax(240px,_1fr))] gap-8 p-10 items-center'
-      >
-        {filteredPromociones?.map((promocion) => (
-          <div key={promocion.id_promocion}>
-            <CardPromocion promocion={promocion} />
+      {Object.entries(groupedPromociones).map(([category, promociones]) => (
+        <section
+          key={category}
+          className='mb-10 text-center dark:text-white text-green-800'
+        >
+          <h2 className='text-3xl font-semibold mb-8'>{category}</h2>
+          <div className='flex flex-wrap justify-center gap-6'>
+            {promociones.map((promocion) => (
+              <CardPromocion
+                key={promocion.id_promocion}
+                promocion={promocion}
+              />
+            ))}
           </div>
-        ))}
-      </section>
+        </section>
+      ))}
     </div>
   );
 };

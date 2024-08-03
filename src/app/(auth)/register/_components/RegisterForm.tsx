@@ -86,14 +86,14 @@ export const RegisterForm = () => {
           render={({ field }) => (
             <FormItem>
               <FormLabel className='max-sm:text-lg sm:text-base'>
-                Nombre
+                Nombres
               </FormLabel>
               <FormControl>
                 <Input
                   {...field}
                   disabled={isPending}
                   type='text'
-                  placeholder='Ingresa tu nombre'
+                  placeholder='Ingresa tus nombres'
                   className='dark:border-graphite-deep'
                 />
               </FormControl>
@@ -107,7 +107,7 @@ export const RegisterForm = () => {
           render={({ field }) => (
             <FormItem>
               <FormLabel className='max-sm:text-lg sm:text-base'>
-                Apellido
+                Apellidos
               </FormLabel>
               <FormControl>
                 <Input
@@ -166,27 +166,6 @@ export const RegisterForm = () => {
         />
         <FormField
           control={form.control}
-          name='documento'
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className='max-sm:text-lg sm:text-base'>
-                Número de documento
-              </FormLabel>
-              <FormControl>
-                <Input
-                  {...field}
-                  disabled={isPending}
-                  type='text'
-                  placeholder=''
-                  className='dark:border-graphite-deep'
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
           name='tipo_doc'
           render={({ field }) => (
             <FormItem>
@@ -223,6 +202,28 @@ export const RegisterForm = () => {
             </FormItem>
           )}
         />
+        <FormField
+          control={form.control}
+          name='documento'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className='max-sm:text-lg sm:text-base'>
+                Número de documento
+              </FormLabel>
+              <FormControl>
+                <Input
+                  {...field}
+                  disabled={isPending}
+                  type='text'
+                  placeholder=''
+                  className='dark:border-graphite-deep'
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
         <FormField
           control={form.control}
           name='password'

@@ -25,7 +25,7 @@ export default function Page() {
                   ¿Aún no tienes cuenta?{" "}
                   <Link
                     href={registerRoute}
-                    className='text-graphite-deep hover:text-black dark:text-graphite-light dark:hover:text-graphite'
+                    className='text-graphite-deep hover:text-black dark:text-graphite-light dark:hover:text-graphite text-lg'
                   >
                     Registrarse
                   </Link>

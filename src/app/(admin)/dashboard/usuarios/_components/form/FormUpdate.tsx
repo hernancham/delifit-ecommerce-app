@@ -14,7 +14,6 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-  FormDescription,
 } from "@/components/ui/form";
 import {
   Select,
@@ -78,6 +77,7 @@ export const FormUpdate = ({ setIsOpen, usuario }: FormUpdateProps) => {
   });
 
   const isLoading = form.formState.isSubmitting;
+  const isAdmin = usuario.rol === "ADMIN" || usuario.rol === "MOD";
 
   const onSubmit = (values: formType) => {
     try {
@@ -157,7 +157,7 @@ export const FormUpdate = ({ setIsOpen, usuario }: FormUpdateProps) => {
               <FormItem>
                 <FormLabel>Rol</FormLabel>
                 <Select
-                  disabled={isLoading}
+                  disabled={isLoading || isAdmin} // Deshabilitar si es ADMIN
                   onValueChange={field.onChange}
                   value={field.value}
                   defaultValue={field.value}

@@ -25,12 +25,19 @@ export const Banner = () => {
               En DELIFIT, por casi cinco años, hemos sido el sabor saludable de
               Tacna, ofreciendo opciones frescas y nutritivas. Desde desayunos
               energizantes hasta postres tentadores, cada plato resalta por sus
-              ingredientes naturales y calidad insuperable. Como un referente
-              culinario en la región, nos enorgullece haber nutrido y deleitado
-              a los tacneños y visitantes con nuestra dedicación a la frescura y
-              excelencia culinaria. Celebramos el equilibrio entre el buen comer
-              y la salud, agradeciendo a todos quienes nos han acompañado en
-              este viaje hacia una vida más saludable y deliciosa en Tacna.
+              ingredientes naturales y calidad insuperable.
+            </p>
+            <br />
+            <p className='dark:text-gray-100 text-sm text-black sm:text-base lg:text-xl text-justify'>
+              Como un referente culinario en la región, nos enorgullece haber
+              nutrido y deleitado a los tacneños y visitantes con nuestra
+              dedicación a la frescura y excelencia culinaria.
+            </p>
+            <br />
+            <p className='dark:text-gray-100 text-sm text-black sm:text-base lg:text-xl text-justify'>
+              Celebramos el equilibrio entre el buen comer y la salud,
+              agradeciendo a todos quienes nos han acompañado en este viaje
+              hacia una vida más saludable y deliciosa en Tacna.
             </p>
             <div className='mb-8 mt-8 h-px w-full bg-green-800 dark:bg-slate-400'></div>
           </div>

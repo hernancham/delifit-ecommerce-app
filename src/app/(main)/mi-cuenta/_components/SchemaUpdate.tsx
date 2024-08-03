@@ -25,11 +25,11 @@ export const formSchema = z.object({
     .min(4, "Debe tener al menos 4 caracteres")
     .max(20, "Debe tener menos de 20 caracteres"),
   tipo_doc: z.enum(TIPOS_DOCUMENTO),
-  /*  password: z
+  /*password: z
     .string()
     .min(8, "Debe tener al menos 8 caracteres")
     .max(40, "Debe tener menos de 60 caracteres")
-    .optional(), */
+    .optional(),*/
   image: z.string(),
 });
 

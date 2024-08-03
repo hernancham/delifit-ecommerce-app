@@ -1,17 +1,15 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-
 import { Producto } from "@/types/db";
 import { ShoppingBasket } from "lucide-react";
-
 import { useCartStore } from "@/store/shopcart";
 
 export const CardProducto = ({ producto }: { producto: Producto }) => {
   const addToCartProducto = useCartStore((state) => state.addToCartProducto);
 
   return (
-    <div className='min-w-[200px] max-w-xs bg-beige-light dark:bg-neutral-700 rounded-xl duration-500 hover:scale-105 hover:shadow-xl shadow-md flex flex-col justify-between'>
+    <div className='min-w-[180px] max-w-[240px] bg-beige-light dark:bg-neutral-700 rounded-xl duration-500 hover:scale-105 hover:shadow-xl shadow-md flex flex-col justify-between'>
       <div className='relative'>
         <img
           src={producto.img_url}
@@ -24,9 +22,6 @@ export const CardProducto = ({ producto }: { producto: Producto }) => {
         </h3>
       </div>
       <div className='flex flex-col items-center gap-2 p-2'>
-        <div className='text-beige-dark dark:text-green_p-dark rounded-md p-1'>
-          {producto.cat_producto.nombre}
-        </div>
         <div>
           <span className='font-bold'>Precio:</span> S/. {producto.precio_base}
         </div>

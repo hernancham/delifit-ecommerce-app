@@ -70,7 +70,7 @@ export const FormUpdate = ({ usuario }: FormUpdateProps) => {
       email: usuario.email,
       documento: usuario.documento,
       tipo_doc: usuario.tipo_doc,
-      //password: "", // Deja el campo vacío por defecto
+      //password: "",
       image: usuario.image,
     },
   });
@@ -89,12 +89,10 @@ export const FormUpdate = ({ usuario }: FormUpdateProps) => {
         tipo_doc: values.tipo_doc,
         image: values.image,
       };
-
       // Verificar si se proporcionó una nueva contraseña y si es diferente de la actual
       /* if (values.password && values.password !== "") {
         updatedData.password = bcryptjs.hashSync(values.password, 10);
       } */
-
       actualizarUsuario(updatedData);
 
       router.push("/mi-cuenta");
@@ -108,9 +106,11 @@ export const FormUpdate = ({ usuario }: FormUpdateProps) => {
   };
 
   return (
-    <div className='flex justify-center items-center min-h-screen'>
-      <div className='max-w-lg w-full p-6 bg-white rounded shadow-md mt-16'>
-        <div className='text-2xl text-center pt-4'>Actualizar datos</div>
+    <div className='flex justify-center items-center min-h-screen bg-white dark:bg-gray-900'>
+      <div className='max-w-lg w-full p-6 bg-gray-100 dark:bg-gray-800 rounded shadow-md mt-16'>
+        <div className='text-2xl text-center text-gray-900 dark:text-gray-100 pt-4'>
+          Actualizar datos
+        </div>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -122,13 +122,16 @@ export const FormUpdate = ({ usuario }: FormUpdateProps) => {
                 name='nombre'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Nombres</FormLabel>
+                    <FormLabel className='text-gray-900 dark:text-gray-100'>
+                      Nombres
+                    </FormLabel>
                     <FormControl>
                       <Input
                         {...field}
                         disabled={isLoading}
                         placeholder=''
                         type='text'
+                        className='bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400'
                       />
                     </FormControl>
                     <FormMessage />
@@ -140,13 +143,16 @@ export const FormUpdate = ({ usuario }: FormUpdateProps) => {
                 name='apellido'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Apellido</FormLabel>
+                    <FormLabel className='text-gray-900 dark:text-gray-100'>
+                      Apellido
+                    </FormLabel>
                     <FormControl>
                       <Input
                         {...field}
                         disabled={isLoading}
                         placeholder=''
                         type='text'
+                        className='bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400'
                       />
                     </FormControl>
                     <FormMessage />
@@ -158,13 +164,16 @@ export const FormUpdate = ({ usuario }: FormUpdateProps) => {
                 name='telefono'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Telefono</FormLabel>
+                    <FormLabel className='text-gray-900 dark:text-gray-100'>
+                      Telefono
+                    </FormLabel>
                     <FormControl>
                       <Input
                         {...field}
                         disabled={isLoading}
                         placeholder=''
                         type='text'
+                        className='bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400'
                       />
                     </FormControl>
                     <FormMessage />
@@ -176,13 +185,16 @@ export const FormUpdate = ({ usuario }: FormUpdateProps) => {
                 name='email'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel className='text-gray-900 dark:text-gray-100'>
+                      Email
+                    </FormLabel>
                     <FormControl>
                       <Input
                         {...field}
                         disabled={isLoading}
                         placeholder=''
                         type='text'
+                        className='bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400'
                       />
                     </FormControl>
                     <FormMessage />
@@ -194,30 +206,36 @@ export const FormUpdate = ({ usuario }: FormUpdateProps) => {
                 name='documento'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Documento</FormLabel>
+                    <FormLabel className='text-gray-900 dark:text-gray-100'>
+                      Documento
+                    </FormLabel>
                     <FormControl>
                       <Input
                         {...field}
                         disabled={isLoading}
                         placeholder=''
                         type='text'
+                        className='bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400'
                       />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <FormField
+              {/* <FormField
                 control={form.control}
                 name='tipo_doc'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Tipo de documento</FormLabel>
+                    <FormLabel className='text-gray-900 dark:text-gray-100'>
+                      Tipo de documento
+                    </FormLabel>
                     <Select
                       disabled={isLoading}
                       onValueChange={field.onChange}
                       value={field.value}
                       defaultValue={field.value}
+                      className='bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400'
                     >
                       <FormControl>
                         <SelectTrigger>
@@ -232,6 +250,7 @@ export const FormUpdate = ({ usuario }: FormUpdateProps) => {
                           <SelectItem
                             key={doc}
                             value={doc}
+                            className='text-gray-900 dark:text-gray-100'
                           >
                             {doc}
                           </SelectItem>
@@ -241,19 +260,20 @@ export const FormUpdate = ({ usuario }: FormUpdateProps) => {
                     <FormMessage />
                   </FormItem>
                 )}
-              />
+              /> */}
               {/* <FormField
                 control={form.control}
                 name='password'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Contraseña</FormLabel>
+                    <FormLabel className='text-gray-900 dark:text-gray-100'>Contraseña</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
                         disabled={isLoading}
                         placeholder='Ingrese su nueva contraseña'
                         type='password'
+                        className='bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400'
                       />
                     </FormControl>
                     <FormMessage />
@@ -265,7 +285,9 @@ export const FormUpdate = ({ usuario }: FormUpdateProps) => {
                 name='image'
                 render={({ field: { value, onChange, ...fieldProps } }) => (
                   <FormItem>
-                    <FormLabel>Imagen</FormLabel>
+                    <FormLabel className='text-gray-900 dark:text-gray-100'>
+                      Imagen
+                    </FormLabel>
                     <FormControl>
                       <ImageUpload
                         preview={usuario?.image}
@@ -286,7 +308,7 @@ export const FormUpdate = ({ usuario }: FormUpdateProps) => {
                             variant: "destructive",
                           });
                         }}
-                        className='size-40 bg-inherit hover:bg-secondary outline-dashed border-primary rounded-lg'
+                        className='size-40 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 outline-dashed border-gray-400 dark:border-gray-700 rounded-lg'
                       />
                     </FormControl>
                     <FormMessage />
@@ -299,6 +321,7 @@ export const FormUpdate = ({ usuario }: FormUpdateProps) => {
                 type='submit'
                 disabled={isLoading}
                 variant='outline'
+                className='bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700'
               >
                 Actualizar
               </Button>
@@ -306,6 +329,7 @@ export const FormUpdate = ({ usuario }: FormUpdateProps) => {
                 type='button'
                 disabled={isLoading}
                 variant='default'
+                className='bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700'
                 onClick={() => form.reset()}
               >
                 Cancelar

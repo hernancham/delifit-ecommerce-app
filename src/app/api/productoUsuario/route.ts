@@ -3,8 +3,19 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET(request: Request) {
   let data;
+  const excludedCategoryIds = [
+    "clyi76cbg000cgap5d19tplr5", // Toppings de elección
+    "clyitlb0100006yvac2pigawp", // Adicionales
+    "clyiwt4ip000210vx8jlzcyea", // Otros agregados
+  ];
   try {
     data = await prisma.producto.findMany({
+      where: {
+        activo: true,
+        id_cat_producto: {
+          notIn: excludedCategoryIds,
+        },
+      },
       select: {
         id_producto: true,
         img_url: true,
@@ -23,6 +34,7 @@ export async function GET(request: Request) {
         },
       },
     });
+
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
     if (error instanceof Error) {

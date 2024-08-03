@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
 
 import {
@@ -20,11 +19,9 @@ import { useMutation } from "@tanstack/react-query";
 import { createPedido } from "@/actions/pedido/create-pedido";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { User } from "next-auth";
 
 export function ShopCar() {
   const session = useSession();
-
   const router = useRouter();
   const cartProductos = useCartStore((state) => state.cartProductos);
   const cartPromociones = useCartStore((state) => state.cartPromociones);
@@ -47,12 +44,12 @@ export function ShopCar() {
         id_usuario: user.userId,
         total: totalPrecio(),
         productos: cartProductos.map((producto) => ({
-          id_producto: producto.id_producto,
+          id_producto: producto.id_producto!,
           precio_cantidad: producto.cantidad * producto.precio,
           cantidad: producto.cantidad,
         })),
         promocion: cartPromociones.map((promocion) => ({
-          id_promocion: promocion.id_promocion,
+          id_promocion: promocion.id_promocion!,
           precio_cantidad: promocion.cantidad * promocion.precio,
           cantidad: promocion.cantidad,
         })),
@@ -60,6 +57,10 @@ export function ShopCar() {
     } else {
       router.push("/login");
     }
+  };
+
+  const handleClearCart = () => {
+    useCartStore.getState().clearCart(); // Llama a la función para limpiar el carrito
   };
 
   const carritoVacio =
@@ -110,7 +111,7 @@ export function ShopCar() {
             {cartPromociones.length > 0 && (
               <>
                 <h2 className='text-2xl font-bold mb-4'>Lista Promociones</h2>
-                <ul className='flex-1 max-h-48 overflow-y-auto py-6'>
+                <ul className='flex-1 max-h-48 overflow-y-auto py-4'>
                   {cartPromociones.map((promocion) => (
                     <li key={promocion.id_promocion}>
                       <ShopCarItemPromocion promocion={promocion} />
@@ -122,10 +123,10 @@ export function ShopCar() {
           </div>
         )}
         {!carritoVacio && (
-          <SheetFooter className='flex !flex-col gap-3 mt-4'>
+          <SheetFooter className='flex !flex-col gap-3 mt-4 items-center'>
             <SheetClose asChild>
               <Button
-                className='bg-graphite-deep hover:bg-graphite-dark text-green_p-dark dark:bg-green_p-dark dark:text-black dark:hover:bg-green_p'
+                className='w-full bg-graphite-deep hover:bg-graphite-dark text-green_p-dark dark:bg-green_p-dark dark:text-black dark:hover:bg-green_p'
                 onClick={() => router.push("/menu/carrito")}
               >
                 Ver mi carrito
@@ -133,10 +134,18 @@ export function ShopCar() {
             </SheetClose>
             <SheetClose asChild>
               <Button
-                onClick={() => handlePedido()}
-                className='bg-green_p-deep hover:bg-lime-400 dark:bg-background dark:text-lime-400 dark:hover:bg-graphite-dark'
+                onClick={() => handleClearCart()}
+                className='w-full bg-red-500 hover:bg-red-600 text-white'
               >
-                Completar Pedido S/.{totalPrecio()}
+                Limpiar Carrito
+              </Button>
+            </SheetClose>
+            <SheetClose asChild>
+              <Button
+                onClick={() => handlePedido()}
+                className='w-full bg-green_p-deep hover:bg-lime-400 dark:bg-background dark:text-lime-400 dark:hover:bg-graphite-dark'
+              >
+                Completar Pedido S/.{totalPrecio().toFixed(2)}
               </Button>
             </SheetClose>
             <SheetClose asChild>
