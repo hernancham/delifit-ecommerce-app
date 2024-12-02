@@ -143,7 +143,7 @@ export function ShopCar() {
             <SheetClose asChild>
               <Button
                 onClick={() => handlePedido()}
-                className='w-full bg-green_p-deep hover:bg-lime-400 dark:bg-background dark:text-lime-400 dark:hover:bg-graphite-dark'
+                className='w-full bg-green_p-deep hover:bg-blue-400 dark:bg-background dark:text-blue-400 dark:hover:bg-graphite-dark'
               >
                 Completar Pedido S/.{totalPrecio().toFixed(2)}
               </Button>

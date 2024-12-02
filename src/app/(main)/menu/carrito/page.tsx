@@ -132,7 +132,7 @@ export default function Carrito() {
               </div>
               <Button
                 onClick={() => handlePedido()}
-                className='bg-green_p-deep hover:bg-lime-400 dark:bg-background dark:text-lime-400 dark:hover:bg-graphite-dark w-full mt-4'
+                className='bg-green_p-deep hover:bg-blue-400 dark:bg-background dark:text-blue-400 dark:hover:bg-graphite-dark w-full mt-4'
               >
                 Continuar Compra
               </Button>

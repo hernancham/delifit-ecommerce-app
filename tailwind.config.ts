@@ -20,21 +20,21 @@ const config = {
     extend: {
       colors: {
         green_p: {
-          light: "#dcefe2",
-          DEFAULT: "#dcefe2",
-          dark: "#bbdfc8",
-          deep: "#a1d80a",
+          light: "#cce4f6", // Azul claro
+          DEFAULT: "#99c9ed", // Azul predeterminado
+          dark: "#66aee4", // Azul oscuro
+          deep: "#338fdc", // Azul profundo
         },
         graphite: {
-          light: "#e7e7e7",
-          DEFAULT: "#dfdfdf",
-          dark: "#3d3d3d",
-          deep: "#262626",
+          light: "#d4e8f9", // Gris azulado claro
+          DEFAULT: "#a8d1f3", // Gris azulado predeterminado
+          dark: "#7dbbea", // Gris azulado oscuro
+          deep: "#4ba5e1", // Gris azulado profundo
         },
         beige: {
-          light: "#fdffe2",
-          DEFAULT: "#f2ecd5",
-          dark: "#53650f", // Puede cambiar
+          light: "#e3f2fc", // Azul pastel claro
+          DEFAULT: "#c2e3f8", // Azul pastel predeterminado
+          dark: "#80c3ee", // Azul pastel oscuro
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

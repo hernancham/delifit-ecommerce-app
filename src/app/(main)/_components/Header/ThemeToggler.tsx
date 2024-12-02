@@ -61,7 +61,7 @@ export function ThemeToggler({ isDropDown = false }: { isDropDown?: boolean }) {
       <div className='flex flex-row space-x-2 items-center rounded-full border p-1'>
         <button
           className={cn(
-            theme === "light" ? "bg-lime-200 rounded-full" : "bg-transparent",
+            theme === "light" ? "bg-blue-200 rounded-full" : "bg-transparent",
             "p-1"
           )}
           onClick={() => setTheme("light")}
@@ -75,7 +75,7 @@ export function ThemeToggler({ isDropDown = false }: { isDropDown?: boolean }) {
         <button
           className={cn(
             theme === "system"
-              ? "bg-neutral-200 dark:bg-lime-700 rounded-full"
+              ? "bg-neutral-200 dark:bg-blue-700 rounded-full"
               : "bg-transparent",
             "p-1"
           )}

@@ -110,7 +110,7 @@ export const ShopCarItemPromocion = ({
                   promocion.cantidad - 1
                 )
           }
-          className='bg-lime-500 text-white text-lg px-3 py-1 rounded-md hover:bg-lime-400'
+          className='bg-blue-500 text-white text-lg px-3 py-1 rounded-md hover:bg-blue-400'
         >
           -
         </button>
@@ -122,7 +122,7 @@ export const ShopCarItemPromocion = ({
               promocion.cantidad + 1
             )
           }
-          className='bg-lime-500 text-white text-lg px-3 py-1 rounded-md hover:bg-lime-400'
+          className='bg-blue-500 text-white text-lg px-3 py-1 rounded-md hover:bg-blue-400'
         >
           +
         </button>

@@ -105,7 +105,7 @@ export const GridProductos = () => {
       {Object.entries(groupedProductos).map(([category, productos]) => (
         <section
           key={category}
-          className='mb-10 text-center dark:text-white text-green-800'
+          className='mb-10 text-center dark:text-white text-sky-800'
         >
           <h2 className='text-3xl font-semibold mb-8'>{category}</h2>
           <div className='flex flex-wrap justify-center gap-9'>

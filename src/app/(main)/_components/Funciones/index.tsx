@@ -13,7 +13,7 @@ function Funciones() {
       <div className='grid gap-5 md:grid-cols-3 md:gap-10'>
         <div className='bg-white shadow-md dark:bg-graphite-deep rounded-lg p-6 border-t-4 border-graphite-deep dark:border-green_p-dark mb-6 md:mb-0'>
           <div className='flex items-center mb-4'>
-            <div className='bg-green_p-deep dark:bg-lime-700 text-graphite-deep dark:text-white font-bold rounded-full h-12 w-12 flex items-center justify-center mr-4'>
+            <div className='bg-green_p-deep dark:bg-blue-700 text-graphite-deep dark:text-white font-bold rounded-full h-12 w-12 flex items-center justify-center mr-4'>
               1
             </div>
             <h2 className='text-lg md:text-xl font-bold text-black dark:text-green_p'>
@@ -34,7 +34,7 @@ function Funciones() {
 
         <div className='bg-white shadow-md dark:bg-graphite-deep rounded-lg p-6 border-t-4 border-graphite-deep dark:border-green_p-dark mb-6 md:mb-0'>
           <div className='flex items-center mb-4'>
-            <div className='bg-green_p-deep dark:bg-lime-700 text-graphite-deep dark:text-white font-bold rounded-full h-12 w-12 flex items-center justify-center mr-4'>
+            <div className='bg-green_p-deep dark:bg-blue-700 text-graphite-deep dark:text-white font-bold rounded-full h-12 w-12 flex items-center justify-center mr-4'>
               2
             </div>
             <h2 className='text-lg md:text-xl font-bold text-black dark:text-green_p'>
@@ -78,7 +78,7 @@ function Funciones() {
 
         <div className='bg-white shadow-md dark:bg-graphite-deep rounded-lg p-6 border-t-4 border-graphite-deep dark:border-green_p-dark mb-6 md:mb-0'>
           <div className='flex items-center mb-4'>
-            <div className='bg-green_p-deep dark:bg-lime-700 text-graphite-deep dark:text-white font-bold rounded-full h-12 w-12 flex items-center justify-center mr-4'>
+            <div className='bg-green_p-deep dark:bg-blue-700 text-graphite-deep dark:text-white font-bold rounded-full h-12 w-12 flex items-center justify-center mr-4'>
               3
             </div>
             <h2 className='text-lg md:text-xl font-bold text-black dark:text-green_p'>

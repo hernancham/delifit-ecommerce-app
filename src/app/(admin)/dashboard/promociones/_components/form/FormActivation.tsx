@@ -94,7 +94,7 @@ export const FormEnable = ({
             size='lg'
             type='submit'
             disabled={isLoading}
-            className='w-full bg-lime-500 hover:bg-lime-400'
+            className='w-full bg-blue-500 hover:bg-blue-400'
           >
             {isLoading ? (
               <>

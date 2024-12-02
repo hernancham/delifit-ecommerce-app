@@ -40,7 +40,7 @@ export const Footer = () => {
                   <p className='text-sm text-gray-700 dark:text-graphite'>
                     <Link
                       href='mailto:delifit.tacna@gmail.com'
-                      className='text-beige-dark hover:text-green-700 dark:text-green_p-dark dark:hover:text-green_p-deep'
+                      className='text-beige-dark hover:text-sky-700 dark:text-green_p-dark dark:hover:text-green_p-deep'
                     >
                       delifit.tacna@gmail.com
                     </Link>

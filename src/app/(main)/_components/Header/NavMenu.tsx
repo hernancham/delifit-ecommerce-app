@@ -23,7 +23,7 @@ export function NavMenu({ navbarLinks }: { navbarLinks: TypeNavLink[] }) {
                 className={cn(
                   "flex py-2 text-lg lg:mr-0 lg:inline-flex items-center cursor-pointer font-arial",
                   currentPath === nl.path
-                    ? "text-lime-500 dark:text-white"
+                    ? "text-blue-500 dark:text-white"
                     : "text-graphite-deep dark:text-green_p hover:text-black dark:hover:text-green_p-dark"
                 )}
               >

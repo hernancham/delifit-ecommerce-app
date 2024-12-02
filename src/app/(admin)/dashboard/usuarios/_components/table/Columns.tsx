@@ -120,7 +120,7 @@ export const ColUsuarios: ColumnDef<Usuario>[] = [
     cell: ({ row }) => {
       const { activo } = row.original;
       return activo ? (
-        <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800'>
+        <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-sky-100 text-sky-800'>
           Activo
         </span>
       ) : (
