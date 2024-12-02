@@ -13,9 +13,8 @@ CREATE TYPE "EstadoPedido" AS ENUM ('Procesando', 'Pendiente', 'Aceptado', 'Rech
 -- CreateTable
 CREATE TABLE "Usuario" (
     "id_usuario" TEXT NOT NULL,
-    "image" TEXT,
+    "image" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "name" TEXT,
     "nombre" TEXT NOT NULL,
     "apellido" TEXT NOT NULL,
     "password" TEXT NOT NULL,
@@ -24,10 +23,10 @@ CREATE TABLE "Usuario" (
     "tipo_doc" "TipoDocumento" NOT NULL,
     "puntos" INTEGER NOT NULL DEFAULT 0,
     "rol" "UserRole" NOT NULL DEFAULT 'User',
-    "validacion" BOOLEAN NOT NULL DEFAULT false,
     "activo" BOOLEAN NOT NULL DEFAULT true,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "validacion" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "Usuario_pkey" PRIMARY KEY ("id_usuario")
 );
@@ -195,16 +194,16 @@ ALTER TABLE "ProductoOnPromocion" ADD CONSTRAINT "ProductoOnPromocion_id_promoci
 ALTER TABLE "Promocion" ADD CONSTRAINT "Promocion_id_cat_promocion_fkey" FOREIGN KEY ("id_cat_promocion") REFERENCES "CategoriaPromocion"("id_cat_promocion") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ListaProducto" ADD CONSTRAINT "ListaProducto_id_producto_fkey" FOREIGN KEY ("id_producto") REFERENCES "Producto"("id_producto") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
 ALTER TABLE "ListaProducto" ADD CONSTRAINT "ListaProducto_id_pedido_fkey" FOREIGN KEY ("id_pedido") REFERENCES "Pedido"("id_pedido") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ListaPromocion" ADD CONSTRAINT "ListaPromocion_id_promocion_fkey" FOREIGN KEY ("id_promocion") REFERENCES "Promocion"("id_promocion") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "ListaProducto" ADD CONSTRAINT "ListaProducto_id_producto_fkey" FOREIGN KEY ("id_producto") REFERENCES "Producto"("id_producto") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "ListaPromocion" ADD CONSTRAINT "ListaPromocion_id_pedido_fkey" FOREIGN KEY ("id_pedido") REFERENCES "Pedido"("id_pedido") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ListaPromocion" ADD CONSTRAINT "ListaPromocion_id_promocion_fkey" FOREIGN KEY ("id_promocion") REFERENCES "Promocion"("id_promocion") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Pedido" ADD CONSTRAINT "Pedido_id_usuario_fkey" FOREIGN KEY ("id_usuario") REFERENCES "Usuario"("id_usuario") ON DELETE RESTRICT ON UPDATE CASCADE;
