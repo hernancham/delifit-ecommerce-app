@@ -34,7 +34,7 @@ export const CardProducto = ({ producto }: { producto: Producto }) => {
               precio: producto.precio_base,
             })
           }
-          className='bg-graphite-deep text-white w-full hover:bg-graphite-dark dark:bg-green_p-dark dark:text-graphite-deep dark:hover:bg-green_p w-full'
+          className='bg-graphite-deep text-white hover:bg-graphite-dark dark:bg-green_p-dark dark:text-graphite-deep dark:hover:bg-green_p w-full'
         >
           <ShoppingBasket className='size-6 mr-2' /> Agregar al carrito
         </Button>
