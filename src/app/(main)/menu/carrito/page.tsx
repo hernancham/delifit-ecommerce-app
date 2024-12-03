@@ -10,6 +10,7 @@ import { createPedido } from "@/actions/pedido/create-pedido";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
+import { toast } from "@/components/ui/use-toast";
 
 export default function Carrito() {
   const session = useSession();
@@ -35,6 +36,12 @@ export default function Carrito() {
           precio_cantidad: promocion.cantidad * promocion.precio,
           cantidad: promocion.cantidad,
         })),
+      });
+      toast({
+        title: "El pedido esta en curso",
+        description:
+          "En unis momentos te contactaremos para confirmar tu pedido",
+        variant: "default",
       });
     } else {
       router.push("/login");

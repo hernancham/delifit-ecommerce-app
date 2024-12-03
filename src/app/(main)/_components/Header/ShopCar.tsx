@@ -19,6 +19,7 @@ import { useMutation } from "@tanstack/react-query";
 import { createPedido } from "@/actions/pedido/create-pedido";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { toast } from "@/components/ui/use-toast";
 
 export function ShopCar() {
   const session = useSession();
@@ -53,6 +54,12 @@ export function ShopCar() {
           precio_cantidad: promocion.cantidad * promocion.precio,
           cantidad: promocion.cantidad,
         })),
+      });
+      toast({
+        title: "El pedido esta en curso",
+        description:
+          "En unis momentos te contactaremos para confirmar tu pedido",
+        variant: "default",
       });
     } else {
       router.push("/login");
