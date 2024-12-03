@@ -77,7 +77,7 @@ export const FormUpdate = ({ setIsOpen, usuario }: FormUpdateProps) => {
   });
 
   const isLoading = form.formState.isSubmitting;
-  const isAdmin = usuario.rol === "ADMIN" || usuario.rol === "MOD";
+  const isAdmin = usuario.rol === "ADMIN";
 
   const onSubmit = (values: formType) => {
     try {
