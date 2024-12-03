@@ -10,7 +10,7 @@ export function Logo() {
       className='flex w-full items-center gap-4 py-5 lg:py-4'
     >
       <Image
-        src='/delifit-logos/delifit-logo.svg'
+        src='/assets/esisfactu-logo.svg'
         alt='logo'
         width={42}
         height={42}

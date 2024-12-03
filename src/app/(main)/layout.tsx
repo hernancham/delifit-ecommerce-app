@@ -1,7 +1,7 @@
 "use server";
 
 import { auth } from "@/auth";
-import { Footer } from "./_components/Footer";
+/* import { Footer } from "./_components/Footer"; */
 import { Header } from "./_components/Header";
 
 export default async function Layout({
@@ -14,7 +14,7 @@ export default async function Layout({
     <section>
       <Header session={session} />
       {children}
-      <Footer />
+      {/* <Footer /> */}
     </section>
   );
 }

@@ -6,6 +6,6 @@ export const productoDefault = "/default/ejemplo-producto.png";
 
 export const promocionDefault = "/default/ejemplo-promocion.png";
 
-export const usuarioDefault = "/default/ejemplo-usuario.png";
+export const usuarioDefault = "/assets/user.svg";
 
-export const personalDefault = "/default/ejemplo-personal.png";
+export const personalDefault = "/assets/user.svg";

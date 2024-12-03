@@ -157,9 +157,11 @@ model Pedido {
 }
 
 enum UserRole {
-  USER  @map("User")
-  MOD   @map("Mod")
-  ADMIN @map("Admin")
+  USER     @map("User")
+  ADMIN    @map("Admin")
+  MESERO   @map("Mesero")
+  CAJERO   @map("Cajero")
+  COCINERO @map("Cocinero")
 }
 
 enum TipoDocumento {

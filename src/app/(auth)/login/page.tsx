@@ -8,7 +8,7 @@ export default function Page() {
   return (
     <div className='min-h-screen text-mcd-black lg:grid lg:grid-cols-2'>
       <div className='relative hidden lg:flex lg:items-center lg:justify-center'>
-        <div className="bg-[url('/media/img1_login.jpg')] bg-center bg-cover w-full h-full rounded-lg border border-gray-300 overflow-hidden"></div>
+        <div className="bg-[url('/assets/login-img.svg')] bg-center bg-cover w-full h-full rounded-lg border border-gray-300 overflow-hidden"></div>
         <div className='absolute inset-0 bg-black opacity-15 rounded-lg'></div>
       </div>
       <main className='flex items-center justify-center'>
@@ -16,7 +16,7 @@ export default function Page() {
           <section className='w-full max-w-md'>
             <CardAuth
               header={
-                <div className="bg-[url('/delifit-logos/delifit-logo.svg')] bg-center bg-cover w-20 h-20"></div>
+                <div className="bg-[url('/assets/esisfactu-logo.svg')] bg-center bg-cover w-20 h-20"></div>
               }
               title='Iniciar sesión'
               description='Bienvenido de nuevo, entra y empieza a disfrutar'

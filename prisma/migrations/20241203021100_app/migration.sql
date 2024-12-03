@@ -1,5 +1,5 @@
 -- CreateEnum
-CREATE TYPE "UserRole" AS ENUM ('User', 'Mod', 'Admin');
+CREATE TYPE "UserRole" AS ENUM ('User', 'Admin', 'Mesero', 'Cajero', 'Cocinero');
 
 -- CreateEnum
 CREATE TYPE "TipoDocumento" AS ENUM ('DNI', 'Pasaporte', 'Carnet de Extranjería', 'Otro');
