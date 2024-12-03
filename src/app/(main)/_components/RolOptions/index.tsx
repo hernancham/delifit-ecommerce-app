@@ -43,7 +43,7 @@ export const RolOptions = () => {
                   Tienes el Rol de {rolEmpleado}
                 </p>
                 <CardOptions
-                  url='/dashboard'
+                  url='/dashboard/usuarios'
                   title='Administrador'
                   image='/page-icons/admin.png'
                   description='Panel de administrador'
